@@ -1,0 +1,17 @@
+1. Make fork of this repository from your account on github
+2. Clone your github repository into your local machine
+3. If you already have local copy make "git pull origin master" command
+    in the folder with project.
+4. Create new branch with your task name by 
+    "git checkout -b branch_name".
+5. Do your task, you can do more than one commit in branch.
+    Do not change any existing code without strong reasons:
+    it would be more problems with merging branches.
+6. Truck changes by "git add ." or by gui and commit by
+    "git commit -m 'your commit message'" or by gui.
+7. Push changes into your github by "git push origin branchname"
+    or by gui
+8 On your github repository press "New pull request", in base select 
+    repository on Shadasviar/mario and branch master, in your side
+    select your branch to commit.
+9. Wait for moderating your pull request by me in the main repository

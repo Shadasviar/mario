@@ -1,0 +1,14 @@
+Maksym: 
+    Try create GUI with some lines and squares.
+Nastia:
+    Create class Unit and implement functions
+    getPosition() and action(). Action can only do nothing.
+    Use Coordinate as usual type. Also create enum Side with
+    four values as on the diagram.
+Mykhailo:
+    Create Coordinates class with fields bottomLeft and
+    topRight of type Point. Point type is in System.Drawing:
+    https://msdn.microsoft.com/ru-ru/library/system.drawing.point(v=vs.110).aspx
+I will make world, game and GameAPI classes.
+
+How to use github see in the file howto_git.txt
