@@ -8,5 +8,7 @@ namespace Mario
 {
     class Unit
     {
+        private int a, b, c;
+        
     }
 }
