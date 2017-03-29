@@ -1,10 +1,9 @@
 Maksym: 
     Try create GUI with some lines and squares.
+    Try make squares moving and try set image for it.
+    Maybe C# has some sprite classes?
 Nastia:
-    Create class Unit and implement functions
-    getPosition() and action(). Action can only do nothing.
-    Use Coordinate as usual type. Also create enum Side with
-    four values as on the diagram.
+    Implement class Unit from UML diagram
 Mykhailo:
     Create Coordinates class with fields bottomLeft and
     topRight of type Point. Point type is in System.Drawing:
