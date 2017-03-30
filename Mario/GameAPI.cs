@@ -8,10 +8,10 @@ namespace Mario
 {
     interface GameAPI
     {
-        bool move(Coordinates src, Coordinates dst);
+        void nextFrame();
+        List<Coordinates> getAllUnitsCoordinates();
+        bool setLevel(int index);
         bool playerIsLaive();
-        World getWorld(int index);
-        bool addWorld(World world);
 
     }
 }
