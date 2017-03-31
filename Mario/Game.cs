@@ -19,7 +19,7 @@ namespace Mario
             throw new NotImplementedException();
         }
 
-        public bool playerIsLaive()
+        public bool playerIsAlive()
         {
             throw new NotImplementedException();
         }

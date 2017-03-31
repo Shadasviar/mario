@@ -11,7 +11,7 @@ namespace Mario
         void nextFrame();
         List<Coordinates> getAllUnitsCoordinates();
         bool setLevel(int index);
-        bool playerIsLaive();
+        bool playerIsAlive();
 
     }
 }

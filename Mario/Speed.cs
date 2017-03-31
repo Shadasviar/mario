@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mario
+namespace GameEngine
 {
     class Speed
     {
-        int horizontalSpeed;
-        int verticalSpeed;
+        public int horizontalSpeed;
+        public int verticalSpeed;
 
     }
 }
