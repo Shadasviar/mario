@@ -20,11 +20,6 @@ namespace GameEngine
             units.Add(unit);
         }
 
-        public Unit getUnit(Coordinates coord)
-        {
-            return new Unit();
-        }
-
         public bool remove(Unit unit)
         {
             units.Remove(unit);

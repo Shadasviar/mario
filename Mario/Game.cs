@@ -33,15 +33,12 @@ namespace Mario
 
         public bool setLevel(int index)
         {
-            if(index < levels.Count)
+            if(index < levels.Count && index >= 0)
             {
                 currentLevel = index;
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
     }
 }
