@@ -8,7 +8,18 @@ namespace Mario
 {
     class Unit
     {
-        private int a, b, c;
-        
+        protected Coordinates position;
+        protected int priority;
+        protected Speed currentSpeed;
+
+        public Coordinates GetPosition()
+            {
+            return position;
+            }
+        public Speed GetCurrentSpeed()
+            {
+            return currentSpeed;
+            }
     }
+
 }
