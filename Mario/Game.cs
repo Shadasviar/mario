@@ -9,9 +9,16 @@ namespace Mario
 {
     class Game : GameAPI
     {
+        protected List<World> levels;
+        protected int currentLevel;
         public List<Coordinates> getAllUnitsCoordinates()
         {
-            throw new NotImplementedException();
+            List<Coordinates> result = new List<Coordinates>();
+            foreach(Unit u in levels[currentLevel].getAllUnits())
+            {
+                result.Add(u.GetPosition());
+            }
+            return result;
         }
 
         public void nextFrame()
@@ -26,7 +33,15 @@ namespace Mario
 
         public bool setLevel(int index)
         {
-            throw new NotImplementedException();
+            if(index < levels.Count)
+            {
+                currentLevel = index;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

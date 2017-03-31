@@ -9,10 +9,15 @@ namespace GameEngine
 {
     class World
     {
-        private SortedList<Coordinates, Unit> units;
+        private List<Unit> units;
+
+        public IList<Unit> getAllUnits()
+        {
+            return units.AsReadOnly();
+        }
         public void addUnit(Unit unit)
         {
-
+            units.Add(unit);
         }
 
         public Unit getUnit(Coordinates coord)
@@ -22,6 +27,7 @@ namespace GameEngine
 
         public bool remove(Unit unit)
         {
+            units.Remove(unit);
             return true;
         }
     }
