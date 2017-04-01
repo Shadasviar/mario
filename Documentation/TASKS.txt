@@ -1,13 +1,13 @@
 Maksym: 
-    Try create GUI with some lines and squares.
-    Try make squares moving and try set image for it.
-    Maybe C# has some sprite classes?
+    Draw rectangle by coordinates from GameAPI. Better do it in the loop
+    for possibility to draw many objects without changes of your code.
 Nastia:
-    Implement class Unit from UML diagram
+    Implement speed modification for Unit by methods setVerticalSpeed(int) and 
+    setHorizontalSpeed(int)
 Mykhailo:
     Create Coordinates class with fields bottomLeft and
     topRight of type Point. Point type is in System.Drawing:
     https://msdn.microsoft.com/ru-ru/library/system.drawing.point(v=vs.110).aspx
-I will make world, game and GameAPI classes.
+I will project logic of world.
 
 How to use github see in the file howto_git.txt
