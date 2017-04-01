@@ -6,74 +6,90 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Mario
 {
     public partial class Form1 : Form
     {
-        bool right;
-        bool left;
-
-
-        bool jump;
-        int G = 30;
-        int force;
-
+        List<PictureBox> sprites = new List<PictureBox>();
+        int isPressed = 0;
         public Form1()
         {
             InitializeComponent();
-            GameAPI game = new Game();
-            List<Coordinates> crd = game.getAllUnitsCoordinates();
-            int x = crd.Count;
-            Console.WriteLine("x = {0}", x);
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                while (true)
+                {
+                    if (isPressed == 1) this.SetText("BUTTON IS PRESSED");
+                    else this.SetText("_______");
+                    Thread.Sleep(100);
+                }
+            }).Start();
+
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public delegate void SetTextCallback(string text);
+        private void SetText(string text)
         {
-            if(right == true) { player.Left += 5; }
-            if (left == true) { player.Left -= 5; }
-
-            if(jump == true )
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.label1.InvokeRequired)
             {
-                player.Top -= force;
-                force -= 1;
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
             }
-            if(player.Top + player.Height >= field.Height)
-                {
-                    player.Top = field.Height - player.Height;
-                    jump = false;
-                }
             else
-                {
-                     player.Top += 5;
-
-                }
-
+            {
+                this.label1.Text = text;
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right) { right = true; }
-            if (e.KeyCode == Keys.Left) { left = true; }
-
-            if (e.KeyCode == Keys.Escape) { this.Close(); } //Escape => Exit
-
-            if (jump != true)
-            {
-                if (e.KeyCode == Keys.Space)
-                    jump = true;
-                force = 40;
-            }
+            if (e.KeyCode == Keys.Up) Interlocked.Exchange(ref isPressed, 1);
         }
+
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Right) { right = false; }
-            if(e.KeyCode == Keys.Left) { left = false; }
-            if (e.KeyCode == Keys.D) { right = false; }
-            if (e.KeyCode == Keys.A) { left = false; }
+            if (e.KeyCode == Keys.Up) Interlocked.Exchange(ref isPressed, 0);
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            GameAPI game = new Game();
+            List<Coordinates> crd = game.getAllUnitsCoordinates();
 
+            foreach (Coordinates c in crd)
+            {
+                PictureBox p = new PictureBox();
+                p.Size = mapSize(c);
+                p.Image = new Bitmap(Mario.Properties.Resources.cegla);
+                p.Location = mapPosition(c);
+                sprites.Add(p);
+                p.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.panel1.Controls.Add(p);
+            }
+        }
+
+        /* map position from top left to bottom left*/
+        private Point mapPosition(Coordinates p)
+        {
+            Point res = new Point();
+            res.X = p.bottomLeft.X;
+            res.Y = this.panel1.Height - p.topRight.Y;
+            return res;
+        }
+
+        private Size mapSize(Coordinates c)
+        {
+            Size res = new Size();
+            res.Width = c.topRight.X - c.bottomLeft.X;
+            res.Height= c.topRight.Y - c.bottomLeft.Y;
+            return res;
+        }
     }
 }

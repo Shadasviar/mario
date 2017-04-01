@@ -28,59 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.field = new System.Windows.Forms.Panel();
-            this.player = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.field.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // field
+            // label1
             // 
-            this.field.Controls.Add(this.player);
-            this.field.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.field.Location = new System.Drawing.Point(0, 0);
-            this.field.Name = "field";
-            this.field.Size = new System.Drawing.Size(790, 295);
-            this.field.TabIndex = 1;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(68, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 37);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
             // 
-            // player
+            // panel1
             // 
-            this.player.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.player.Location = new System.Drawing.Point(350, 213);
-            this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(132, 79);
-            this.player.TabIndex = 2;
-            this.player.TabStop = false;
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(725, 736);
+            this.panel1.TabIndex = 2;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 295);
-            this.Controls.Add(this.field);
+            this.ClientSize = new System.Drawing.Size(725, 736);
+            this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
-            this.field.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel field;
-        private System.Windows.Forms.PictureBox player;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
