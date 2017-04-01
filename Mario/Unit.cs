@@ -13,14 +13,19 @@ namespace GameEngine
         protected int priority;
         protected Speed currentSpeed;
 
+        public Unit(Coordinates position, int priority)
+        {
+            this.position = position;
+            this.priority = priority;
+        }
         public Coordinates GetPosition()
-            {
+        {
             return position;
-            }
+        }
         public Speed GetCurrentSpeed()
-            {
+        {
             return currentSpeed;
-            }
+        }
     }
 
 }

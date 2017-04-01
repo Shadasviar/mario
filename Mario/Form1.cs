@@ -15,6 +15,10 @@ namespace Mario
         public Form1()
         {
             InitializeComponent();
+            GameAPI game = new Game();
+            List<Coordinates> crd = game.getAllUnitsCoordinates();
+            int x = crd.Count;
+            Console.WriteLine("x = {0}", x);
         }
     }
 }
