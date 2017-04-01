@@ -49,8 +49,23 @@ namespace Mario
         private World init_test_world()
         {
             World result = new World();
-            result.addUnit(new Unit(new Coordinates(), 1));
+            Coordinates c = new Coordinates();
+            c.bottomLeft = new System.Drawing.Point(100, 100);
+            c.topRight = new System.Drawing.Point(200, 200);
+            result.addUnit(new Unit(c, 1));
+
+            Coordinates c1 = new Coordinates();
+            c1.bottomLeft = new System.Drawing.Point(0, 0);
+            c1.topRight = new System.Drawing.Point(400, 100);
+            result.addUnit(new Unit(c1, 1));
+
+            Coordinates c2 = new Coordinates();
+            c2.bottomLeft = new System.Drawing.Point(350, 111);
+            c2.topRight = new System.Drawing.Point(500, 361);
+            result.addUnit(new Unit(c2, 1));
+
             return result;
         }
+
     }
 }
