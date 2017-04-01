@@ -9,7 +9,7 @@ namespace GameEngine
 {
     class World
     {
-        private List<Unit> units;
+        private List<Unit> units = new List<Unit>();
 
         public IList<Unit> getAllUnits()
         {

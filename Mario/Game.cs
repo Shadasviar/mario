@@ -9,8 +9,13 @@ namespace Mario
 {
     class Game : GameAPI
     {
-        protected List<World> levels;
+        protected List<World> levels = new List<World>();
         protected int currentLevel;
+
+        public Game()
+        {
+            levels.Add(init_test_world());
+        }
         public List<Coordinates> getAllUnitsCoordinates()
         {
             List<Coordinates> result = new List<Coordinates>();
@@ -39,6 +44,13 @@ namespace Mario
                 return true;
             }
             else return false;
+        }
+
+        private World init_test_world()
+        {
+            World result = new World();
+            result.addUnit(new Unit(new Coordinates(), 1));
+            return result;
         }
     }
 }
