@@ -11,6 +11,7 @@ namespace Mario
     {
 
         public Point bottomLeft = new Point  ();
+
         public Point topRight = new Point ();
 
 
