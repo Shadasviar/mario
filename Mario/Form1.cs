@@ -13,14 +13,11 @@ namespace Mario
 {
     public partial class Form1 : Form
     {
+        List<PictureBox> sprites = new List<PictureBox>();
         int isPressed = 0;
         public Form1()
         {
-            InitializeComponent();
-            GameAPI game = new Game();
-            List<Coordinates> crd = game.getAllUnitsCoordinates();
-            int x = crd.Count;
-            Console.WriteLine("x = {0}", x);
+            
 
             new Thread(() =>
             {
@@ -32,6 +29,8 @@ namespace Mario
                     Thread.Sleep(100);
                 }
             }).Start();
+
+          
         }
 
         public delegate void SetTextCallback(string text);
@@ -51,11 +50,6 @@ namespace Mario
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up) Interlocked.Exchange(ref isPressed, 1);
@@ -65,5 +59,18 @@ namespace Mario
         {
             if (e.KeyCode == Keys.Up) Interlocked.Exchange(ref isPressed, 0);
         }
+
+        private void loadPictures()
+        {
+            InitializeComponent();
+            GameAPI game = new Game();
+            List<Coordinates> crd = game.getAllUnitsCoordinates();
+
+            foreach (Coordinates c in crd)
+            {
+                PictureBox p = new PictureBox();
+            }
+        }
+
     }
 }
