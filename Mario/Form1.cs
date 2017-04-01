@@ -59,7 +59,7 @@ namespace Mario
             {
                 if (e.KeyCode == Keys.Space)
                     jump = true;
-                force = 30;
+                force = 40;
             }
         }
         private void Form1_KeyUp(object sender, KeyEventArgs e)
