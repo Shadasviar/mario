@@ -7,9 +7,12 @@ using GameEngine;
 
 namespace Mario
 {
+    enum keysNames {Right = 0, Left = 1, Down = 2, Space = 3 };
     class Game : GameAPI
     {
+
         protected List<World> levels = new List<World>();
+        protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
 
         public Game()
@@ -66,6 +69,12 @@ namespace Mario
             result.addUnit(new Unit(c2, 1));
 
             return result;
+        }
+
+
+        public void initGame(List<int> a)
+        {
+            keysStatus = a; 
         }
 
     }

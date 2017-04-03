@@ -8,8 +8,10 @@ namespace Mario
 {
     interface GameAPI
     {
+
+
         void nextFrame();
-        void initGame();
+        void initGame(List<int>a);
         List<Coordinates> getAllUnitsCoordinates();
         bool setLevel(int index);
         bool playerIsAlive();
