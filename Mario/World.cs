@@ -10,6 +10,7 @@ namespace GameEngine
 {
     class World
     {
+        private List<Unit> units = new List<Unit>();
 
         public void nextFrame()
         {
@@ -25,13 +26,9 @@ namespace GameEngine
                 y = units[i].GetPosition().topRight.Y + units[i].GetCurrentSpeed().verticalSpeed;
                 c.topRight = new Point(x, y);
 
-                
-
                 units[i].SetCoordinates(c); 
             }
         }
-
-        private List<Unit> units = new List<Unit>();
 
         public IList<Unit> getAllUnits()
         {

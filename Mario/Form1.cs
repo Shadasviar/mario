@@ -29,7 +29,7 @@ namespace Mario
                 {
                     game.nextFrame();
                     Invoke(new updateStateDelegate(this.updateState));
-                    Thread.Sleep(1000/25);
+                    Thread.Sleep(1000/25); // 25 fps
                 }
             }).Start();
             /* For disable flicking*/

@@ -32,7 +32,6 @@ namespace Mario
         public void nextFrame()
         {
             levels[currentLevel].nextFrame();           
-
         }
 
         public bool playerIsAlive()
