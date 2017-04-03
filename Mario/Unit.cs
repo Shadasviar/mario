@@ -26,6 +26,11 @@ namespace GameEngine
         {
             return currentSpeed;
         }
+
+        public void SetCoordinates(Coordinates x)
+        {
+            this.position = x;
+        }
     }
 
 }
