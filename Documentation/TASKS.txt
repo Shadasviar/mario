@@ -1,13 +1,14 @@
 Maksym: 
-    Draw rectangle by coordinates from GameAPI. Better do it in the loop
-    for possibility to draw many objects without changes of your code.
+    + Create constructor for Game with parameter of type of ref List<int>;
+    + Delete function initGame;
+    + Add to Unit or to Speed field with coefficient of scale and multiple every
+	speed in game by it. It is to be able change game speed not changing FPS.
+    + Add to Form field with FPS and use it instead of magic number in constructor.
+	Changing of FPS cause changing of speed of game, so we must have coefficient of
+	speed of whole game to configure our game later.
 Nastia:
-    Implement speed modification for Unit by methods setVerticalSpeed(int) and 
-    setHorizontalSpeed(int)
+    Implement verticalSpeed and horizontalSpeed according to UML diagram.
 Mykhailo:
-    Create Coordinates class with fields bottomLeft and
-    topRight of type Point. Point type is in System.Drawing:
-    https://msdn.microsoft.com/ru-ru/library/system.drawing.point(v=vs.110).aspx
-I will project logic of world.
+    Create Coordinates constructors for 4 ints and for 2 Points
 
 How to use github see in the file howto_git.txt
