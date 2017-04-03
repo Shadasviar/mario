@@ -28,7 +28,8 @@ namespace Mario
 
         public void nextFrame()
         {
-            throw new NotImplementedException();
+            levels[currentLevel].nextFrame();           
+
         }
 
         public bool playerIsAlive()
