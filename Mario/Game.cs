@@ -7,13 +7,18 @@ using GameEngine;
 
 namespace Mario
 {
-    enum keysNames {Right = 0, Left = 1, Down = 2, Space = 3 };
+    enum keysStatus {Right = 0, Left = 1, Down = 2, Space = 3 };
     class Game : GameAPI
     {
 
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
+
+        Game(ref List<int>a)
+        {
+            keysStatus = a;
+        }
 
         public Game()
         {
@@ -71,11 +76,9 @@ namespace Mario
             return result;
         }
 
-
-        public void initGame(List<int> a)
+        public void initGame()
         {
-            keysStatus = a; 
+            throw new NotImplementedException();
         }
-
     }
 }

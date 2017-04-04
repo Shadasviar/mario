@@ -11,6 +11,7 @@ namespace GameEngine
     class World
     {
 
+
         public void nextFrame()
         {
             for(int i = 0; i < units.Count; i++)
@@ -18,7 +19,8 @@ namespace GameEngine
                 int x;
                 int y;
                 Coordinates c = new Coordinates();
-                x = units[i].GetPosition().bottomLeft.X + units[i].GetCurrentSpeed().horizontalSpeed;
+                 
+        x = units[i].GetPosition().bottomLeft.X + units[i].GetCurrentSpeed().horizontalSpeed*factorSpeed;
                 y = units[i].GetPosition().bottomLeft.Y + units[i].GetCurrentSpeed().verticalSpeed;                
                 c.bottomLeft = new Point(x, y);
                 x = units[i].GetPosition().topRight.X + units[i].GetCurrentSpeed().horizontalSpeed;
