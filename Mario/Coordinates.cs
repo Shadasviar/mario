@@ -9,26 +9,23 @@ namespace Mario
 {
     class Coordinates
     {
-        int a, b, c, d;
-        int cord_x, cord_y;
 
         public Point bottomLeft = new Point();
 
         public Point topRight = new Point();
 
-        public Coordinates(int cord_x, int cord_y)
-            {
-            this.cord_x = cord_x;
-            this.cord_y = cord_y;
-
+        public Coordinates(Point bottomLeft, Point topRight)
+        {
+            this.bottomLeft = bottomLeft;
+            this.topRight = topRight;
         }
 
-        public Coordinates(int a, int b, int c, int d)
+        public Coordinates(int bottonLeft_x, int bottonLeft_y,int topRight_x, int topRight_y)
         {
-            this.a = a;
-            this.b = b;
-            this.c = c;
-            this.d = d;
+            this.bottomLeft.X = bottonLeft_x;
+            this.bottomLeft.Y = bottonLeft_y;
+            this.topRight.X = topRight_x;
+            this.topRight.Y = topRight_y;
 
         }
 
