@@ -26,7 +26,7 @@ namespace GameEngine
             verticalSpeed = v;
         }
 
-        public void sethorizontalSpeed(int h)
+        public void setHorizontalSpeed(int h)
         {
             horizontalSpeed = h;
         }
@@ -35,6 +35,11 @@ namespace GameEngine
         {
             verticalSpeed = v;
             horizontalSpeed = h;
+        }
+
+        public static Speed operator+ (Speed a, Speed b)
+        {
+            return new Speed(a.horizontalSpeed + b.horizontalSpeed, a.verticalSpeed+b.verticalSpeed);
         }
 
     }
