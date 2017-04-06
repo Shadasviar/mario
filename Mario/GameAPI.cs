@@ -8,8 +8,6 @@ namespace Mario
 {
     interface GameAPI
     {
-
-
         void nextFrame();
         //void initGame();
         List<Coordinates> getAllUnitsCoordinates();

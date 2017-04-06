@@ -19,6 +19,13 @@ namespace GameEngine
             this.position = position;
             this.priority = priority;
         }
+
+        public Unit(Coordinates position, int priority, Speed speed)
+        {
+            this.position = position;
+            this.priority = priority;
+            this.currentSpeed = speed;
+        }
         public Coordinates GetPosition()
         {
             return position;
@@ -32,6 +39,7 @@ namespace GameEngine
         {
             this.position = x;
         }
+
     }
 
 }
