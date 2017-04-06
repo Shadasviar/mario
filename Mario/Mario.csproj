@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="GameAPI.cs" />
+    <Compile Include="GroundUnit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Speed.cs" />

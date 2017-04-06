@@ -19,11 +19,11 @@ namespace GameEngine
                 int x;
                 int y;
                 Coordinates c = new Coordinates();
-                x = units[i].GetPosition().bottomLeft.X + units[i].GetCurrentSpeed().horizontalSpeed;
-                y = units[i].GetPosition().bottomLeft.Y + units[i].GetCurrentSpeed().verticalSpeed;                
+                x = units[i].GetPosition().bottomLeft.X + units[i].GetCurrentSpeed().getHorizontalSpeed();
+                y = units[i].GetPosition().bottomLeft.Y + units[i].GetCurrentSpeed().getVerticalSpeed();                
                 c.bottomLeft = new Point(x, y);
-                x = units[i].GetPosition().topRight.X + units[i].GetCurrentSpeed().horizontalSpeed;
-                y = units[i].GetPosition().topRight.Y + units[i].GetCurrentSpeed().verticalSpeed;
+                x = units[i].GetPosition().topRight.X + units[i].GetCurrentSpeed().getHorizontalSpeed();
+                y = units[i].GetPosition().topRight.Y + units[i].GetCurrentSpeed().getVerticalSpeed();
                 c.topRight = new Point(x, y);
 
                 units[i].SetCoordinates(c); 
