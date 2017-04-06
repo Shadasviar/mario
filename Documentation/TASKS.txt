@@ -1,13 +1,11 @@
 Maksym: 
     + Create constructor for Game with parameter of type of ref List<int>;
     + Delete function initGame;
-    + Add to Unit or to Speed field with coefficient of scale and multiple every
-	speed in game by it. It is to be able change game speed not changing FPS.
     + Add to Form field with FPS and use it instead of magic number in constructor.
 	Changing of FPS cause changing of speed of game, so we must have coefficient of
 	speed of whole game to configure our game later.
 Nastia:
-    Implement verticalSpeed and horizontalSpeed according to UML diagram.
+    Create for GroundUnit priority = 100 ;
 Mykhailo:
     Create Coordinates constructors for 4 ints and for 2 Points
 
