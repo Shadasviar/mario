@@ -65,7 +65,12 @@ namespace Mario
             Coordinates c2 = new Coordinates();
             c2.bottomLeft = new System.Drawing.Point(350, 111);
             c2.topRight = new System.Drawing.Point(500, 361);
-            result.addUnit(new Unit(c2, 1, new Speed(2,3)));
+            result.addUnit(new Unit(c2, 1, new Speed(0,0)));
+
+            Coordinates c3 = new Coordinates();
+            c3.bottomLeft = new System.Drawing.Point(0, 0);
+            c3.topRight = new System.Drawing.Point(220, 330);
+            result.addUnit(new GroundUnit(c3, 1));
 
             return result;
         }

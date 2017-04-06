@@ -14,12 +14,13 @@ namespace GameEngine
         protected int priority;
         protected Speed currentSpeed = new Speed(0, gravition);
 
-        public void setHorizontalSpeed(int h)
+
+        virtual public void setHorizontalSpeed(int h)
         {
             currentSpeed.setHorizontalSpeed(h);
         }
 
-        public void setVerticalSpeed(int v)
+        virtual public void setVerticalSpeed(int v)
         {
             currentSpeed.setVerticalSpeed(v + gravition);
         }
@@ -37,16 +38,16 @@ namespace GameEngine
             this.currentSpeed = speed;
             this.currentSpeed = currentSpeed + new Speed(0, gravition);
         }
-        public Coordinates GetPosition()
+        virtual public Coordinates GetPosition()
         {
             return position;
         }
-        public Speed GetCurrentSpeed()
+        virtual public Speed GetCurrentSpeed()
         {
             return currentSpeed;
         }
 
-        public void SetCoordinates(Coordinates x)
+        virtual public void SetCoordinates(Coordinates x)
         {
             this.position = x;
         }
