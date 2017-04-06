@@ -10,12 +10,6 @@ namespace GameEngine
     {
         public int horizontalSpeed;
         public int verticalSpeed;
-        public float factorSpeed;
-
-        public static Speed operator*(Speed x, int f)
-            {
-            return new Speed (x * f);
-            }
 
     }
 }

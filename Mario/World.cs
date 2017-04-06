@@ -21,7 +21,7 @@ namespace GameEngine
                 int y;
                 Coordinates c = new Coordinates();
                  
-        x = units[i].GetPosition().bottomLeft.X + units[i].GetCurrentSpeed().horizontalSpeed*factorSpeed;
+        x = units[i].GetPosition().bottomLeft.X + units[i].GetCurrentSpeed().horizontalSpeed;
                 y = units[i].GetPosition().bottomLeft.Y + units[i].GetCurrentSpeed().verticalSpeed;                
                 c.bottomLeft = new Point(x, y);
                 x = units[i].GetPosition().topRight.X + units[i].GetCurrentSpeed().horizontalSpeed;
