@@ -58,28 +58,24 @@ namespace Mario
         {
             World result = new World();
             Coordinates c = new Coordinates();
-            Speed s = new Speed();
-            s.horizontalSpeed = 1;
-            s.verticalSpeed = 0;
             c.bottomLeft = new System.Drawing.Point(100, 100);
             c.topRight = new System.Drawing.Point(200, 200);
-            result.addUnit(new Unit(c, 1, s));
-
-            Speed s1 = new Speed();
-            s1.horizontalSpeed = 3;
-            s1.verticalSpeed = 0;
+            result.addUnit(new Unit(c, 1, new Speed(1, 0)));
+            
             Coordinates c1 = new Coordinates();
             c1.bottomLeft = new System.Drawing.Point(0, 0);
             c1.topRight = new System.Drawing.Point(400, 100);
-            result.addUnit(new Unit(c1, 1, s1));
-
-            Speed s2 = new Speed();
-            s2.horizontalSpeed = 2;
-            s2.verticalSpeed = 3;
+            result.addUnit(new Unit(c1, 1, new Speed(3, 0)));
+            
             Coordinates c2 = new Coordinates();
             c2.bottomLeft = new System.Drawing.Point(350, 111);
             c2.topRight = new System.Drawing.Point(500, 361);
-            result.addUnit(new Unit(c2, 1, s2));
+            result.addUnit(new Unit(c2, 1, new Speed(0,0)));
+
+            Coordinates c3 = new Coordinates();
+            c3.bottomLeft = new System.Drawing.Point(0, 0);
+            c3.topRight = new System.Drawing.Point(220, 330);
+            result.addUnit(new GroundUnit(c3, 1));
 
             return result;
         }
