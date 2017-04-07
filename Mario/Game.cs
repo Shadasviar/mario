@@ -7,7 +7,7 @@ using GameEngine;
 
 namespace Mario
 {
-    enum keysStatus {Right = 0, Left = 1, Down = 2, Space = 3 };
+    enum keysNames {Right = 0, Left = 1, Down = 2, Space = 3 };
     class Game : GameAPI
     {
 
@@ -80,9 +80,6 @@ namespace Mario
             return result;
         }
 
-        public void initGame()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
