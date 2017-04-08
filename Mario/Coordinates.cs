@@ -14,8 +14,10 @@ namespace Mario
 
         public Point topRight = new Point();
 
+        public Coordinates()
+        {
 
-        
+        }
 
         public Coordinates(Point bottomLeft, Point topRight)
         {
@@ -33,17 +35,37 @@ namespace Mario
 
             CheckArguments();
         }
-
-       public Coordinates()
-        {
-
-        }
        
         void CheckArguments()
         {
             if(topRight.X <= bottomLeft.X || topRight.Y <= bottomLeft.Y)
             throw new ArgumentException();
         
+        }
+        /*
+        public static bool operator ==(BadPoint p1, BadPoint p2)
+        {
+            return ((p1.x == p2.x) && (p1.y == p2.y));
+        }
+        */
+        public static bool operator > (Coordinates A, Coordinates B)
+        {
+            return ((A.bottomLeft.X > B.topRight.X) || (A.bottomLeft.Y > B.topRight.Y));
+        }
+
+        public static bool operator < (Coordinates A, Coordinates B)
+        {
+            return ((A.bottomLeft.X < B.topRight.X) || (A.bottomLeft.Y < B.topRight.Y));
+        }
+
+        public static bool operator == (Coordinates A, Coordinates B)
+        {
+            return !(A>B || A<B);
+        }
+
+        public static bool operator !=(Coordinates A, Coordinates B)
+        {
+            return (A > B || A < B);
         }
     }
 }
