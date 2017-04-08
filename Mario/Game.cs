@@ -15,6 +15,11 @@ namespace Mario
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
 
+        Game(ref List<int>a)
+        {
+            keysStatus = a;
+        }
+
         public Game()
         {
             levels.Add(init_test_world());
@@ -75,11 +80,6 @@ namespace Mario
             return result;
         }
 
-
-        public void initGame(List<int> a)
-        {
-            keysStatus = a; 
-        }
 
     }
 }
