@@ -18,6 +18,7 @@ namespace Mario
         List<PictureBox> sprites = new List<PictureBox>();
         int isPressed = 0;
         GameAPI game = new Game();
+        int fps = 1000/25; //ms
         public Form1()
         {
             
@@ -28,14 +29,14 @@ namespace Mario
                 while (true)
                 {
                     game.nextFrame();
-                    Invoke(new updateStateDelegate(this.updateState));
-                    Thread.Sleep(1000/25); // 25 fps
+                   Invoke(new updateStateDelegate(this.updateState));
+                    Thread.Sleep(fps); // 25 fps
                 }
             }).Start();
             /* For disable flicking*/
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
                 | BindingFlags.Instance | BindingFlags.NonPublic,
-                null, panel1, new object[] { true });
+               null, panel1, new object[] { true });
 
         }
 
