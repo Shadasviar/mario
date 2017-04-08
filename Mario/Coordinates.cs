@@ -14,6 +14,12 @@ namespace Mario
 
         public Point topRight = new Point();
 
+
+        public Coordinates()
+        {
+
+        }
+
         public Coordinates(Point bottomLeft, Point topRight)
         {
             this.bottomLeft = bottomLeft;
