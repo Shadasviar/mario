@@ -11,7 +11,7 @@ namespace GameEngine
     class World
     {
         private List<Unit> units = new List<Unit>();
-
+        private List<List<Unit>> UnitSgr  = new List<List<Unit>>();
         public void nextFrame()
         {
             for(int i = 0; i < units.Count; i++)
@@ -44,5 +44,7 @@ namespace GameEngine
             units.Remove(unit);
             return true;
         }
+
+        
     }
 }
