@@ -15,15 +15,13 @@ namespace Mario
         public Point topRight = new Point();
 
 
-        public Coordinates()
-        {
-
-        }
+        
 
         public Coordinates(Point bottomLeft, Point topRight)
         {
             this.bottomLeft = bottomLeft;
             this.topRight = topRight;
+            CheckArguments();
         }
 
         public Coordinates(int bottonLeft_x, int bottonLeft_y,int topRight_x, int topRight_y)
@@ -33,7 +31,19 @@ namespace Mario
             this.topRight.X = topRight_x;
             this.topRight.Y = topRight_y;
 
+            CheckArguments();
         }
 
+       public Coordinates()
+        {
+
+        }
+       
+        void CheckArguments()
+        {
+            if(topRight.X <= bottomLeft.X || topRight.Y <= bottomLeft.Y)
+            throw new ArgumentException();
+        
+        }
     }
 }
