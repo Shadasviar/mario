@@ -65,6 +65,15 @@ namespace GameEngine
             units.Remove(unit);
             return true;
         }
+        public Unit getUnit( int index)
+        {
+            if (index >= 0 && index < units.Count)
+            {
+                return units[index];
+            }
+            else return null;
+
+        }
 
         
     }

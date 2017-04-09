@@ -15,15 +15,13 @@ namespace Mario
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
 
-        Game(ref List<int>a)
+        public Game(ref List<int>a)
         {
             keysStatus = a;
-        }
-
-        public Game()
-        {
             levels.Add(init_test_world());
         }
+        
+
         public List<Coordinates> getAllUnitsCoordinates()
         {
             List<Coordinates> result = new List<Coordinates>();
@@ -36,7 +34,44 @@ namespace Mario
 
         public void nextFrame()
         {
-            levels[currentLevel].nextFrame();           
+            if (keysStatus[(int) keysNames.Down] == 1)
+            {
+                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getVerticalSpeed() + 1);
+            }
+            else
+            {
+                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getVerticalSpeed() - 1);
+            }
+
+            if (keysStatus[(int)keysNames.Right] == 1)
+            {
+                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() + 1);
+            }
+            else
+            {
+                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() - 1);
+            }
+
+            if (keysStatus[(int)keysNames.Left] == 1)
+            {
+                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() - 1);
+            }
+            else
+            {
+                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() +1 );
+            }
+
+            if (keysStatus[(int)keysNames.Space] == 1)
+            {
+                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() + 2);
+            }
+            else
+            {
+                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() - 2);
+            }
+
+            levels[currentLevel].nextFrame();
+            
         }
 
         public bool playerIsAlive()
@@ -61,7 +96,7 @@ namespace Mario
             c.bottomLeft = new System.Drawing.Point(200, 200);
             c.topRight = new System.Drawing.Point(210, 210);
             result.addUnit(new Unit(c, 1, new Speed(1, 0)), World.UnitGtroupNames.mobs);
-            result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(1,0)));
+            result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(0,0)));
 
             Coordinates c1 = new Coordinates();
             c1.bottomLeft = new System.Drawing.Point(50, 50);
