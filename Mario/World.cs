@@ -20,10 +20,26 @@ namespace GameEngine
             UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
         }
 
-        public void  matchCollisions(Unit l1, Unit l2)
+        public void  matchCollisions()
         {
-      //      for(int i = 0; i <=  )
+            for(int i = 0; i <= UnitGroups[0].Count;i++)
+            {
+                for (int j = 0; j <= UnitGroups[1].Count; j++)
+                {
+                    if(UnitGroups[0][i].GetPosition() == UnitGroups[1][j].GetPosition())
+                    {
+                        resolveCollision(UnitGroups[0][i], UnitGroups[1][j]);
+                    }
+                }
+            }
         }
+
+        public void resolveCollision(Unit a, Unit b)
+        {
+           // if(a.)
+        }
+
+
         public void nextFrame()
         {
             for(int i = 0; i < units.Count; i++)
