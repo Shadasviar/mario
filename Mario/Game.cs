@@ -34,13 +34,6 @@ namespace Mario
 
         public void nextFrame()
         {
-            if (keysStatus[(int) keysNames.Down] == 1)
-            {
-            }
-            else
-            {
-                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getVerticalSpeed() - 1);
-            }
 
             int h1 = 0;
             int h2 = 0;
@@ -63,7 +56,8 @@ namespace Mario
                 h2 = 0;
             }
             changeHSpeed(levels[currentLevel].getUnit(0), h1, h2);
-
+            h1 = 0;
+            h2 = 0;
             if (keysStatus[(int)keysNames.Space] == 1)
             {
                 h1 = 2;
@@ -90,6 +84,7 @@ namespace Mario
         {
             u.setHorizontalSpeed(h1 + h2);
         }
+        
 
         private void changeVSpeed(Unit u, int h1, int h2)
         {
@@ -117,8 +112,8 @@ namespace Mario
             Coordinates c = new Coordinates();
             c.bottomLeft = new System.Drawing.Point(200, 200);
             c.topRight = new System.Drawing.Point(210, 210);
-            result.addUnit(new Unit(c, 1, new Speed(1, 0)), World.UnitGtroupNames.mobs);
-            result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(0,0)));
+            result.addUnit(new Unit(c, 1, new Speed(1, 0)), World.UnitGtroupNames.players);
+            result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(0,0)),  World.UnitGtroupNames.players);
 
             Coordinates c1 = new Coordinates();
             c1.bottomLeft = new System.Drawing.Point(50, 50);
@@ -128,12 +123,12 @@ namespace Mario
             Coordinates c2 = new Coordinates();
             c2.bottomLeft = new System.Drawing.Point(350, 111);
             c2.topRight = new System.Drawing.Point(500, 361);
-            result.addUnit(new Unit(c2, 1, new Speed(0,0)));
+            result.addUnit(new Unit(c2, 1, new Speed(0,0)),World.UnitGtroupNames.players);
 
             Coordinates c3 = new Coordinates();
             c3.bottomLeft = new System.Drawing.Point(0, 0);
             c3.topRight = new System.Drawing.Point(500, 30);
-            result.addUnit(new GroundUnit(c3, 1));
+            result.addUnit(new GroundUnit(c3, 1),World.UnitGtroupNames.stat);
 
 
             return result;
