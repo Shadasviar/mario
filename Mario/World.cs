@@ -38,7 +38,18 @@ namespace GameEngine
 
         public void resolveCollision(Unit a, Unit b)
         {
-           // if(a.)
+            if (a.getPriority() > b.getPriority())
+            {
+
+                b.setHorizontalSpeed(a.GetCurrentSpeed().getHorizontalSpeed());
+                b.setVerticalSpeed(a.GetCurrentSpeed().getVerticalSpeed());
+            }
+            else
+            {
+                a.setHorizontalSpeed(b.GetCurrentSpeed().getHorizontalSpeed());
+                a.setVerticalSpeed(b.GetCurrentSpeed().getVerticalSpeed());
+            }
+
         }
 
 

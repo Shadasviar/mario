@@ -53,7 +53,7 @@ namespace GameEngine
             this.position = x;
         }
 
-        int getPriority()
+        public int getPriority()
         {
             return priority;
         }
