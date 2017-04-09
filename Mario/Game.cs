@@ -132,7 +132,7 @@ namespace Mario
 
             Coordinates c3 = new Coordinates();
             c3.bottomLeft = new System.Drawing.Point(0, 0);
-            c3.topRight = new System.Drawing.Point(20, 30);
+            c3.topRight = new System.Drawing.Point(500, 30);
             result.addUnit(new GroundUnit(c3, 1));
 
 
