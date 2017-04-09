@@ -53,6 +53,11 @@ namespace GameEngine
             this.position = x;
         }
 
+        int getPriority()
+        {
+            return priority;
+        }
+
     }
 
 }
