@@ -12,6 +12,7 @@ namespace GameEngine
         public GroundUnit(Coordinates position, int priority):base(position, priority)
         {
             currentSpeed = new Speed(0, 0);
+            priority = 100;
         }
 
         override public void setHorizontalSpeed(int h)
@@ -23,5 +24,7 @@ namespace GameEngine
         {
             currentSpeed.setVerticalSpeed(0);
         }
+
+       
     }
 }

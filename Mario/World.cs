@@ -11,6 +11,7 @@ namespace GameEngine
     class World
     {
         private List<Unit> units = new List<Unit>();
+        public enum UnitGtroupNames {stat = 0, players = 1, mobs = 2};
 
         public void nextFrame()
         {
@@ -34,9 +35,15 @@ namespace GameEngine
         {
             return units.AsReadOnly();
         }
+
         public void addUnit(Unit unit)
         {
             units.Add(unit);
+        }
+
+        public void addUnit(Unit unit, UnitGtroupNames group)
+        {
+            
         }
 
         public bool remove(Unit unit)
