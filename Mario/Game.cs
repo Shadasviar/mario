@@ -36,42 +36,64 @@ namespace Mario
         {
             if (keysStatus[(int) keysNames.Down] == 1)
             {
-                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getVerticalSpeed() + 1);
             }
             else
             {
                 levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getVerticalSpeed() - 1);
             }
 
+            int h1 = 0;
+            int h2 = 0;
+
             if (keysStatus[(int)keysNames.Right] == 1)
             {
-                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() + 1);
+                h1 = 1;
             }
             else
             {
-                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() - 1);
+                h1 = 0;
             }
 
             if (keysStatus[(int)keysNames.Left] == 1)
             {
-                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() - 1);
+                h2 = -1;
             }
             else
             {
-                levels[currentLevel].getUnit(0).setHorizontalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() +1 );
+                h2 = 0;
             }
+            changeHSpeed(levels[currentLevel].getUnit(0), h1, h2);
 
             if (keysStatus[(int)keysNames.Space] == 1)
             {
-                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() + 2);
+                h1 = 2;
             }
             else
             {
-                levels[currentLevel].getUnit(0).setVerticalSpeed(levels[currentLevel].getUnit(0).GetCurrentSpeed().getHorizontalSpeed() - 2);
+                h2 = 0;
             }
+
+            if (keysStatus[(int)keysNames.Down] == 1)
+            {
+                h1 = 1;
+            }
+            else
+            {
+                h2 = 0;
+            }
+            changeVSpeed(levels[currentLevel].getUnit(0), h1, h2);
 
             levels[currentLevel].nextFrame();
             
+        }
+        private void changeHSpeed(Unit u, int h1, int h2)
+        {
+            u.setHorizontalSpeed(h1 + h2);
+        }
+
+        private void changeVSpeed(Unit u, int h1, int h2)
+        {
+            u.setVerticalSpeed(h1 + h2);
         }
 
         public bool playerIsAlive()
