@@ -31,9 +31,9 @@ namespace Mario
                 Thread.CurrentThread.IsBackground = true;
                 while (true)
                 {
-                    game.nextFrame();
+                   game.nextFrame();
                    Invoke(new updateStateDelegate(this.updateState));
-                    Thread.Sleep(fps); // 25 fps
+                   Thread.Sleep(fps); // 25 fps
                 }
             }).Start();
             /* For disable flicking*/

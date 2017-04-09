@@ -40,18 +40,68 @@ namespace GameEngine
         {
             if (a.getPriority() > b.getPriority())
             {
-
-                b.setHorizontalSpeed(a.GetCurrentSpeed().getHorizontalSpeed());
-                b.setVerticalSpeed(a.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition);
+                anglePush(a, b);
             }
             else
             {
-                a.setHorizontalSpeed(b.GetCurrentSpeed().getHorizontalSpeed());
-                a.setVerticalSpeed(b.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition);
+                anglePush(b,a);
             }
-
         }
 
+        void anglePush(Unit a, Unit b)
+        {
+            double ang = angle(center(a.GetPosition()), center(b.GetPosition()));
+            if (ang >= 305 || ang <= 45)
+            {
+                push(b, new Speed(0, -b.GetCurrentSpeed().getVerticalSpeed()));
+            }
+            else
+            if (angle(center(a.GetPosition()), center(b.GetPosition())) >= 225)
+            {
+                push(b, new Speed(-b.GetCurrentSpeed().getHorizontalSpeed(), 0));
+            }
+            else
+            if (angle(center(a.GetPosition()), center(b.GetPosition())) >= 125)
+            {
+                push(b, new Speed(0, -b.GetCurrentSpeed().getVerticalSpeed()));
+            }
+            else
+            {
+                push(b, new Speed(-b.GetCurrentSpeed().getHorizontalSpeed(), 0));
+            }
+        }
+
+        void push(Unit b, Speed s)
+        {
+            Coordinates tmp = new Coordinates(
+                    b.GetPosition().bottomLeft.X + s.getHorizontalSpeed(),
+                    b.GetPosition().bottomLeft.Y + s.getVerticalSpeed(),
+                    b.GetPosition().topRight.X + s.getHorizontalSpeed(),
+                    b.GetPosition().topRight.Y + s.getVerticalSpeed());
+
+            b.SetCoordinates(tmp);
+        }
+
+        Point center(Coordinates c)
+        {
+            return new Point((c.topRight.X + c.bottomLeft.X) / 2, (c.topRight.Y + c.bottomLeft.Y) / 2);
+        }
+
+        double angle(Point a, Point b)
+        {
+            double angle = Math.Atan2(a.Y, a.X) - Math.Atan2(b.Y, b.X);
+            angle = angle * 360 / (2 * Math.PI);
+            if (angle < 0)
+            {
+                angle = angle + 360;
+            }
+            return angle;
+        }
+
+        Speed pushSpeed(Point a, Point b)
+        {
+            return new Speed(b.X - a.X, b.Y - a.Y);
+        }
 
         public void nextFrame()
         {
