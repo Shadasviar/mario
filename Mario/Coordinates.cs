@@ -55,12 +55,12 @@ namespace Mario
 
         public static bool operator < (Coordinates A, Coordinates B)
         {
-            return ((A.bottomLeft.X < B.topRight.X) || (A.bottomLeft.Y < B.topRight.Y));
+            return ((A.topRight.X < B.bottomLeft.X) || (A.topRight.Y < B.bottomLeft.Y));
         }
 
         public static bool operator == (Coordinates A, Coordinates B)
         {
-            return !(A>B || A<B);
+            return !(A > B || A < B);
         }
 
         public static bool operator !=(Coordinates A, Coordinates B)

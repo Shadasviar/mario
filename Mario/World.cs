@@ -22,13 +22,41 @@ namespace GameEngine
             UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
         }
 
-        public void  matchCollisions(Unit l1, Unit l2)
+        public void  matchCollisions()
         {
-      //      for(int i = 0; i <=  )
+            for(int i = 0; i < UnitGroups[0].Count;i++)
+            {
+                for (int j = 0; j < UnitGroups[1].Count; j++)
+                {
+                    if(UnitGroups[0][i].GetPosition() == UnitGroups[1][j].GetPosition())
+                    {
+                        resolveCollision(UnitGroups[0][i], UnitGroups[1][j]);
+                    }
+                }
+            }
         }
+
+        public void resolveCollision(Unit a, Unit b)
+        {
+            if (a.getPriority() > b.getPriority())
+            {
+
+                b.setHorizontalSpeed(a.GetCurrentSpeed().getHorizontalSpeed());
+                b.setVerticalSpeed(a.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition);
+            }
+            else
+            {
+                a.setHorizontalSpeed(b.GetCurrentSpeed().getHorizontalSpeed());
+                a.setVerticalSpeed(b.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition);
+            }
+
+        }
+
+
         public void nextFrame()
         {
-            for(int i = 0; i < units.Count; i++)
+            matchCollisions();
+            for (int i = 0; i < units.Count; i++)
             {
                 int x;
                 int y;
@@ -39,8 +67,9 @@ namespace GameEngine
                 x = units[i].GetPosition().topRight.X + units[i].GetCurrentSpeed().getHorizontalSpeed();
                 y = units[i].GetPosition().topRight.Y + units[i].GetCurrentSpeed().getVerticalSpeed();
                 c.topRight = new Point(x, y);
-
-                units[i].SetCoordinates(c); 
+                
+                units[i].SetCoordinates(c);
+ 
             }
         }
 
