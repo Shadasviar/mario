@@ -58,14 +58,15 @@ namespace Mario
         {
             World result = new World();
             Coordinates c = new Coordinates();
-            c.bottomLeft = new System.Drawing.Point(100, 100);
-            c.topRight = new System.Drawing.Point(200, 200);
+            c.bottomLeft = new System.Drawing.Point(200, 200);
+            c.topRight = new System.Drawing.Point(210, 210);
             result.addUnit(new Unit(c, 1, new Speed(1, 0)));
-            
+            result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(1,0)));
+
             Coordinates c1 = new Coordinates();
-            c1.bottomLeft = new System.Drawing.Point(0, 0);
-            c1.topRight = new System.Drawing.Point(400, 100);
-            result.addUnit(new Unit(c1, 1, new Speed(3, 0)));
+            c1.bottomLeft = new System.Drawing.Point(50, 50);
+            c1.topRight = new System.Drawing.Point(10, 10);
+           
             
             Coordinates c2 = new Coordinates();
             c2.bottomLeft = new System.Drawing.Point(350, 111);
@@ -74,7 +75,7 @@ namespace Mario
 
             Coordinates c3 = new Coordinates();
             c3.bottomLeft = new System.Drawing.Point(0, 0);
-            c3.topRight = new System.Drawing.Point(220, 330);
+            c3.topRight = new System.Drawing.Point(20, 30);
             result.addUnit(new GroundUnit(c3, 1));
 
             return result;
