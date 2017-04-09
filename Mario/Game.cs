@@ -60,7 +60,7 @@ namespace Mario
             h2 = 0;
             if (keysStatus[(int)keysNames.Space] == 1)
             {
-                h1 = 2;
+                h1 = 5;
             }
             else
             {
@@ -113,24 +113,18 @@ namespace Mario
             c.bottomLeft = new System.Drawing.Point(200, 200);
             c.topRight = new System.Drawing.Point(210, 210);
             result.addUnit(new Unit(c, 1, new Speed(1, -2)), World.UnitGtroupNames.players);
-            result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(0,0)),  World.UnitGtroupNames.players);
+            result.addUnit(new Unit(new Coordinates(150, 150,160, 160),1, new Speed(0,0)),  World.UnitGtroupNames.players);
 
-            Coordinates c1 = new Coordinates();
-            c1.bottomLeft = new System.Drawing.Point(50, 50);
-            c1.topRight = new System.Drawing.Point(10, 10);
-           
-            
+            for (int i = 0; i < 10; ++i)
+            {
+                result.addUnit(new GroundUnit(new Coordinates(i*100,0, i*100+100, 100), 1), World.UnitGtroupNames.stat);
+            }
+
             Coordinates c2 = new Coordinates();
             c2.bottomLeft = new System.Drawing.Point(350, 111);
-            c2.topRight = new System.Drawing.Point(500, 361);
+            c2.topRight = new System.Drawing.Point(450, 211);
             result.addUnit(new GroundUnit(c2, 1),World.UnitGtroupNames.stat);
-
-            Coordinates c3 = new Coordinates();
-            c3.bottomLeft = new System.Drawing.Point(0, 0);
-            c3.topRight = new System.Drawing.Point(500, 30);
-            result.addUnit(new GroundUnit(c3, 1),World.UnitGtroupNames.stat);
-
-
+            
             return result;
         }
 

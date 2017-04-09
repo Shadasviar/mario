@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mario;
+using static System.Math;
 using System.Drawing;
 
 namespace GameEngine
@@ -51,23 +52,42 @@ namespace GameEngine
         void anglePush(Unit a, Unit b)
         {
             double ang = angle(center(a.GetPosition()), center(b.GetPosition()));
-            if (ang >= 305 || ang <= 45)
+            int width = Abs(center(a.GetPosition()).X - center(b.GetPosition()).X);
+            int height = Abs(center(a.GetPosition()).Y - center(b.GetPosition()).Y);
+            int aw = a.GetPosition().topRight.X - a.GetPosition().bottomLeft.X;
+            int bw = b.GetPosition().topRight.X - b.GetPosition().bottomLeft.X;
+            int ah = a.GetPosition().topRight.Y - a.GetPosition().bottomLeft.Y;
+            int bh = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
+
+            /* <- */
+            if (ang <= -135 || ang >= 135)
             {
-                push(b, new Speed(0, -b.GetCurrentSpeed().getVerticalSpeed()));
+                push(b, new Speed((bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() < 0 ?
+                    -b.GetCurrentSpeed().getHorizontalSpeed() :
+                    0, 0));
             }
             else
-            if (angle(center(a.GetPosition()), center(b.GetPosition())) >= 225)
+            /* v */
+            if (ang <= -45)
             {
-                push(b, new Speed(-b.GetCurrentSpeed().getHorizontalSpeed(), 0));
+                push(b, new Speed(0, (bh/2 + ah/2 - height) + b.GetCurrentSpeed().getVerticalSpeed() < 0 ?
+                    -b.GetCurrentSpeed().getVerticalSpeed():
+                    0));
             }
             else
-            if (angle(center(a.GetPosition()), center(b.GetPosition())) >= 125)
+            /* -> */
+            if (ang <= 45)
             {
-                push(b, new Speed(0, -b.GetCurrentSpeed().getVerticalSpeed()));
+                push(b, new Speed(-(bw/2 + aw/2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() > 0 ?
+                    -b.GetCurrentSpeed().getHorizontalSpeed() :
+                    0, 0));
             }
+            /* ^ */
             else
             {
-                push(b, new Speed(-b.GetCurrentSpeed().getHorizontalSpeed(), 0));
+                push(b, new Speed(0, (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed() > 0 ?
+                    -b.GetCurrentSpeed().getVerticalSpeed() :
+                    0));
             }
         }
 
@@ -89,13 +109,9 @@ namespace GameEngine
 
         double angle(Point a, Point b)
         {
-            double angle = Math.Atan2(a.Y, a.X) - Math.Atan2(b.Y, b.X);
-            angle = angle * 360 / (2 * Math.PI);
-            if (angle < 0)
-            {
-                angle = angle + 360;
-            }
-            return angle;
+            int dx = a.X - b.X;
+            int dy = a.Y - b.Y;
+            return Math.Atan2(dy,dx) * (180 / Math.PI);
         }
 
         Speed pushSpeed(Point a, Point b)

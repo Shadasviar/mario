@@ -32,7 +32,10 @@ namespace Mario
                 while (true)
                 {
                    game.nextFrame();
-                   Invoke(new updateStateDelegate(this.updateState));
+                    try
+                    {
+                        Invoke(new updateStateDelegate(this.updateState));
+                    }catch(Exception e) { };
                    Thread.Sleep(fps); // 25 fps
                 }
             }).Start();
@@ -66,6 +69,10 @@ namespace Mario
 
         private void updateState()
         {
+            foreach(Control c in this.panel1.Controls)
+            {
+                c.Dispose();
+            }
             this.panel1.Controls.Clear();
             List<Coordinates> crd = game.getAllUnitsCoordinates();
 
