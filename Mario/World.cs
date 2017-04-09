@@ -14,17 +14,17 @@ namespace GameEngine
         private List<Unit> units = new List<Unit>();
         public enum UnitGtroupNames {stat = 0, players = 1, mobs = 2};
 
-        private List<List<Unit>> UnitSgr = new List<List<Unit>>();
+        private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         World()
             {
-            UnitSgr.Add(new List<Unit>());
-            UnitSgr.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
+            UnitGroups.Add(new List<Unit>());
+            UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
         }
 
-        //public void  matchCollisions(Unit l1, Unit l2)
-        //{
-        //    for(int i = 0; i <= )
-        //}
+        public void  matchCollisions(Unit l1, Unit l2)
+        {
+      //      for(int i = 0; i <=  )
+        }
         public void nextFrame()
         {
             for(int i = 0; i < units.Count; i++)
