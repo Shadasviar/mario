@@ -15,9 +15,10 @@ namespace GameEngine
         public enum UnitGtroupNames {stat = 0, players = 1, mobs = 2};
 
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
-        World()
+        public World()
             {
             UnitGroups.Add(new List<Unit>());
+            UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
             UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
         }
 
@@ -55,7 +56,8 @@ namespace GameEngine
 
         public void addUnit(Unit unit, UnitGtroupNames group)
         {
-            
+            UnitGroups[(int)group].Add(unit);
+            addUnit(unit);
         }
 
         public bool remove(Unit unit)
