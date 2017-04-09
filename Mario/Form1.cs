@@ -17,11 +17,14 @@ namespace Mario
         delegate void updateStateDelegate();
         List<PictureBox> sprites = new List<PictureBox>();
         int isPressed = 0;
-        GameAPI game = new Game();
+        GameAPI game;
         int fps = 1000/25; //ms
+        private List<int> keys = new List<int>(new int [4]);
+
+
         public Form1()
         {
-            
+            game = new Game(ref keys);
             InitializeComponent();
             new Thread(() =>
             {
@@ -42,12 +45,18 @@ namespace Mario
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up) Interlocked.Exchange(ref isPressed, 1);
+            if (e.KeyCode == Keys.Down) keys[(int) keysNames.Down] = 1;
+            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 1;
+            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 1;
+            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 1;
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up) Interlocked.Exchange(ref isPressed, 0);
+            if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 0;
+            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 0;
+            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 0;
+            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 0;
         }
 
         private void Form1_Load(object sender, EventArgs e)
