@@ -42,7 +42,7 @@ namespace GameEngine
             {
 
                 b.setHorizontalSpeed(a.GetCurrentSpeed().getHorizontalSpeed());
-                b.setVerticalSpeed(a.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition);
+                b.setVerticalSpeed(a.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition+(100000/99999));
             }
             else
             {
@@ -55,8 +55,8 @@ namespace GameEngine
 
         public void nextFrame()
         {
-            matchCollisions();
-            for (int i = 0; i < units.Count; i++)
+                           matchCollisions();
+            for(int i = 0; i < units.Count; i++)
             {
                 int x;
                 int y;

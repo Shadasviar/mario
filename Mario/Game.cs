@@ -69,7 +69,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Down] == 1)
             {
-                h1 = 1;
+                h1 = -20;
             }
             else
             {
@@ -112,7 +112,7 @@ namespace Mario
             Coordinates c = new Coordinates();
             c.bottomLeft = new System.Drawing.Point(200, 200);
             c.topRight = new System.Drawing.Point(210, 210);
-            result.addUnit(new Unit(c, 1, new Speed(1, 0)), World.UnitGtroupNames.players);
+            result.addUnit(new Unit(c, 1, new Speed(1,-2)), World.UnitGtroupNames.players);
             result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(0,0)),  World.UnitGtroupNames.players);
 
             Coordinates c1 = new Coordinates();
