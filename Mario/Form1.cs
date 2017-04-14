@@ -73,7 +73,12 @@ namespace Mario
             {
                 c.Dispose();
             }
+            foreach(PictureBox p in sprites)
+            {
+                p.Dispose();
+            }
             this.panel1.Controls.Clear();
+            sprites.Clear();
             List<Coordinates> crd = game.getAllUnitsCoordinates();
 
             foreach (Coordinates c in crd)
