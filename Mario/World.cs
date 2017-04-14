@@ -65,31 +65,35 @@ namespace GameEngine
             /* <- */
             if (ang < -135 || ang >= 135)
             {
-                changePosition(b, new Speed((bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() < 0 ?
-                    -b.GetCurrentSpeed().getHorizontalSpeed() :
+                int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                changePosition(b, new Speed(intersection < 0 ?
+                    -intersection :
                     0, 0));
             }
             else
             /* v */
             if (ang <= -45)
             {
-                changePosition(b, new Speed(0, (bh/2 + ah/2 - height) + b.GetCurrentSpeed().getVerticalSpeed() < 0 ?
-                    -b.GetCurrentSpeed().getVerticalSpeed():
+                int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
+                changePosition(b, new Speed(0, intersection < 0 ?
+                    -intersection:
                     0));
             }
             else
             /* -> */
             if (ang <= 45)
             {
-                changePosition(b, new Speed(-(bw/2 + aw/2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() > 0 ?
-                    -b.GetCurrentSpeed().getHorizontalSpeed() :
+                int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                changePosition(b, new Speed(intersection > 0 ?
+                    -intersection :
                     0, 0));
             }
             /* ^ */
             else
             {
-                changePosition(b, new Speed(0, (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed() > 0 ?
-                    -b.GetCurrentSpeed().getVerticalSpeed() :
+                int intersection = (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
+                changePosition(b, new Speed(0, intersection > 0 ?
+                    -intersection :
                     0));
             }
         }
