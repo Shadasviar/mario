@@ -1,12 +1,24 @@
 Maksym: 
-    + Create constructor for Game with parameter of type of ref List<int>;
-    + Delete function initGame;
-    + Add to Form field with FPS and use it instead of magic number in constructor.
-	Changing of FPS cause changing of speed of game, so we must have coefficient of
-	speed of whole game to configure our game later.
+	+ Implement jumping of block. My proposition is create interface Jumpable 
+wich objects must implement function jump(). Tote that jump operation requires:
+		* To be limited in height by N, when N is integer number of heights of 
+the player's unit, i.e. when unit has e.g. 5N of height under position of 
+start jumping it's horizontal speed becames 0 and it starts falling.
+		* Unit can not jump without something under it. If unit stays on smth. 
+jump should cause jumping, butif jump called during flying in must has no 
+effect.
+	if we will have Jumpable interface, some kinds of units could implement it, 
+so we could create function jump in the world which takes Jumpable object as 
+parameter, and call this function passing player's unit to it when space is 
+pressed.
+
 Nastia:
-    Create for GroundUnit priority = 100 ;
+	+ Find animated pictures of player and some mob, and add it to project.
+	+ Make player's sprite animated when run.
+	
 Mykhailo:
-    Create Coordinates constructors for 4 ints and for 2 Points
+	+ Create in the Game dictionary or map Unit : Image which will contain 
+image for each unit. Add to GameAPI and Game function which returns map of 
+coordinates : image as alternative for getAllUnitsCoordinates();
 
 How to use github see in the file howto_git.txt
