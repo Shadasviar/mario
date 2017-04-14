@@ -63,7 +63,7 @@ namespace GameEngine
             int bh = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
 
             /* <- */
-            if (ang <= -135 || ang >= 135)
+            if (ang < -135 || ang >= 135)
             {
                 changePosition(b, new Speed((bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() < 0 ?
                     -b.GetCurrentSpeed().getHorizontalSpeed() :
