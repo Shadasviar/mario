@@ -49,6 +49,9 @@ namespace GameEngine
             }
         }
 
+        /* Push unit b from unit a. Direction of pushing depends on
+         * angle between b and a centers. Speed of pushing depends on speed
+         * of b unit.*/
         void anglePush(Unit a, Unit b)
         {
             double ang = angle(center(a.GetPosition()), center(b.GetPosition()));
@@ -62,7 +65,7 @@ namespace GameEngine
             /* <- */
             if (ang <= -135 || ang >= 135)
             {
-                push(b, new Speed((bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() < 0 ?
+                changePosition(b, new Speed((bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() < 0 ?
                     -b.GetCurrentSpeed().getHorizontalSpeed() :
                     0, 0));
             }
@@ -70,7 +73,7 @@ namespace GameEngine
             /* v */
             if (ang <= -45)
             {
-                push(b, new Speed(0, (bh/2 + ah/2 - height) + b.GetCurrentSpeed().getVerticalSpeed() < 0 ?
+                changePosition(b, new Speed(0, (bh/2 + ah/2 - height) + b.GetCurrentSpeed().getVerticalSpeed() < 0 ?
                     -b.GetCurrentSpeed().getVerticalSpeed():
                     0));
             }
@@ -78,20 +81,21 @@ namespace GameEngine
             /* -> */
             if (ang <= 45)
             {
-                push(b, new Speed(-(bw/2 + aw/2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() > 0 ?
+                changePosition(b, new Speed(-(bw/2 + aw/2 - width) + b.GetCurrentSpeed().getHorizontalSpeed() > 0 ?
                     -b.GetCurrentSpeed().getHorizontalSpeed() :
                     0, 0));
             }
             /* ^ */
             else
             {
-                push(b, new Speed(0, (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed() > 0 ?
+                changePosition(b, new Speed(0, (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed() > 0 ?
                     -b.GetCurrentSpeed().getVerticalSpeed() :
                     0));
             }
         }
 
-        void push(Unit b, Speed s)
+        /* Set coordinates of unit according given speed */
+        void changePosition(Unit b, Speed s)
         {
             Coordinates tmp = new Coordinates(
                     b.GetPosition().bottomLeft.X + s.getHorizontalSpeed(),
@@ -112,11 +116,6 @@ namespace GameEngine
             int dx = a.X - b.X;
             int dy = a.Y - b.Y;
             return Math.Atan2(dy,dx) * (180 / Math.PI);
-        }
-
-        Speed pushSpeed(Point a, Point b)
-        {
-            return new Speed(b.X - a.X, b.Y - a.Y);
         }
 
         public void nextFrame()
