@@ -90,6 +90,11 @@
   <ItemGroup>
     <None Include="images\cegla.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\sziefer.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\szifer.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
