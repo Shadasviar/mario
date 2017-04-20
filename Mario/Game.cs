@@ -13,7 +13,7 @@ namespace Mario
 
     class Game : GameAPI
     {
-        enum UnitsNames { szifer = 0, cegla = 1 };
+        enum Textures { szifer = 0, cegla = 1 };
 
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
@@ -144,11 +144,11 @@ namespace Mario
             {
                 if(units[i].GetType() == typeof(GroundUnit))
                 {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)UnitsNames.cegla]));
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.cegla]));
                 }
                 else
                 {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)UnitsNames.szifer]));
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
                 }
             }
             return result;
