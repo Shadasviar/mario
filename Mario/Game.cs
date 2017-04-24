@@ -48,7 +48,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Right] == 1)
             {
-                h1 = 10;
+                h1 = 5;
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Left] == 1)
             {
-                h2 = -10;
+                h2 = -5;
             }
             else
             {
@@ -118,7 +118,7 @@ namespace Mario
         {
             World result = new World();
             result.addUnit(new Unit(new Coordinates(200,200,210,210), 1, new Speed(1, -2)), World.UnitGtroupNames.players);
-            result.addUnit(new Mob(new Coordinates(150, 150,160, 160)),  World.UnitGtroupNames.mobs);
+            result.addUnit(new Mob(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGtroupNames.mobs);
 
             for (int i = 0; i < 20; ++i)
             {

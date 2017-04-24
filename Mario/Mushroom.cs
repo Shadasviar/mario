@@ -7,12 +7,11 @@ using Mario;
 
 namespace GameEngine
 {
-    class Mob : Unit
+    class Mushroom : Mob
     {
-        public Mob (Coordinates position, Speed s):base(position,0,s)
+        public Mushroom(Coordinates position, Speed s):base(position,s)
         {
-            
-            this.priority = 50;
+           
         }
 
     }

@@ -75,7 +75,8 @@ namespace GameEngine
                 int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
                 changePosition(b, new Speed(intersection < 0 ?
                     -intersection :
-                    0, 0));
+                    intersection, 0));
+                if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
             }
             else
             /* v */
@@ -84,16 +85,17 @@ namespace GameEngine
                 int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
                 changePosition(b, new Speed(0, intersection < 0 ?
                     -intersection:
-                    0));
+                    intersection));
             }
             else
             /* -> */
             if (ang <= 45)
             {
-                int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                 int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
                 changePosition(b, new Speed(intersection > 0 ?
                     -intersection :
-                    0, 0));
+                    intersection, 0));
+                if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
             }
             /* ^ */
             else
@@ -101,7 +103,7 @@ namespace GameEngine
                 int intersection = (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
                 changePosition(b, new Speed(0, intersection > 0 ?
                     -intersection :
-                    0));
+                    intersection));
             }
         }
 
