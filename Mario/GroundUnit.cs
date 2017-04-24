@@ -9,7 +9,7 @@ namespace GameEngine
 {
     class GroundUnit : Unit
     {
-        public GroundUnit(Coordinates position, int priority):base(position, priority)
+        public GroundUnit(Coordinates position):base(position, 0)
         {
             currentSpeed = new Speed(0, 0);
             this.priority = 100;

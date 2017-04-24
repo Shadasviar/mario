@@ -121,17 +121,17 @@ namespace Mario
             c.bottomLeft = new Point(200, 200);
             c.topRight = new Point(210, 210);
             result.addUnit(new Unit(c, 1, new Speed(1, -2)), World.UnitGtroupNames.players);
-            result.addUnit(new Unit(new Coordinates(150, 150,160, 160),1, new Speed(0,0)),  World.UnitGtroupNames.players);
+            result.addUnit(new Mob(new Coordinates(150, 150,160, 160)),  World.UnitGtroupNames.mobs);
 
             for (int i = 0; i < 10; ++i)
             {
-                result.addUnit(new GroundUnit(new Coordinates(i*100,0, i*100+100, 100), 1), World.UnitGtroupNames.stat);
+                result.addUnit(new GroundUnit(new Coordinates(i*100,0, i*100+100, 100)), World.UnitGtroupNames.stat);
             }
 
             Coordinates c2 = new Coordinates();
             c2.bottomLeft = new Point(350, 111);
             c2.topRight = new Point(450, 211);
-            result.addUnit(new GroundUnit(c2, 1),World.UnitGtroupNames.stat);
+            result.addUnit(new GroundUnit(c2),World.UnitGtroupNames.stat);
             
             return result;
         }

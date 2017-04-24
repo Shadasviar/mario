@@ -25,13 +25,20 @@ namespace GameEngine
 
         public void  matchCollisions()
         {
-            for(int i = 0; i < UnitGroups[0].Count;i++)
+            for (int currentGroup = 0; currentGroup < UnitGroups.Count; currentGroup++)
             {
-                for (int j = 0; j < UnitGroups[1].Count; j++)
+                for (int iGroup = currentGroup; iGroup < UnitGroups.Count; iGroup++)
                 {
-                    if(UnitGroups[0][i].GetPosition() == UnitGroups[1][j].GetPosition())
+                    if (currentGroup == iGroup) continue;
+                    for (int i = 0; i < UnitGroups[currentGroup].Count; i++)
                     {
-                        resolveCollision(UnitGroups[0][i], UnitGroups[1][j]);
+                        for (int j = 0; j < UnitGroups[iGroup].Count; j++)
+                        {
+                            if (UnitGroups[currentGroup][i].GetPosition() == UnitGroups[iGroup][j].GetPosition())
+                            {
+                                resolveCollision(UnitGroups[currentGroup][i], UnitGroups[iGroup][j]);
+                            }
+                        }
                     }
                 }
             }
