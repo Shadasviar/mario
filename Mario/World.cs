@@ -14,7 +14,8 @@ namespace GameEngine
 
         private List<Unit> units = new List<Unit>();
         public enum UnitGtroupNames {stat = 0, players = 1, mobs = 2};
-
+        private enum Orientation { vertical, horizontal};
+        private enum PushTo { top = -1, down = 1, right = 1, left = -1};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         public World()
             {
@@ -48,54 +49,74 @@ namespace GameEngine
         {
             if (a.getPriority() > b.getPriority())
             {
-                anglePush(a, b);
+                resolveCollisionDependOnSide(a, b);
             }
             else
             {
-                anglePush(b,a);
+                resolveCollisionDependOnSide(b,a);
             }
         }
 
-        /* Push unit b from unit a. Direction of pushing depends on
-         * angle between b and a centers. Speed of pushing depends on speed
-         * of b unit.*/
-        void anglePush(Unit a, Unit b)
+        /* Do actions with units in collision dependent on side of it.*/
+        void resolveCollisionDependOnSide(Unit a, Unit b)
         {
             double ang = angle(center(a.GetPosition()), center(b.GetPosition()));
-            int width = Abs(center(a.GetPosition()).X - center(b.GetPosition()).X);
-            int height = Abs(center(a.GetPosition()).Y - center(b.GetPosition()).Y);
-            int aw = a.GetPosition().topRight.X - a.GetPosition().bottomLeft.X;
-            int bw = b.GetPosition().topRight.X - b.GetPosition().bottomLeft.X;
-            int ah = a.GetPosition().topRight.Y - a.GetPosition().bottomLeft.Y;
-            int bh = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
 
             /* <- */
             if (ang < -135 || ang >= 135)
             {
-                int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
-                changePosition(b, new Speed(Abs(intersection), 0));
+                push(a, b, PushTo.right, Orientation.horizontal);
                 if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
             }
             else
             /* v */
             if (ang <= -45)
             {
-                int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
-                changePosition(b, new Speed(0, Abs(intersection)));
+                push(a, b, PushTo.top, Orientation.vertical);
             }
             else
             /* -> */
             if (ang <= 45)
             {
-                int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
-                changePosition(b, new Speed(- Abs(intersection), 0));
+                push(a, b, PushTo.left, Orientation.horizontal);
                 if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
             }
             /* ^ */
             else
             {
-                int intersection = (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
-                changePosition(b, new Speed(0, - Abs(intersection)));
+                push(a, b, PushTo.down, Orientation.vertical);
+            }
+        }
+
+        /* Push unit b from unit a. Direction of pushing depends on
+        * PushTo side parameter. Speed of pushing depends on speed
+        * of b unit.*/
+        void push(Unit a, Unit b, PushTo side, Orientation orientation)
+        {
+            int al, bl, lenght, speed;
+            if(orientation == Orientation.horizontal)
+            {
+                al = a.GetPosition().topRight.X - a.GetPosition().bottomLeft.X;
+                bl = b.GetPosition().topRight.X - b.GetPosition().bottomLeft.X;
+                lenght = Abs(center(a.GetPosition()).X - center(b.GetPosition()).X);
+                speed = b.GetCurrentSpeed().getHorizontalSpeed();
+            }
+            else
+            {
+                al = a.GetPosition().topRight.Y - a.GetPosition().bottomLeft.Y;
+                bl = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
+                lenght = Abs(center(a.GetPosition()).Y - center(b.GetPosition()).Y);
+                speed = b.GetCurrentSpeed().getVerticalSpeed();
+            }
+
+            int intersection = (int)side * (bl / 2 + al / 2 - lenght) + speed;
+            if(orientation == Orientation.horizontal)
+            {
+                changePosition(b, new Speed((int)side * Abs(intersection), 0));
+            }
+            else
+            {
+                changePosition(b, new Speed(0, -(int)side * Abs(intersection)));
             }
         }
 
