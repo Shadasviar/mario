@@ -73,6 +73,9 @@ namespace GameEngine
             if (ang <= -45)
             {
                 push(a, b, PushTo.top, Orientation.vertical);
+                /* Kill mob if player jump to it*/
+                if (UnitGroups[(int)UnitGtroupNames.players].Contains(b) &&
+                    UnitGroups[(int)UnitGtroupNames.mobs].Contains(a)) remove(a);
             }
             else
             /* -> */
@@ -183,6 +186,10 @@ namespace GameEngine
         public bool remove(Unit unit)
         {
             units.Remove(unit);
+            foreach(List<Unit> group in UnitGroups)
+            {
+                if (group.Contains(unit)) group.Remove(unit);
+            }
             return true;
         }
         public Unit getUnit( int index)
