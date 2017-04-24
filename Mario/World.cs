@@ -73,9 +73,7 @@ namespace GameEngine
             if (ang < -135 || ang >= 135)
             {
                 int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
-                changePosition(b, new Speed(intersection < 0 ?
-                    -intersection :
-                    intersection, 0));
+                changePosition(b, new Speed(Abs(intersection), 0));
                 if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
             }
             else
@@ -83,27 +81,21 @@ namespace GameEngine
             if (ang <= -45)
             {
                 int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
-                changePosition(b, new Speed(0, intersection < 0 ?
-                    -intersection:
-                    intersection));
+                changePosition(b, new Speed(0, Abs(intersection)));
             }
             else
             /* -> */
             if (ang <= 45)
             {
-                 int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
-                changePosition(b, new Speed(intersection > 0 ?
-                    -intersection :
-                    intersection, 0));
+                int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                changePosition(b, new Speed(- Abs(intersection), 0));
                 if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
             }
             /* ^ */
             else
             {
                 int intersection = (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
-                changePosition(b, new Speed(0, intersection > 0 ?
-                    -intersection :
-                    intersection));
+                changePosition(b, new Speed(0, - Abs(intersection)));
             }
         }
 
