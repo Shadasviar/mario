@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Reflection;
 
+
 namespace Mario
 {
     public partial class Form1 : Form
@@ -18,7 +19,7 @@ namespace Mario
         List<PictureBox> sprites = new List<PictureBox>();
         int isPressed = 0;
         GameAPI game;
-        int fps = 1000/25; //ms
+        int fps = 1000/50; //ms
         private List<int> keys = new List<int>(new int [4]);
 
 
@@ -31,9 +32,12 @@ namespace Mario
                 Thread.CurrentThread.IsBackground = true;
                 while (true)
                 {
-                    game.nextFrame();
-                   Invoke(new updateStateDelegate(this.updateState));
-                    Thread.Sleep(fps); // 25 fps
+                   game.nextFrame();
+                    try
+                    {
+                        Invoke(new updateStateDelegate(this.updateState));
+                    }catch(Exception e) { };
+                   Thread.Sleep(fps); // 25 fps
                 }
             }).Start();
             /* For disable flicking*/
@@ -66,15 +70,24 @@ namespace Mario
 
         private void updateState()
         {
+            foreach(Control c in this.panel1.Controls)
+            {
+                c.Dispose();
+            }
+            foreach(PictureBox p in sprites)
+            {
+                p.Dispose();
+            }
             this.panel1.Controls.Clear();
-            List<Coordinates> crd = game.getAllUnitsCoordinates();
+            sprites.Clear();
+            List<Tuple<Coordinates,Image>> crd = game.getAllUnitsCoordinatesImages();
 
-            foreach (Coordinates c in crd)
+            foreach ( Tuple<Coordinates, Image>  c in crd)
             {
                 PictureBox p = new PictureBox();
-                p.Size = mapSize(c);
-                p.Image = new Bitmap(Mario.Properties.Resources.cegla);
-                p.Location = mapPosition(c);
+                p.Size = mapSize(c.Item1);
+                p.Image = c.Item2;
+                p.Location = mapPosition(c.Item1);
                 sprites.Add(p);
                 p.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.panel1.Controls.Add(p);

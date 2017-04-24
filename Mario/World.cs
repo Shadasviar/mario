@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mario;
+using static System.Math;
 using System.Drawing;
 
 namespace GameEngine
@@ -40,18 +41,86 @@ namespace GameEngine
         {
             if (a.getPriority() > b.getPriority())
             {
-
-                b.setHorizontalSpeed(a.GetCurrentSpeed().getHorizontalSpeed());
-                b.setVerticalSpeed(a.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition+(100000/99999));
+                anglePush(a, b);
             }
             else
             {
-                a.setHorizontalSpeed(b.GetCurrentSpeed().getHorizontalSpeed());
-                a.setVerticalSpeed(b.GetCurrentSpeed().getVerticalSpeed()-Unit.gravition);
+                anglePush(b,a);
             }
-
         }
 
+        /* Push unit b from unit a. Direction of pushing depends on
+         * angle between b and a centers. Speed of pushing depends on speed
+         * of b unit.*/
+        void anglePush(Unit a, Unit b)
+        {
+            double ang = angle(center(a.GetPosition()), center(b.GetPosition()));
+            int width = Abs(center(a.GetPosition()).X - center(b.GetPosition()).X);
+            int height = Abs(center(a.GetPosition()).Y - center(b.GetPosition()).Y);
+            int aw = a.GetPosition().topRight.X - a.GetPosition().bottomLeft.X;
+            int bw = b.GetPosition().topRight.X - b.GetPosition().bottomLeft.X;
+            int ah = a.GetPosition().topRight.Y - a.GetPosition().bottomLeft.Y;
+            int bh = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
+
+            /* <- */
+            if (ang < -135 || ang >= 135)
+            {
+                int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                changePosition(b, new Speed(intersection < 0 ?
+                    -intersection :
+                    0, 0));
+            }
+            else
+            /* v */
+            if (ang <= -45)
+            {
+                int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
+                changePosition(b, new Speed(0, intersection < 0 ?
+                    -intersection:
+                    0));
+            }
+            else
+            /* -> */
+            if (ang <= 45)
+            {
+                int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                changePosition(b, new Speed(intersection > 0 ?
+                    -intersection :
+                    0, 0));
+            }
+            /* ^ */
+            else
+            {
+                int intersection = (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
+                changePosition(b, new Speed(0, intersection > 0 ?
+                    -intersection :
+                    0));
+            }
+        }
+
+        /* Set coordinates of unit according given speed */
+        void changePosition(Unit b, Speed s)
+        {
+            Coordinates tmp = new Coordinates(
+                    b.GetPosition().bottomLeft.X + s.getHorizontalSpeed(),
+                    b.GetPosition().bottomLeft.Y + s.getVerticalSpeed(),
+                    b.GetPosition().topRight.X + s.getHorizontalSpeed(),
+                    b.GetPosition().topRight.Y + s.getVerticalSpeed());
+
+            b.SetCoordinates(tmp);
+        }
+
+        Point center(Coordinates c)
+        {
+            return new Point((c.topRight.X + c.bottomLeft.X) / 2, (c.topRight.Y + c.bottomLeft.Y) / 2);
+        }
+
+        double angle(Point a, Point b)
+        {
+            int dx = a.X - b.X;
+            int dy = a.Y - b.Y;
+            return Math.Atan2(dy,dx) * (180 / Math.PI);
+        }
 
         public void nextFrame()
         {

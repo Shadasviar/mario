@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,17 +9,24 @@ using GameEngine;
 namespace Mario
 {
     enum keysNames {Right = 0, Left = 1, Down = 2, Space = 3 };
+   
+
     class Game : GameAPI
     {
+        enum Textures { szifer = 0, cegla = 1 };
 
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
+        protected List<Image> images = new List<Image>();
 
         public Game(ref List<int>a)
         {
             keysStatus = a;
             levels.Add(init_test_world());
+            images.Add(new Bitmap(Mario.Properties.Resources.szifer));
+            images.Add(new Bitmap (Mario.Properties.Resources.cegla));
+            
         }
         
 
@@ -40,7 +48,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Right] == 1)
             {
-                h1 = 1;
+                h1 = 10;
             }
             else
             {
@@ -49,7 +57,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Left] == 1)
             {
-                h2 = -1;
+                h2 = -10;
             }
             else
             {
@@ -60,7 +68,7 @@ namespace Mario
             h2 = 0;
             if (keysStatus[(int)keysNames.Space] == 1)
             {
-                h1 = 2;
+                h1 = 5;
             }
             else
             {
@@ -69,7 +77,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Down] == 1)
             {
-                h1 = -20;
+                h1 = 1;
             }
             else
             {
@@ -112,28 +120,38 @@ namespace Mario
             Coordinates c = new Coordinates();
             c.bottomLeft = new System.Drawing.Point(200, 200);
             c.topRight = new System.Drawing.Point(210, 210);
-            result.addUnit(new Unit(c, 1, new Speed(1,-2)), World.UnitGtroupNames.players);
+            result.addUnit(new Unit(c, 1, new Speed(1, 0)), World.UnitGtroupNames.players);
             result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(0,0)),  World.UnitGtroupNames.players);
 
-            Coordinates c1 = new Coordinates();
-            c1.bottomLeft = new System.Drawing.Point(50, 50);
-            c1.topRight = new System.Drawing.Point(10, 10);
-           
-            
+            for (int i = 0; i < 10; ++i)
+            {
+                result.addUnit(new GroundUnit(new Coordinates(i*100,0, i*100+100, 100), 1), World.UnitGtroupNames.stat);
+            }
+
             Coordinates c2 = new Coordinates();
-            c2.bottomLeft = new System.Drawing.Point(350, 111);
-            c2.topRight = new System.Drawing.Point(500, 361);
-            result.addUnit(new Unit(c2, 1, new Speed(0,0)),World.UnitGtroupNames.players);
-
-            Coordinates c3 = new Coordinates();
-            c3.bottomLeft = new System.Drawing.Point(0, 0);
-            c3.topRight = new System.Drawing.Point(500, 30);
-            result.addUnit(new GroundUnit(c3, 1),World.UnitGtroupNames.stat);
-
-
+            c2.bottomLeft = new Point(350, 111);
+            c2.topRight = new Point(450, 211);
+            result.addUnit(new GroundUnit(c2, 1),World.UnitGtroupNames.stat);
+            
             return result;
         }
 
-
+        public List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages()
+        {
+            List<Tuple<Coordinates, Image>> result = new List<Tuple<Coordinates, Image>>();
+            IList<Unit> units = levels[currentLevel].getAllUnits();
+            for(int i = 0; i < units.Count; i++)
+            {
+                if(units[i].GetType() == typeof(GroundUnit))
+                {
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.cegla]));
+                }
+                else
+                {
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
+                }
+            }
+            return result;
+        }
     }
 }
