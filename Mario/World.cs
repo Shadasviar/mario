@@ -14,23 +14,20 @@ namespace GameEngine
 
         private List<Unit> units = new List<Unit>();
         public enum UnitGtroupNames {stat = 0, players = 1, mobs = 2};
-        private enum Orientation { vertical, horizontal};
-        private enum PushTo { top = -1, down = 1, right = 1, left = -1};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         public World()
-            {
+        {
             UnitGroups.Add(new List<Unit>());
-            UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
-            UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
+            UnitGroups.Add(new List<Unit>()); 
+            UnitGroups.Add(new List<Unit>()); 
         }
 
         public void  matchCollisions()
         {
             for (int currentGroup = 0; currentGroup < UnitGroups.Count; currentGroup++)
             {
-                for (int iGroup = currentGroup; iGroup < UnitGroups.Count; iGroup++)
+                for (int iGroup = currentGroup + 1; iGroup < UnitGroups.Count; iGroup++)
                 {
-                    if (currentGroup == iGroup) continue;
                     for (int i = 0; i < UnitGroups[currentGroup].Count; i++)
                     {
                         for (int j = 0; j < UnitGroups[iGroup].Count; j++)
@@ -57,71 +54,78 @@ namespace GameEngine
             }
         }
 
-        /* Do actions with units in collision dependent on side of it.*/
+        /* Push b from a in direction opposit for moving.
+         * Do actions with units in collision dependent on side of it.*/
         void resolveCollisionDependOnSide(Unit a, Unit b)
         {
             double ang = angle(center(a.GetPosition()), center(b.GetPosition()));
+            int width = Abs(center(a.GetPosition()).X - center(b.GetPosition()).X);
+            int height = Abs(center(a.GetPosition()).Y - center(b.GetPosition()).Y);
+            int aw = a.GetPosition().topRight.X - a.GetPosition().bottomLeft.X;
+            int bw = b.GetPosition().topRight.X - b.GetPosition().bottomLeft.X;
+            int ah = a.GetPosition().topRight.Y - a.GetPosition().bottomLeft.Y;
+            int bh = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
 
             /* <- */
             if (ang < -135 || ang >= 135)
             {
-                push(a, b, PushTo.right, Orientation.horizontal);
-                if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+                int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                changePosition(b, new Speed(Abs(intersection), 0));
+                bumpToLeft(a, b);
             }
             else
             /* v */
             if (ang <= -45)
             {
-                push(a, b, PushTo.top, Orientation.vertical);
-                /* Kill mob if player jump to it*/
-                if (UnitGroups[(int)UnitGtroupNames.players].Contains(b) &&
-                    UnitGroups[(int)UnitGtroupNames.mobs].Contains(a)) remove(a);
+                int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
+                changePosition(b, new Speed(0, Abs(intersection)));
+                bumpToDown(a, b);
             }
             else
             /* -> */
             if (ang <= 45)
             {
-                push(a, b, PushTo.left, Orientation.horizontal);
-                if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+                int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
+                changePosition(b, new Speed(-Abs(intersection), 0));
+                bumpToRight(a, b);
             }
             /* ^ */
             else
             {
-                push(a, b, PushTo.down, Orientation.vertical);
+                int intersection = (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
+                changePosition(b, new Speed(0, -Abs(intersection)));
+                bumpToUp(a, b);
             }
         }
 
-        /* Push unit b from unit a. Direction of pushing depends on
-        * PushTo side parameter. Speed of pushing depends on speed
-        * of b unit.*/
-        void push(Unit a, Unit b, PushTo side, Orientation orientation)
+        /***********************************************************************************************/
+        /*                Functions wich do staff with units in different sides of bumping             */
+
+        void bumpToLeft(Unit a, Unit b)
         {
-            int al, bl, lenght, speed;
-            if(orientation == Orientation.horizontal)
-            {
-                al = a.GetPosition().topRight.X - a.GetPosition().bottomLeft.X;
-                bl = b.GetPosition().topRight.X - b.GetPosition().bottomLeft.X;
-                lenght = Abs(center(a.GetPosition()).X - center(b.GetPosition()).X);
-                speed = b.GetCurrentSpeed().getHorizontalSpeed();
-            }
-            else
-            {
-                al = a.GetPosition().topRight.Y - a.GetPosition().bottomLeft.Y;
-                bl = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
-                lenght = Abs(center(a.GetPosition()).Y - center(b.GetPosition()).Y);
-                speed = b.GetCurrentSpeed().getVerticalSpeed();
-            }
-
-            int intersection = (int)side * (bl / 2 + al / 2 - lenght) + speed;
-            if(orientation == Orientation.horizontal)
-            {
-                changePosition(b, new Speed((int)side * Abs(intersection), 0));
-            }
-            else
-            {
-                changePosition(b, new Speed(0, -(int)side * Abs(intersection)));
-            }
+            /*Change direction of moving of the mob if it meet obstruction*/
+            if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
         }
+
+        void bumpToRight(Unit a, Unit b)
+        {
+            /*Change direction of moving of the mob if it meet obstruction*/
+            if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+        }
+
+        void bumpToUp(Unit a, Unit b)
+        {
+
+        }
+
+        void bumpToDown(Unit a, Unit b)
+        {
+            /* Kill mob if player jump to it*/
+            if (UnitGroups[(int)UnitGtroupNames.players].Contains(b) &&
+                UnitGroups[(int)UnitGtroupNames.mobs].Contains(a)) remove(a);
+        }
+
+        /***********************************************************************************************/
 
         /* Set coordinates of unit according given speed */
         void changePosition(Unit b, Speed s)
