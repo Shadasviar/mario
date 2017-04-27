@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameEngine;
+using System.Windows.Media.Imaging;
+using System.Windows;
+using System.IO;
 
 namespace Mario
 {
@@ -13,7 +16,7 @@ namespace Mario
 
     class Game : GameAPI
     {
-        enum Textures { szifer = 0, cegla = 1 };
+        enum Textures {mario = 0, cegla = 1 };
 
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
@@ -24,7 +27,7 @@ namespace Mario
         {
             keysStatus = a;
             levels.Add(init_test_world());
-            images.Add(new Bitmap(Mario.Properties.Resources.szifer));
+            images.Add(new Bitmap(Mario.Properties.Resources.mario));
             images.Add(new Bitmap (Mario.Properties.Resources.cegla));
             
         }
@@ -42,6 +45,18 @@ namespace Mario
 
         public void nextFrame()
         {
+            GifBitmapEncoder gEnc = new GifBitmapEncoder();
+
+            foreach (System.Drawing.Bitmap bmpImage in images)
+            {
+                var bmp = ((Bitmap)images[(int)Textures.mario]).GetHbitmap();
+                var src = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                    bmp,
+                    IntPtr.Zero,
+                    Int32Rect.Empty,
+                    BitmapSizeOptions.FromEmptyOptions());
+                gEnc.Frames.Add(BitmapFrame.Create(src));
+            }
 
             int h1 = 0;
             int h2 = 0;
@@ -118,10 +133,10 @@ namespace Mario
         {
             World result = new World();
             Coordinates c = new Coordinates();
-            c.bottomLeft = new Point(200, 200);
-            c.topRight = new Point(210, 210);
+            c.bottomLeft = new System.Drawing.Point(200, 200);
+            c.topRight = new System.Drawing.Point(300, 300);
             result.addUnit(new Unit(c, 1, new Speed(1, -2)), World.UnitGtroupNames.players);
-            result.addUnit(new Unit(new Coordinates(150, 150,160, 160),1, new Speed(0,0)),  World.UnitGtroupNames.players);
+            result.addUnit(new Unit(new Coordinates(150, 150,190, 190),1, new Speed(0,0)),  World.UnitGtroupNames.players);
 
             for (int i = 0; i < 10; ++i)
             {
@@ -129,8 +144,8 @@ namespace Mario
             }
 
             Coordinates c2 = new Coordinates();
-            c2.bottomLeft = new Point(350, 111);
-            c2.topRight = new Point(450, 211);
+            c2.bottomLeft = new System.Drawing.Point(350, 111);
+            c2.topRight = new System.Drawing.Point(450, 211);
             result.addUnit(new GroundUnit(c2, 1),World.UnitGtroupNames.stat);
             
             return result;
@@ -148,7 +163,7 @@ namespace Mario
                 }
                 else
                 {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.mario]));
                 }
             }
             return result;
