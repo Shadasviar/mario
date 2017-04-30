@@ -110,6 +110,7 @@ namespace Mario
             {
                 result.addUnit(new GroundUnit(new Coordinates(i*50,0, i*50+50, 50)), World.UnitGroupNames.stat);
             }
+           
             result.addUnit(new GroundUnit(new Coordinates(0, 50, 50, 100)), World.UnitGroupNames.stat);
             result.addUnit(new GroundUnit(new Coordinates(350,111,450,211)),World.UnitGroupNames.stat);
             result.addUnit(new GroundUnit(new Coordinates(250, 50, 300, 100)), World.UnitGroupNames.stat);

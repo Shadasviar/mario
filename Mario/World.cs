@@ -74,7 +74,9 @@ namespace GameEngine
             int bh = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
 
             /* <- */
-            if (ang < -135 || ang >= 135)
+            if (ang < angle(a.GetPosition().bottomLeft, a.GetPosition().topRight) || 
+                ang >= angle(new Point(a.GetPosition().bottomLeft.X, a.GetPosition().topRight.Y), 
+                             new Point(a.GetPosition().topRight.X, a.GetPosition().bottomLeft.Y)))
             {
                 int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
                 changePosition(b, new Speed(Abs(intersection), 0));
@@ -82,7 +84,8 @@ namespace GameEngine
             }
             else
             /* v */
-            if (ang <= -45)
+            if (ang <= angle(new Point(a.GetPosition().topRight.X, a.GetPosition().bottomLeft.Y),
+                             new Point(a.GetPosition().bottomLeft.X, a.GetPosition().topRight.Y)))
             {
                 int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
                 changePosition(b, new Speed(0, Abs(intersection)));
@@ -90,7 +93,7 @@ namespace GameEngine
             }
             else
             /* -> */
-            if (ang <= 45)
+            if (ang <= angle(a.GetPosition().topRight, a.GetPosition().bottomLeft))
             {
                 int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
                 changePosition(b, new Speed(-Abs(intersection), 0));
@@ -122,7 +125,10 @@ namespace GameEngine
 
         void bumpToUp(Unit a, Unit b)
         {
-
+            if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
+            {
+                ((Unit)player).setVerticalSpeed(0);
+            }
         }
 
         void bumpToDown(Unit a, Unit b)

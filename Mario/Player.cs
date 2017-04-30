@@ -50,6 +50,10 @@ namespace GameEngine
                     setVerticalSpeed(0);
                 }
             }
+            else
+            {
+                setVerticalSpeed(0);
+            }
         }
     }
 }
