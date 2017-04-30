@@ -122,19 +122,17 @@ namespace GameEngine
 
         void bumpToLeft(Unit a, Unit b)
         {
-            /*Change direction of moving of the mob if it meet obstruction*/
-            if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
-            /*If player bumped to the mob, player dies*/
-            if(UnitGroups[(int)UnitGroupNames.mobs].Contains(a) &&
-               UnitGroups[(int)UnitGroupNames.players].Contains(b))
-            {
-                remove(b);
-                playerAlive = false;
-            }
+            horizontalSpecificAction(a, b);
         }
 
 
         void bumpToRight(Unit a, Unit b)
+        {
+            horizontalSpecificAction(a, b);
+        }
+
+
+        void horizontalSpecificAction(Unit a, Unit b)
         {
             /*Change direction of moving of the mob if it meet obstruction*/
             if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
