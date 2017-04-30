@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Global;
 using GameEngine;
+using Mario.Properties;
 
 namespace Mario
 {
@@ -20,13 +19,13 @@ namespace Mario
         protected int currentLevel;
         protected List<Image> images = new List<Image>();
 
+
         public Game(ref List<int>a)
         {
             keysStatus = a;
             levels.Add(init_test_world());
             images.Add(new Bitmap(Mario.Properties.Resources.szifer));
             images.Add(new Bitmap (Mario.Properties.Resources.cegla));
-            
         }
         
 
@@ -40,15 +39,15 @@ namespace Mario
             return result;
         }
 
+
         public void nextFrame()
         {
-
             int h1 = 0;
             int h2 = 0;
 
             if (keysStatus[(int)keysNames.Right] == 1)
             {
-                h1 = 2;
+                h1 = Settings.Default.standardPlayerSpeed;
             }
             else
             {
@@ -57,13 +56,13 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Left] == 1)
             {
-                h2 = -2;
+                h2 = -Settings.Default.standardPlayerSpeed;
             }
             else
             {
                 h2 = 0;
             }
-            changeHSpeed(levels[currentLevel].getUnit(0), h1, h2);
+            changeHSpeed((Unit)levels[currentLevel].player, h1, h2);
 
             if (keysStatus[(int)keysNames.Space] == 1)
             {
@@ -71,8 +70,9 @@ namespace Mario
             }
 
             levels[currentLevel].nextFrame();
-            
         }
+
+
         private void changeHSpeed(Unit u, int h1, int h2)
         {
             u.setHorizontalSpeed(h1 + h2);
@@ -84,10 +84,12 @@ namespace Mario
             u.setVerticalSpeed(h1 + h2);
         }
 
+
         public bool playerIsAlive()
         {
             throw new NotImplementedException();
         }
+
 
         public bool setLevel(int index)
         {
@@ -99,12 +101,14 @@ namespace Mario
             else return false;
         }
 
+
         private World init_test_world()
         {
             World result = new World();
             result.addUnit(new Player(new Coordinates(200,200,210,210)), World.UnitGroupNames.players);
             result.initPlayer();
-            result.addUnit(new Mob(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGroupNames.mobs);
+            result.addUnit(new Mushroom(new Coordinates(150, 80, 160, 90), new Speed(Settings.Default.standardMoveSpeed)),  World.UnitGroupNames.mobs);
+            result.addUnit(new Mushroom(new Coordinates(180, 90, 200, 110), new Speed(Settings.Default.standardMoveSpeed)), World.UnitGroupNames.mobs);
 
             for (int i = 0; i < 20; ++i)
             {
@@ -116,6 +120,7 @@ namespace Mario
             result.addUnit(new GroundUnit(new Coordinates(250, 50, 300, 100)), World.UnitGroupNames.stat);
             return result;
         }
+
 
         public List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages()
         {

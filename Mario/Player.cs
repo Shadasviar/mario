@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using Mario;
+﻿using Global;
+using Mario.Properties;
 
 
 namespace GameEngine
 {
-    class Player : Unit, Jumpble
+    class Player : Unit, Jumpable
     {
         int StartPoint;
-        const int height = 5;
         bool isInJump;
+
 
         public Player(Coordinates position):base(position,1)
         {
@@ -25,16 +20,12 @@ namespace GameEngine
         {
             if (!isInJump)
             {
-                setVerticalSpeed(height);
+                setVerticalSpeed(Settings.Default.speedOfJump);
                 StartPoint = GetPosition().bottomLeft.Y;
                 isInJump = true;
-                position.bottomLeft.Y += 1;
-                position.topRight.Y += 1;
-
             }
-
-
         }
+
 
         public void inJump(bool b)
         {
@@ -45,7 +36,7 @@ namespace GameEngine
         {
             if(isInJump)
             {
-                if(GetPosition().bottomLeft.Y > StartPoint + (position.topRight.Y - position.bottomLeft.Y) * height)
+                if(GetPosition().bottomLeft.Y > StartPoint + (position.topRight.Y - position.bottomLeft.Y) * Settings.Default.heightOfJump)
                 {
                     setVerticalSpeed(0);
                 }

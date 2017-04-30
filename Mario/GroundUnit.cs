@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mario;
+﻿using Global;
+using Mario.Properties;
 
 namespace GameEngine
 {
@@ -12,19 +8,19 @@ namespace GameEngine
         public GroundUnit(Coordinates position):base(position, 0)
         {
             currentSpeed = new Speed(0, 0);
-            this.priority = 100;
+            this.priority = Settings.Default.groundPriority;
         }
+
 
         override public void setHorizontalSpeed(int h)
         {
             currentSpeed.setHorizontalSpeed(0);
         }
 
+
         override public void setVerticalSpeed(int v)
         {
             currentSpeed.setVerticalSpeed(0);
         }
-
-       
     }
 }

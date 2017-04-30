@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mario;
+﻿using Mario.Properties;
+using Global;
 
 namespace GameEngine
 {
@@ -11,8 +7,7 @@ namespace GameEngine
     {
         public Mob (Coordinates position, Speed s):base(position,0,s)
         {
-            
-            this.priority = 50;
+            this.priority = Settings.Default.mobPriority;
         }
 
     }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mario;
+using Global;
 using static System.Math;
 using System.Drawing;
 
@@ -11,10 +8,18 @@ namespace GameEngine
 {
     class World
     {
-         public Jumpble player;
+        public Jumpable player;
         private List<Unit> units = new List<Unit>();
         public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
+        private bool playerAlive = true;
+
+
+        public bool playerIsAlive()
+        {
+            return playerAlive;
+        } 
+
 
         public World()
         {
@@ -24,10 +29,12 @@ namespace GameEngine
             player = null;
         }
 
+
         public void initPlayer()
         {
-            player = (Jumpble)UnitGroups[(int)UnitGroupNames.players][0];
+            player = (Jumpable)UnitGroups[(int)UnitGroupNames.players][0];
         }
+
 
         public void  matchCollisions()
         {
@@ -49,6 +56,7 @@ namespace GameEngine
             }
         }
 
+
         public void resolveCollision(Unit a, Unit b)
         {
             if (a.getPriority() > b.getPriority())
@@ -60,6 +68,7 @@ namespace GameEngine
                 resolveCollisionDependOnSide(b,a);
             }
         }
+
 
         /* Push b from a in direction opposit for moving.
          * Do actions with units in collision dependent on side of it.*/
@@ -113,29 +122,47 @@ namespace GameEngine
 
         void bumpToLeft(Unit a, Unit b)
         {
-            /*Change direction of moving of the mob if it meet obstruction*/
-            if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+            horizontalSpecificAction(a, b);
         }
+
 
         void bumpToRight(Unit a, Unit b)
         {
+            horizontalSpecificAction(a, b);
+        }
+
+
+        void horizontalSpecificAction(Unit a, Unit b)
+        {
             /*Change direction of moving of the mob if it meet obstruction*/
             if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+            /*If player bumped to the mob, player dies*/
+            if (UnitGroups[(int)UnitGroupNames.mobs].Contains(a) &&
+               UnitGroups[(int)UnitGroupNames.players].Contains(b))
+            {
+                remove(b);
+                playerAlive = false;
+            }
         }
+
 
         void bumpToUp(Unit a, Unit b)
         {
+            /*If player bumped to block from bottom its jumping stops*/
             if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
                 ((Unit)player).setVerticalSpeed(0);
             }
         }
 
+
         void bumpToDown(Unit a, Unit b)
         {
             /* Kill mob if player jump to it*/
             if (UnitGroups[(int)UnitGroupNames.players].Contains(b) &&
                 UnitGroups[(int)UnitGroupNames.mobs].Contains(a)) remove(a);
+
+            /*If player fell down to some unit, its jumping state finished*/
             if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
                 player.inJump(false);
@@ -148,19 +175,22 @@ namespace GameEngine
         /* Set coordinates of unit according given speed */
         void changePosition(Unit b, Speed s)
         {
-            Coordinates tmp = new Coordinates(
+            b.SetCoordinates(
+                new Coordinates(
                     b.GetPosition().bottomLeft.X + s.getHorizontalSpeed(),
                     b.GetPosition().bottomLeft.Y + s.getVerticalSpeed(),
                     b.GetPosition().topRight.X + s.getHorizontalSpeed(),
-                    b.GetPosition().topRight.Y + s.getVerticalSpeed());
-
-            b.SetCoordinates(tmp);
+                    b.GetPosition().topRight.Y + s.getVerticalSpeed()
+                )
+            );
         }
+
 
         Point center(Coordinates c)
         {
             return new Point((c.topRight.X + c.bottomLeft.X) / 2, (c.topRight.Y + c.bottomLeft.Y) / 2);
         }
+
 
         double angle(Point a, Point b)
         {
@@ -168,6 +198,7 @@ namespace GameEngine
             int dy = a.Y - b.Y;
             return Math.Atan2(dy,dx) * (180 / Math.PI);
         }
+
 
         public void nextFrame()
         {
@@ -186,26 +217,28 @@ namespace GameEngine
                 c.topRight = new Point(x, y);
                 
                 units[i].SetCoordinates(c);
-
- 
             }
         }
+
 
         public IList<Unit> getAllUnits()
         {
             return units.AsReadOnly();
         }
 
+
         public void addUnit(Unit unit)
         {
             units.Add(unit);
         }
+
 
         public void addUnit(Unit unit, UnitGroupNames group)
         {
             UnitGroups[(int)group].Add(unit);
             addUnit(unit);
         }
+
 
         public bool remove(Unit unit)
         {
@@ -216,6 +249,8 @@ namespace GameEngine
             }
             return true;
         }
+
+
         public Unit getUnit( int index)
         {
             if (index >= 0 && index < units.Count)
@@ -223,9 +258,7 @@ namespace GameEngine
                 return units[index];
             }
             else return null;
-
         }
 
-        
     }
 }

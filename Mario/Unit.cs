@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Mario;
+﻿using Global;
+using Mario.Properties;
 
 namespace GameEngine
 {
-    
     class Unit
     {
-        public const int gravition = -2;
         protected Coordinates position;
         protected int priority;
-        protected Speed currentSpeed = new Speed(0, gravition);
+        protected Speed currentSpeed = new Speed(0, Settings.Default.gravitation);
 
 
         virtual public void setHorizontalSpeed(int h)
@@ -21,44 +15,51 @@ namespace GameEngine
             currentSpeed.setHorizontalSpeed(h);
         }
 
+
         virtual public void setVerticalSpeed(int v)
         {
-            currentSpeed.setVerticalSpeed(v + gravition);
+            currentSpeed.setVerticalSpeed(v + Settings.Default.gravitation);
         }
+
 
         public Unit(Coordinates position, int priority)
         {
-            this.currentSpeed = currentSpeed + new Speed(0, gravition);
+            this.currentSpeed = currentSpeed + new Speed(0, Settings.Default.gravitation);
             this.position = position;
             this.priority = priority;
         }
+
 
         public Unit(Coordinates position, int priority, Speed speed)
         {
             this.position = position;
             this.priority = priority;
             this.currentSpeed = speed;
-            this.currentSpeed = currentSpeed + new Speed(0, gravition);
+            this.currentSpeed = currentSpeed + new Speed(0, Settings.Default.gravitation);
         }
+
+
         virtual public Coordinates GetPosition()
         {
             return position;
         }
+
+
         virtual public Speed GetCurrentSpeed()
         {
             return currentSpeed;
         }
+
 
         virtual public void SetCoordinates(Coordinates x)
         {
             this.position = x;
         }
 
+
         public int getPriority()
         {
             return priority;
         }
-
     }
-
 }
