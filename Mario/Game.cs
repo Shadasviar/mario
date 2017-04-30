@@ -48,7 +48,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Right] == 1)
             {
-                h1 = 5;
+                h1 = 2;
             }
             else
             {
@@ -57,33 +57,18 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Left] == 1)
             {
-                h2 = -5;
+                h2 = -2;
             }
             else
             {
                 h2 = 0;
             }
             changeHSpeed(levels[currentLevel].getUnit(0), h1, h2);
-            h1 = 0;
-            h2 = 0;
+
             if (keysStatus[(int)keysNames.Space] == 1)
             {
-                h1 = 5;
+                levels[currentLevel].player.jump();
             }
-            else
-            {
-                h2 = 0;
-            }
-
-            if (keysStatus[(int)keysNames.Down] == 1)
-            {
-                h1 = -5;
-            }
-            else
-            {
-                h2 = 0;
-            }
-            changeVSpeed(levels[currentLevel].getUnit(0), h1, h2);
 
             levels[currentLevel].nextFrame();
             
@@ -117,16 +102,18 @@ namespace Mario
         private World init_test_world()
         {
             World result = new World();
-            result.addUnit(new Unit(new Coordinates(200,200,210,210), 1, new Speed(1, -2)), World.UnitGtroupNames.players);
-            result.addUnit(new Mob(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGtroupNames.mobs);
+            result.addUnit(new Player(new Coordinates(200,200,210,210)), World.UnitGroupNames.players);
+            result.initPlayer();
+            result.addUnit(new Mob(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGroupNames.mobs);
 
             for (int i = 0; i < 20; ++i)
             {
-                result.addUnit(new GroundUnit(new Coordinates(i*50,0, i*50+50, 50)), World.UnitGtroupNames.stat);
+                result.addUnit(new GroundUnit(new Coordinates(i*50,0, i*50+50, 50)), World.UnitGroupNames.stat);
             }
-            result.addUnit(new GroundUnit(new Coordinates(0, 50, 50, 100)), World.UnitGtroupNames.stat);
-            result.addUnit(new GroundUnit(new Coordinates(350,111,450,211)),World.UnitGtroupNames.stat);
-            result.addUnit(new GroundUnit(new Coordinates(250, 50, 300, 100)), World.UnitGtroupNames.stat);
+           
+            result.addUnit(new GroundUnit(new Coordinates(0, 50, 50, 100)), World.UnitGroupNames.stat);
+            result.addUnit(new GroundUnit(new Coordinates(350,111,450,211)),World.UnitGroupNames.stat);
+            result.addUnit(new GroundUnit(new Coordinates(250, 50, 300, 100)), World.UnitGroupNames.stat);
             return result;
         }
 

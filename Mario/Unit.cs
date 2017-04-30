@@ -10,7 +10,7 @@ namespace GameEngine
     
     class Unit
     {
-        public const int gravition = -1;
+        public const int gravition = -2;
         protected Coordinates position;
         protected int priority;
         protected Speed currentSpeed = new Speed(0, gravition);
