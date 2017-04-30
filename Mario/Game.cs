@@ -20,13 +20,13 @@ namespace Mario
         protected int currentLevel;
         protected List<Image> images = new List<Image>();
 
+
         public Game(ref List<int>a)
         {
             keysStatus = a;
             levels.Add(init_test_world());
             images.Add(new Bitmap(Mario.Properties.Resources.szifer));
             images.Add(new Bitmap (Mario.Properties.Resources.cegla));
-            
         }
         
 
@@ -40,9 +40,9 @@ namespace Mario
             return result;
         }
 
+
         public void nextFrame()
         {
-
             int h1 = 0;
             int h2 = 0;
 
@@ -71,8 +71,9 @@ namespace Mario
             }
 
             levels[currentLevel].nextFrame();
-            
         }
+
+
         private void changeHSpeed(Unit u, int h1, int h2)
         {
             u.setHorizontalSpeed(h1 + h2);
@@ -84,10 +85,12 @@ namespace Mario
             u.setVerticalSpeed(h1 + h2);
         }
 
+
         public bool playerIsAlive()
         {
             throw new NotImplementedException();
         }
+
 
         public bool setLevel(int index)
         {
@@ -99,12 +102,13 @@ namespace Mario
             else return false;
         }
 
+
         private World init_test_world()
         {
             World result = new World();
             result.addUnit(new Player(new Coordinates(200,200,210,210)), World.UnitGroupNames.players);
             result.initPlayer();
-            result.addUnit(new Mob(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGroupNames.mobs);
+            result.addUnit(new Mushroom(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGroupNames.mobs);
 
             for (int i = 0; i < 20; ++i)
             {
@@ -116,6 +120,7 @@ namespace Mario
             result.addUnit(new GroundUnit(new Coordinates(250, 50, 300, 100)), World.UnitGroupNames.stat);
             return result;
         }
+
 
         public List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages()
         {

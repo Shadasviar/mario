@@ -12,6 +12,4 @@ namespace GameEngine
         void inJump(bool b);
         void limitJump();
     }
-
-
 }

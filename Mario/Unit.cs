@@ -21,10 +21,12 @@ namespace GameEngine
             currentSpeed.setHorizontalSpeed(h);
         }
 
+
         virtual public void setVerticalSpeed(int v)
         {
             currentSpeed.setVerticalSpeed(v + gravition);
         }
+
 
         public Unit(Coordinates position, int priority)
         {
@@ -33,6 +35,7 @@ namespace GameEngine
             this.priority = priority;
         }
 
+
         public Unit(Coordinates position, int priority, Speed speed)
         {
             this.position = position;
@@ -40,25 +43,29 @@ namespace GameEngine
             this.currentSpeed = speed;
             this.currentSpeed = currentSpeed + new Speed(0, gravition);
         }
+
+
         virtual public Coordinates GetPosition()
         {
             return position;
         }
+
+
         virtual public Speed GetCurrentSpeed()
         {
             return currentSpeed;
         }
+
 
         virtual public void SetCoordinates(Coordinates x)
         {
             this.position = x;
         }
 
+
         public int getPriority()
         {
             return priority;
         }
-
     }
-
 }

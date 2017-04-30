@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Reflection;
@@ -18,7 +13,7 @@ namespace Mario
         delegate void updateStateDelegate();
         List<PictureBox> sprites = new List<PictureBox>();
         GameAPI game;
-        int fps = 1000/80; //ms
+        const int fps = 80;
         private List<int> keys = new List<int>(new int [4]);
 
 
@@ -35,16 +30,16 @@ namespace Mario
                     try
                     {
                         Invoke(new updateStateDelegate(this.updateState));
-                    }catch(Exception e) { };
-                   Thread.Sleep(fps); // 25 fps
+                    }catch(Exception) { };
+                   Thread.Sleep(1000/fps);
                 }
             }).Start();
             /* For disable flicking*/
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
                 | BindingFlags.Instance | BindingFlags.NonPublic,
                null, panel1, new object[] { true });
-
         }
+
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -54,6 +49,7 @@ namespace Mario
             if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 1;
         }
 
+
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 0;
@@ -62,10 +58,12 @@ namespace Mario
             if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 0;
         }
 
+
         private void Form1_Load(object sender, EventArgs e)
         {
             updateState();
         }
+
 
         private void updateState()
         {
@@ -93,6 +91,7 @@ namespace Mario
             }
         }
 
+
         /* map position from top left to bottom left*/
         private Point mapPosition(Coordinates p)
         {
@@ -101,6 +100,7 @@ namespace Mario
             res.Y = this.panel1.Height - p.topRight.Y;
             return res;
         }
+
 
         private Size mapSize(Coordinates c)
         {

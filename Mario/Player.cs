@@ -15,6 +15,7 @@ namespace GameEngine
         const int height = 5;
         bool isInJump;
 
+
         public Player(Coordinates position):base(position,1)
         {
             isInJump = true;
@@ -32,9 +33,8 @@ namespace GameEngine
                 position.topRight.Y += 1;
 
             }
-
-
         }
+
 
         public void inJump(bool b)
         {

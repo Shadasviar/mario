@@ -11,7 +11,6 @@ namespace GameEngine
     {
         public Mob (Coordinates position, Speed s):base(position,0,s)
         {
-            
             this.priority = 50;
         }
 
