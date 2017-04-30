@@ -62,7 +62,7 @@ namespace Mario
             {
                 h2 = 0;
             }
-            changeHSpeed(levels[currentLevel].getUnit(0), h1, h2);
+            changeHSpeed((Unit)levels[currentLevel].player, h1, h2);
 
             if (keysStatus[(int)keysNames.Space] == 1)
             {

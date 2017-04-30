@@ -12,6 +12,13 @@ namespace GameEngine
         private List<Unit> units = new List<Unit>();
         public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
+        private bool playerAlive = true;
+
+
+        public bool playerIsAlive()
+        {
+            return playerAlive;
+        } 
 
 
         public World()
@@ -117,6 +124,13 @@ namespace GameEngine
         {
             /*Change direction of moving of the mob if it meet obstruction*/
             if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+            /*If player bumped to the mob, player dies*/
+            if(UnitGroups[(int)UnitGroupNames.mobs].Contains(a) &&
+               UnitGroups[(int)UnitGroupNames.players].Contains(b))
+            {
+                remove(b);
+                playerAlive = false;
+            }
         }
 
 
@@ -124,6 +138,13 @@ namespace GameEngine
         {
             /*Change direction of moving of the mob if it meet obstruction*/
             if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+            /*If player bumped to the mob, player dies*/
+            if (UnitGroups[(int)UnitGroupNames.mobs].Contains(a) &&
+               UnitGroups[(int)UnitGroupNames.players].Contains(b))
+            {
+                remove(b);
+                playerAlive = false;
+            }
         }
 
 
