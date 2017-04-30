@@ -19,8 +19,6 @@ Nastia:
 	+ Make player's sprite animated when run.
 	
 Mykhailo:
-	+ Create in the Game dictionary or map Unit : Image which will contain 
-image for each unit. Add to GameAPI and Game function which returns map of 
-coordinates : image as alternative for getAllUnitsCoordinates();
+	+ Implement screen moving with player run to right;
 
 How to use github see in the file howto_git.txt
