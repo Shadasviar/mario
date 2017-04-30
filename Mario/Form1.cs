@@ -17,9 +17,8 @@ namespace Mario
     {
         delegate void updateStateDelegate();
         List<PictureBox> sprites = new List<PictureBox>();
-        int isPressed = 0;
         GameAPI game;
-        int fps = 1000/50; //ms
+        int fps = 1000/80; //ms
         private List<int> keys = new List<int>(new int [4]);
 
 

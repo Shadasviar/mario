@@ -11,15 +11,22 @@ namespace GameEngine
 {
     class World
     {
-
+         public Jumpble player;
         private List<Unit> units = new List<Unit>();
-        public enum UnitGtroupNames {stat = 0, players = 1, mobs = 2};
+        public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
+
         public World()
         {
             UnitGroups.Add(new List<Unit>());
             UnitGroups.Add(new List<Unit>()); 
-            UnitGroups.Add(new List<Unit>()); 
+            UnitGroups.Add(new List<Unit>());
+            player = null;
+        }
+
+        public void initPlayer()
+        {
+            player = (Jumpble)UnitGroups[(int)UnitGroupNames.players][0];
         }
 
         public void  matchCollisions()
@@ -104,13 +111,13 @@ namespace GameEngine
         void bumpToLeft(Unit a, Unit b)
         {
             /*Change direction of moving of the mob if it meet obstruction*/
-            if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+            if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
         }
 
         void bumpToRight(Unit a, Unit b)
         {
             /*Change direction of moving of the mob if it meet obstruction*/
-            if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+            if (UnitGroups[(int)UnitGroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
         }
 
         void bumpToUp(Unit a, Unit b)
@@ -121,8 +128,13 @@ namespace GameEngine
         void bumpToDown(Unit a, Unit b)
         {
             /* Kill mob if player jump to it*/
-            if (UnitGroups[(int)UnitGtroupNames.players].Contains(b) &&
-                UnitGroups[(int)UnitGtroupNames.mobs].Contains(a)) remove(a);
+            if (UnitGroups[(int)UnitGroupNames.players].Contains(b) &&
+                UnitGroups[(int)UnitGroupNames.mobs].Contains(a)) remove(a);
+            if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
+            {
+                player.inJump(false);
+            }
+
         }
 
         /***********************************************************************************************/
@@ -153,7 +165,8 @@ namespace GameEngine
 
         public void nextFrame()
         {
-                           matchCollisions();
+            matchCollisions();
+            player.limitJump();               
             for(int i = 0; i < units.Count; i++)
             {
                 int x;
@@ -167,6 +180,7 @@ namespace GameEngine
                 c.topRight = new Point(x, y);
                 
                 units[i].SetCoordinates(c);
+
  
             }
         }
@@ -181,7 +195,7 @@ namespace GameEngine
             units.Add(unit);
         }
 
-        public void addUnit(Unit unit, UnitGtroupNames group)
+        public void addUnit(Unit unit, UnitGroupNames group)
         {
             UnitGroups[(int)group].Add(unit);
             addUnit(unit);
