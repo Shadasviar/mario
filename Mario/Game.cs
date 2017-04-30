@@ -48,7 +48,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Right] == 1)
             {
-                h1 = 10;
+                h1 = 5;
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Left] == 1)
             {
-                h2 = -10;
+                h2 = -5;
             }
             else
             {
@@ -117,22 +117,16 @@ namespace Mario
         private World init_test_world()
         {
             World result = new World();
-            Coordinates c = new Coordinates();
-            c.bottomLeft = new System.Drawing.Point(200, 200);
-            c.topRight = new System.Drawing.Point(210, 210);
-            result.addUnit(new Unit(c, 1, new Speed(1, 0)), World.UnitGtroupNames.players);
-            result.addUnit(new Unit(new Coordinates(100, 100,110, 110),1, new Speed(0,0)),  World.UnitGtroupNames.players);
+            result.addUnit(new Unit(new Coordinates(200,200,210,210), 1, new Speed(1, -2)), World.UnitGtroupNames.players);
+            result.addUnit(new Mob(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGtroupNames.mobs);
 
-            for (int i = 0; i < 10; ++i)
+            for (int i = 0; i < 20; ++i)
             {
-                result.addUnit(new GroundUnit(new Coordinates(i*100,0, i*100+100, 100), 1), World.UnitGtroupNames.stat);
+                result.addUnit(new GroundUnit(new Coordinates(i*50,0, i*50+50, 50)), World.UnitGtroupNames.stat);
             }
-
-            Coordinates c2 = new Coordinates();
-            c2.bottomLeft = new Point(350, 111);
-            c2.topRight = new Point(450, 211);
-            result.addUnit(new GroundUnit(c2, 1),World.UnitGtroupNames.stat);
-            
+            result.addUnit(new GroundUnit(new Coordinates(0, 50, 50, 100)), World.UnitGtroupNames.stat);
+            result.addUnit(new GroundUnit(new Coordinates(350,111,450,211)),World.UnitGtroupNames.stat);
+            result.addUnit(new GroundUnit(new Coordinates(250, 50, 300, 100)), World.UnitGtroupNames.stat);
             return result;
         }
 

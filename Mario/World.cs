@@ -14,24 +14,29 @@ namespace GameEngine
 
         private List<Unit> units = new List<Unit>();
         public enum UnitGtroupNames {stat = 0, players = 1, mobs = 2};
-
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         public World()
-            {
+        {
             UnitGroups.Add(new List<Unit>());
-            UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
-            UnitGroups.Add(new List<Unit>());//обращаться по инлексам 0 и 1 
+            UnitGroups.Add(new List<Unit>()); 
+            UnitGroups.Add(new List<Unit>()); 
         }
 
         public void  matchCollisions()
         {
-            for(int i = 0; i < UnitGroups[0].Count;i++)
+            for (int currentGroup = 0; currentGroup < UnitGroups.Count; currentGroup++)
             {
-                for (int j = 0; j < UnitGroups[1].Count; j++)
+                for (int iGroup = currentGroup + 1; iGroup < UnitGroups.Count; iGroup++)
                 {
-                    if(UnitGroups[0][i].GetPosition() == UnitGroups[1][j].GetPosition())
+                    for (int i = 0; i < UnitGroups[currentGroup].Count; i++)
                     {
-                        resolveCollision(UnitGroups[0][i], UnitGroups[1][j]);
+                        for (int j = 0; j < UnitGroups[iGroup].Count; j++)
+                        {
+                            if (UnitGroups[currentGroup][i].GetPosition() == UnitGroups[iGroup][j].GetPosition())
+                            {
+                                resolveCollision(UnitGroups[currentGroup][i], UnitGroups[iGroup][j]);
+                            }
+                        }
                     }
                 }
             }
@@ -41,18 +46,17 @@ namespace GameEngine
         {
             if (a.getPriority() > b.getPriority())
             {
-                anglePush(a, b);
+                resolveCollisionDependOnSide(a, b);
             }
             else
             {
-                anglePush(b,a);
+                resolveCollisionDependOnSide(b,a);
             }
         }
 
-        /* Push unit b from unit a. Direction of pushing depends on
-         * angle between b and a centers. Speed of pushing depends on speed
-         * of b unit.*/
-        void anglePush(Unit a, Unit b)
+        /* Push b from a in direction opposit for moving.
+         * Do actions with units in collision dependent on side of it.*/
+        void resolveCollisionDependOnSide(Unit a, Unit b)
         {
             double ang = angle(center(a.GetPosition()), center(b.GetPosition()));
             int width = Abs(center(a.GetPosition()).X - center(b.GetPosition()).X);
@@ -66,37 +70,62 @@ namespace GameEngine
             if (ang < -135 || ang >= 135)
             {
                 int intersection = (bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
-                changePosition(b, new Speed(intersection < 0 ?
-                    -intersection :
-                    0, 0));
+                changePosition(b, new Speed(Abs(intersection), 0));
+                bumpToLeft(a, b);
             }
             else
             /* v */
             if (ang <= -45)
             {
                 int intersection = -(bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
-                changePosition(b, new Speed(0, intersection < 0 ?
-                    -intersection:
-                    0));
+                changePosition(b, new Speed(0, Abs(intersection)));
+                bumpToDown(a, b);
             }
             else
             /* -> */
             if (ang <= 45)
             {
                 int intersection = -(bw / 2 + aw / 2 - width) + b.GetCurrentSpeed().getHorizontalSpeed();
-                changePosition(b, new Speed(intersection > 0 ?
-                    -intersection :
-                    0, 0));
+                changePosition(b, new Speed(-Abs(intersection), 0));
+                bumpToRight(a, b);
             }
             /* ^ */
             else
             {
                 int intersection = (bh / 2 + ah / 2 - height) + b.GetCurrentSpeed().getVerticalSpeed();
-                changePosition(b, new Speed(0, intersection > 0 ?
-                    -intersection :
-                    0));
+                changePosition(b, new Speed(0, -Abs(intersection)));
+                bumpToUp(a, b);
             }
         }
+
+        /***********************************************************************************************/
+        /*                Functions wich do staff with units in different sides of bumping             */
+
+        void bumpToLeft(Unit a, Unit b)
+        {
+            /*Change direction of moving of the mob if it meet obstruction*/
+            if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+        }
+
+        void bumpToRight(Unit a, Unit b)
+        {
+            /*Change direction of moving of the mob if it meet obstruction*/
+            if (UnitGroups[(int)UnitGtroupNames.mobs].Contains(b)) b.setHorizontalSpeed(-b.GetCurrentSpeed().getHorizontalSpeed());
+        }
+
+        void bumpToUp(Unit a, Unit b)
+        {
+
+        }
+
+        void bumpToDown(Unit a, Unit b)
+        {
+            /* Kill mob if player jump to it*/
+            if (UnitGroups[(int)UnitGtroupNames.players].Contains(b) &&
+                UnitGroups[(int)UnitGtroupNames.mobs].Contains(a)) remove(a);
+        }
+
+        /***********************************************************************************************/
 
         /* Set coordinates of unit according given speed */
         void changePosition(Unit b, Speed s)
@@ -161,6 +190,10 @@ namespace GameEngine
         public bool remove(Unit unit)
         {
             units.Remove(unit);
+            foreach(List<Unit> group in UnitGroups)
+            {
+                if (group.Contains(unit)) group.Remove(unit);
+            }
             return true;
         }
         public Unit getUnit( int index)

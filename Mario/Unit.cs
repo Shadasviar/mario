@@ -28,6 +28,7 @@ namespace GameEngine
 
         public Unit(Coordinates position, int priority)
         {
+            this.currentSpeed = currentSpeed + new Speed(0, gravition);
             this.position = position;
             this.priority = priority;
         }
