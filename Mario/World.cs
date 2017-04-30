@@ -8,7 +8,7 @@ namespace GameEngine
 {
     class World
     {
-        public Jumpble player;
+        public Jumpable player;
         private List<Unit> units = new List<Unit>();
         public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
@@ -25,7 +25,7 @@ namespace GameEngine
 
         public void initPlayer()
         {
-            player = (Jumpble)UnitGroups[(int)UnitGroupNames.players][0];
+            player = (Jumpable)UnitGroups[(int)UnitGroupNames.players][0];
         }
 
 

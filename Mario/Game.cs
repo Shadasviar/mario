@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using Global;
 using GameEngine;
+using Mario.Properties;
 
 namespace Mario
 {
@@ -46,7 +47,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Right] == 1)
             {
-                h1 = 2;
+                h1 = Settings.Default.standardPlayerSpeed;
             }
             else
             {
@@ -55,7 +56,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Left] == 1)
             {
-                h2 = -2;
+                h2 = -Settings.Default.standardPlayerSpeed;
             }
             else
             {
@@ -106,7 +107,8 @@ namespace Mario
             World result = new World();
             result.addUnit(new Player(new Coordinates(200,200,210,210)), World.UnitGroupNames.players);
             result.initPlayer();
-            result.addUnit(new Mushroom(new Coordinates(150, 80,160, 90),new Speed(2)),  World.UnitGroupNames.mobs);
+            result.addUnit(new Mushroom(new Coordinates(150, 80, 160, 90), new Speed(Settings.Default.standardMoveSpeed)),  World.UnitGroupNames.mobs);
+            result.addUnit(new Mushroom(new Coordinates(180, 90, 200, 110), new Speed(Settings.Default.standardMoveSpeed)), World.UnitGroupNames.mobs);
 
             for (int i = 0; i < 20; ++i)
             {

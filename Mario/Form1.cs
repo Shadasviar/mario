@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Reflection;
 using Global;
+using Mario.Properties;
 
 
 namespace Mario
@@ -14,7 +15,6 @@ namespace Mario
         delegate void updateStateDelegate();
         List<PictureBox> sprites = new List<PictureBox>();
         GameAPI game;
-        const int fps = 80;
         private List<int> keys = new List<int>(new int [4]);
 
 
@@ -32,7 +32,7 @@ namespace Mario
                     {
                         Invoke(new updateStateDelegate(this.updateState));
                     }catch(Exception) { };
-                   Thread.Sleep(1000/fps);
+                   Thread.Sleep(1000/Settings.Default.fps);
                 }
             }).Start();
             /* For disable flicking*/

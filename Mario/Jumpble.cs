@@ -1,6 +1,6 @@
 ﻿namespace GameEngine
 {
-    interface Jumpble
+    interface Jumpable
     {
         void jump();
         void inJump(bool b);

@@ -1,12 +1,12 @@
 ﻿using Global;
+using Mario.Properties;
 
 
 namespace GameEngine
 {
-    class Player : Unit, Jumpble
+    class Player : Unit, Jumpable
     {
         int StartPoint;
-        const int height = 5;
         bool isInJump;
 
 
@@ -20,12 +20,9 @@ namespace GameEngine
         {
             if (!isInJump)
             {
-                setVerticalSpeed(height);
+                setVerticalSpeed(Settings.Default.speedOfJump);
                 StartPoint = GetPosition().bottomLeft.Y;
                 isInJump = true;
-                position.bottomLeft.Y += 1;
-                position.topRight.Y += 1;
-
             }
         }
 
@@ -39,7 +36,7 @@ namespace GameEngine
         {
             if(isInJump)
             {
-                if(GetPosition().bottomLeft.Y > StartPoint + (position.topRight.Y - position.bottomLeft.Y) * height)
+                if(GetPosition().bottomLeft.Y > StartPoint + (position.topRight.Y - position.bottomLeft.Y) * Settings.Default.heightOfJump)
                 {
                     setVerticalSpeed(0);
                 }
