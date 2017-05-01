@@ -1,6 +1,6 @@
 Maksym:
-	+ In the map parser add dictionaty or function to size of blocks and make 
-player's block smaller than other
+	+ Fix perfomance of the PictureBox in Form1. You probably should replace 
+PictureBox with something more light.
 
 Nastia:
 	+ Find animated pictures of player and some mob, and add it to project.
