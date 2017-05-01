@@ -8,7 +8,7 @@ namespace GameEngine
 {
     class World
     {
-        public Jumpable player;
+        public Unit player;
         private List<Unit> units = new List<Unit>();
         public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
@@ -32,7 +32,7 @@ namespace GameEngine
 
         public void initPlayer()
         {
-            player = (Jumpable)UnitGroups[(int)UnitGroupNames.players][0];
+            player = UnitGroups[(int)UnitGroupNames.players][0];
         }
 
 
@@ -165,7 +165,7 @@ namespace GameEngine
             /*If player fell down to some unit, its jumping state finished*/
             if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
-                player.inJump(false);
+                ((Jumpable)player).inJump(false);
             }
 
         }
@@ -203,7 +203,7 @@ namespace GameEngine
         public void nextFrame()
         {
             matchCollisions();
-            player.limitJump();               
+            ((Jumpable)player).limitJump();               
             for(int i = 0; i < units.Count; i++)
             {
                 int x;

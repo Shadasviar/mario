@@ -57,6 +57,7 @@
     <Compile Include="GameAPI.cs" />
     <Compile Include="GroundUnit.cs" />
     <Compile Include="Jumpble.cs" />
+    <Compile Include="MapParser.cs" />
     <Compile Include="Mob.cs" />
     <Compile Include="Mushroom.cs" />
     <Compile Include="Player.cs" />
@@ -102,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\szifer.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Level1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

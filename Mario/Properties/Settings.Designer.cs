@@ -25,7 +25,7 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-3")]
         public int gravitation {
             get {
                 return ((int)(this["gravitation"]));
@@ -49,7 +49,7 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public int heightOfJump {
             get {
                 return ((int)(this["heightOfJump"]));
@@ -61,7 +61,7 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public int speedOfJump {
             get {
                 return ((int)(this["speedOfJump"]));
@@ -116,6 +116,18 @@ namespace Mario.Properties {
             }
             set {
                 this["standardPlayerSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public int standardSizeOfBlock {
+            get {
+                return ((int)(this["standardSizeOfBlock"]));
+            }
+            set {
+                this["standardSizeOfBlock"] = value;
             }
         }
     }

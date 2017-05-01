@@ -12,14 +12,17 @@ namespace Mario
 {
     public partial class Form1 : Form
     {
+        
+
         delegate void updateStateDelegate();
         List<PictureBox> sprites = new List<PictureBox>();
         GameAPI game;
         private List<int> keys = new List<int>(new int [4]);
-
+        int offset = 0;
 
         public Form1()
         {
+            
             game = new Game(ref keys);
             InitializeComponent();
             new Thread(() =>
@@ -85,19 +88,36 @@ namespace Mario
                 PictureBox p = new PictureBox();
                 p.Size = mapSize(c.Item1);
                 p.Image = c.Item2;
-                p.Location = mapPosition(c.Item1);
+                p.Location = mapPosition(c.Item1, offset);
                 sprites.Add(p);
                 p.SizeMode = PictureBoxSizeMode.StretchImage;
                 this.panel1.Controls.Add(p);
             }
+
+            if(game.getPlayerPosition().topRight.X > this.Width/2+offset)
+            {
+                offset += game.getPlayerPosition().topRight.X - this.Width / 2 -offset;
+            }
+            if (game.getPlayerPosition().topRight.X < this.Width / 2 + offset)
+            {
+                offset += game.getPlayerPosition().topRight.X - this.Width / 2 - offset;
+
+                if (offset < 0)
+                {
+                    offset = 0;
+                }
+            }
+
+
+
         }
 
 
         /* map position from top left to bottom left*/
-        private Point mapPosition(Coordinates p)
+        private Point mapPosition(Coordinates p, int offset = 0)
         {
             Point res = new Point();
-            res.X = p.bottomLeft.X;
+            res.X = p.bottomLeft.X - offset;
             res.Y = this.panel1.Height - p.topRight.Y;
             return res;
         }
@@ -110,5 +130,7 @@ namespace Mario
             res.Height= c.topRight.Y - c.bottomLeft.Y;
             return res;
         }
+
+        
     }
 }
