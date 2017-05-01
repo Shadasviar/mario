@@ -1,26 +1,12 @@
-Maksym: 
-	+ Implement jumping of block. My proposition is create interface Jumpable 
-wich objects must implement function jump(). Note that jump operation requires:
-		* To be limited in height by N, when N is integer number of heights of 
-the player's unit, i.e. when unit has e.g. 5N of height under position of 
-start jumping it's horizontal speed becames 0 and it starts falling.
-		* Unit can not jump without something under it. If unit stays on smth. 
-jump should cause jumping, butif jump called during flying in must has no 
-effect.
-	If we will have Jumpable interface, some kinds of units could implement it, 
-so we could create function jump in the world which takes Jumpable object as 
-parameter, and call this function passing player's unit to it when space is 
-pressed.
-	+ Replace constant angles in the collision matching with dynamically 
-matched from size of block (I gave you sheet of pper with formula).
+Maksym:
+	+ In the map parser add dictionaty or function to size of blocks and make 
+player's block smaller than other
 
 Nastia:
 	+ Find animated pictures of player and some mob, and add it to project.
 	+ Make player's sprite animated when run.
 	
 Mykhailo:
-	+ Create in the Game dictionary or map Unit : Image which will contain 
-image for each unit. Add to GameAPI and Game function which returns map of 
-coordinates : image as alternative for getAllUnitsCoordinates();
+	+ Implement coins system and ground blocks with coins in the it.
 
 How to use github see in the file howto_git.txt
