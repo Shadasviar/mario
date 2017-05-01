@@ -66,7 +66,7 @@ namespace Mario
 
             if (keysStatus[(int)keysNames.Space] == 1)
             {
-                levels[currentLevel].player.jump();
+                ((Jumpable)levels[currentLevel].player).jump();
             }
 
             levels[currentLevel].nextFrame();
@@ -105,7 +105,7 @@ namespace Mario
         private World init_test_world()
         {
             World result = new World();
-            result.addUnit(new Player(new Coordinates(200,200,210,210)), World.UnitGroupNames.players);
+            result.addUnit(new Player(new Coordinates(50,50,80,80)), World.UnitGroupNames.players);
             result.initPlayer();
             result.addUnit(new Mushroom(new Coordinates(150, 80, 160, 90), new Speed(Settings.Default.standardMoveSpeed)),  World.UnitGroupNames.mobs);
             result.addUnit(new Mushroom(new Coordinates(180, 90, 200, 110), new Speed(Settings.Default.standardMoveSpeed)), World.UnitGroupNames.mobs);
@@ -138,6 +138,12 @@ namespace Mario
                 }
             }
             return result;
+        }
+
+
+        public Coordinates getPlayerPosition()
+        {
+            return levels[currentLevel].player.GetPosition();
         }
     }
 }
