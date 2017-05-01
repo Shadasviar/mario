@@ -105,19 +105,8 @@ namespace Mario
         private World init_test_world()
         {
             World result = new World();
-            result.addUnit(new Player(new Coordinates(50,50,80,80)), World.UnitGroupNames.players);
-            result.initPlayer();
-            result.addUnit(new Mushroom(new Coordinates(150, 80, 160, 90), new Speed(Settings.Default.standardMoveSpeed)),  World.UnitGroupNames.mobs);
-            result.addUnit(new Mushroom(new Coordinates(180, 90, 200, 110), new Speed(Settings.Default.standardMoveSpeed)), World.UnitGroupNames.mobs);
-
-            for (int i = 0; i < 20; ++i)
-            {
-                result.addUnit(new GroundUnit(new Coordinates(i*50,0, i*50+50, 50)), World.UnitGroupNames.stat);
-            }
-           
-            result.addUnit(new GroundUnit(new Coordinates(0, 50, 50, 100)), World.UnitGroupNames.stat);
-            result.addUnit(new GroundUnit(new Coordinates(350,111,450,211)),World.UnitGroupNames.stat);
-            result.addUnit(new GroundUnit(new Coordinates(250, 50, 300, 100)), World.UnitGroupNames.stat);
+            MapParser m = new MapParser();
+            result = m.parse("../../Level1.txt");
             return result;
         }
 
