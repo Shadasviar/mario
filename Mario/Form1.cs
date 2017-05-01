@@ -101,7 +101,14 @@ namespace Mario
             if (game.getPlayerPosition().topRight.X < this.Width / 2 + offset)
             {
                 offset += game.getPlayerPosition().topRight.X - this.Width / 2 - offset;
+
+                if (offset < 0)
+                {
+                    offset = 0;
+                }
             }
+
+
 
         }
 
