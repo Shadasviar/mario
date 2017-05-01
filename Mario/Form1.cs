@@ -12,8 +12,6 @@ namespace Mario
 {
     public partial class Form1 : Form
     {
-        
-
         delegate void updateStateDelegate();
         List<PictureBox> sprites = new List<PictureBox>();
         GameAPI game;
@@ -22,7 +20,6 @@ namespace Mario
 
         public Form1()
         {
-            
             game = new Game(ref keys);
             InitializeComponent();
             new Thread(() =>
@@ -71,27 +68,13 @@ namespace Mario
 
         private void updateState()
         {
-            foreach(Control c in this.panel1.Controls)
+            if (sprites.Count != game.getAllUnitsCoordinates().Count)
             {
-                c.Dispose();
+                repaintAll();
             }
-            foreach(PictureBox p in sprites)
+            else
             {
-                p.Dispose();
-            }
-            this.panel1.Controls.Clear();
-            sprites.Clear();
-            List<Tuple<Coordinates,Image>> crd = game.getAllUnitsCoordinatesImages();
-
-            foreach ( Tuple<Coordinates, Image>  c in crd)
-            {
-                PictureBox p = new PictureBox();
-                p.Size = mapSize(c.Item1);
-                p.Image = c.Item2;
-                p.Location = mapPosition(c.Item1, offset);
-                sprites.Add(p);
-                p.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.panel1.Controls.Add(p);
+                moveAll();
             }
 
             if(game.getPlayerPosition().topRight.X > this.Width/2+offset)
@@ -107,9 +90,43 @@ namespace Mario
                     offset = 0;
                 }
             }
+        }
 
 
+        void repaintAll()
+        {
+            foreach (Control c in this.panel1.Controls)
+            {
+                c.Dispose();
+            }
+            foreach (PictureBox p in sprites)
+            {
+                p.Dispose();
+            }
+            this.panel1.Controls.Clear();
+            sprites.Clear();
+            List<Tuple<Coordinates, Image>> crd = game.getAllUnitsCoordinatesImages();
 
+            foreach (Tuple<Coordinates, Image> c in crd)
+            {
+                PictureBox p = new PictureBox();
+                p.Size = mapSize(c.Item1);
+                p.Image = c.Item2;
+                p.Location = mapPosition(c.Item1, offset);
+                sprites.Add(p);
+                p.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.panel1.Controls.Add(p);
+            }
+        }
+
+
+        void moveAll()
+        {
+            List<Coordinates> positions = game.getAllUnitsCoordinates();
+            for(int i = 0; i < positions.Count; ++i)
+            {
+                sprites[i].Location = mapPosition(positions[i], offset);
+            }
         }
 
 

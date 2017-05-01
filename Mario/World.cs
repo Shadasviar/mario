@@ -46,6 +46,7 @@ namespace GameEngine
                     {
                         for (int j = 0; j < UnitGroups[iGroup].Count; j++)
                         {
+                            if (UnitGroups[currentGroup].Count <= i) break;
                             if (UnitGroups[currentGroup][i].GetPosition() == UnitGroups[iGroup][j].GetPosition())
                             {
                                 resolveCollision(UnitGroups[currentGroup][i], UnitGroups[iGroup][j]);
