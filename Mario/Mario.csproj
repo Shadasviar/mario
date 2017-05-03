@@ -105,6 +105,7 @@
     <None Include="Resources\szifer.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\mushroom.jpg" />
     <Content Include="Level1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
