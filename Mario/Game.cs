@@ -88,7 +88,7 @@ namespace Mario
 
         public bool playerIsAlive()
         {
-            throw new NotImplementedException();
+            return levels[currentLevel].playerIsAlive();
         }
 
 
