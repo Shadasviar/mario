@@ -73,9 +73,9 @@ namespace Mario.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap mario {
+        public static System.Drawing.Bitmap szifer {
             get {
-                object obj = ResourceManager.GetObject("mario", resourceCulture);
+                object obj = ResourceManager.GetObject("szifer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
