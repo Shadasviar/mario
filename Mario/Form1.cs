@@ -10,10 +10,18 @@ using Mario.Properties;
 
 namespace Mario
 {
+    struct Picture
+    {
+       public Image img;
+       public Size size;
+        public Point location; 
+      
+
+    }
     public partial class Form1 : Form
     {
         delegate void updateStateDelegate();
-        List<PictureBox> sprites = new List<PictureBox>();
+        List<Picture> sprites = new List<Picture>();
         GameAPI game;
         private List<int> keys = new List<int>(new int [4]);
         int offset = 0;
@@ -38,7 +46,7 @@ namespace Mario
             /* For disable flicking*/
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
                 | BindingFlags.Instance | BindingFlags.NonPublic,
-               null, panel1, new object[] { true });
+               null, this, new object[] { true });
         }
 
 
@@ -68,15 +76,8 @@ namespace Mario
 
         private void updateState()
         {
-            if (sprites.Count != game.getAllUnitsCoordinates().Count)
-            {
-                repaintAll();
-            }
-            else
-            {
-                moveAll();
-            }
-
+            this.Invalidate();
+          
             if(game.getPlayerPosition().topRight.X > this.Width/2+offset)
             {
                 offset += game.getPlayerPosition().topRight.X - this.Width / 2 -offset;
@@ -92,50 +93,28 @@ namespace Mario
             }
         }
 
-
-        void repaintAll()
+        protected override void OnPaint(PaintEventArgs e)
         {
-            foreach (Control c in this.panel1.Controls)
-            {
-                c.Dispose();
-            }
-            foreach (PictureBox p in sprites)
-            {
-                p.Dispose();
-            }
-            this.panel1.Controls.Clear();
-            sprites.Clear();
+            base.OnPaint(e);
             List<Tuple<Coordinates, Image>> crd = game.getAllUnitsCoordinatesImages();
-
             foreach (Tuple<Coordinates, Image> c in crd)
             {
-                PictureBox p = new PictureBox();
-                p.Size = mapSize(c.Item1);
-                p.Image = c.Item2;
-                p.Location = mapPosition(c.Item1, offset);
-                sprites.Add(p);
-                p.SizeMode = PictureBoxSizeMode.StretchImage;
-                this.panel1.Controls.Add(p);
+                Picture p = new Picture();
+                p.size = mapSize(c.Item1);
+                p.img = c.Item2;
+                p.location = mapPosition(c.Item1, offset);
+                e.Graphics.DrawImage(p.img, p.location.X, p.location.Y, p.size.Width, p.size.Height);
             }
+
+
         }
-
-
-        void moveAll()
-        {
-            List<Coordinates> positions = game.getAllUnitsCoordinates();
-            for(int i = 0; i < positions.Count; ++i)
-            {
-                sprites[i].Location = mapPosition(positions[i], offset);
-            }
-        }
-
-
+        
         /* map position from top left to bottom left*/
         private Point mapPosition(Coordinates p, int offset = 0)
         {
             Point res = new Point();
             res.X = p.bottomLeft.X - offset;
-            res.Y = this.panel1.Height - p.topRight.Y;
+            res.Y = this.Height - p.topRight.Y;
             return res;
         }
 
