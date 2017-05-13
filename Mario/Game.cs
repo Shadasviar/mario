@@ -26,7 +26,7 @@ namespace Mario
             levels.Add(init_test_world());
             images.Add(new Bitmap(Mario.Properties.Resources.szifer));
             images.Add(new Bitmap (Mario.Properties.Resources.cegla));
-          //  images.Add(new Bitmap(Mario.Properties.Resources.empty));
+            images.Add(new Bitmap(Mario.Properties.Resources.empty));
         }
         
 
@@ -132,7 +132,7 @@ namespace Mario
                 }
                 else
                 {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.empty]));
                 }
                 
             }

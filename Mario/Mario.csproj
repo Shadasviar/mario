@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\empty.png" />
+    <None Include="images\transparent.png" />
     <Content Include="Level1.txt" />
     <None Include="Resources\Empty.bmp" />
   </ItemGroup>
