@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coordinates.cs" />
+    <Compile Include="DieUnitBlock.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,7 +106,9 @@
     <None Include="Resources\szifer.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\empty.png" />
     <Content Include="Level1.txt" />
+    <None Include="Resources\Empty.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

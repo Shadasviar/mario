@@ -14,14 +14,16 @@ namespace Global
         {
             {'g', typeof(GroundUnit) },
             {'p', typeof(Player) },
-            {'m',typeof(Mushroom) }
+            {'m', typeof(Mushroom) },
+            {'d', typeof(DieUnitBlock) }
         };
 
         static Dictionary<char, World.UnitGroupNames> groups = new Dictionary<char, World.UnitGroupNames>
         {
             {'g', World.UnitGroupNames.stat },
             {'p', World.UnitGroupNames.players },
-            {'m', World.UnitGroupNames.mobs }
+            {'m', World.UnitGroupNames.mobs },
+            {'d', World.UnitGroupNames.stat }
         };
 
         public World parse(string name)
