@@ -162,11 +162,21 @@ namespace GameEngine
             /* Kill mob if player jump to it*/
             if (UnitGroups[(int)UnitGroupNames.players].Contains(b) &&
                 UnitGroups[(int)UnitGroupNames.mobs].Contains(a)) remove(a);
+            
 
             /*If player fell down to some unit, its jumping state finished*/
             if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
                 ((Jumpable)player).inJump(false);
+            }
+
+            if(a.GetType() == typeof(DieUnitBlock))
+            {
+                if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                    playerAlive = false;
+                }
+                remove(b);
             }
 
         }
