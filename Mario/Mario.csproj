@@ -109,6 +109,7 @@
     <None Include="images\mushroom.jpg" />
     <None Include="images\empty.png" />
     <None Include="images\transparent.png" />
+    <None Include="images\mushroom.png" />
     <Content Include="Level1.txt" />
     <None Include="Resources\Empty.bmp" />
   </ItemGroup>
