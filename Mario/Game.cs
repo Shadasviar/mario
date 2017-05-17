@@ -12,7 +12,8 @@ namespace Mario
 
     class Game : GameAPI
     {
-        enum Textures { szifer = 0, cegla = 1, empty = 2 };
+
+        enum Textures { szifer , cegla , mushroom, empty };
 
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
@@ -26,6 +27,7 @@ namespace Mario
             levels.Add(init_test_world());
             images.Add(new Bitmap(Mario.Properties.Resources.szifer));
             images.Add(new Bitmap (Mario.Properties.Resources.cegla));
+            images.Add(new Bitmap(Mario.Properties.Resources.mushroom));
             images.Add(new Bitmap(Mario.Properties.Resources.empty));
         }
         
@@ -122,9 +124,9 @@ namespace Mario
                 {
                     result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.cegla]));
                 }
-                else if(units[i].GetType() == typeof(Mushroom))
+                else if (units[i].GetType() == typeof(Mushroom))
                 {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.mushroom]));
                 }
                 else if (units[i].GetType() == typeof(Player))
                 {

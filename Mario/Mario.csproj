@@ -106,6 +106,7 @@
     <None Include="Resources\szifer.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\mushroom.jpg" />
     <None Include="images\empty.png" />
     <None Include="images\transparent.png" />
     <Content Include="Level1.txt" />
