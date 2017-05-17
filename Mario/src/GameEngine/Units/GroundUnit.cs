@@ -5,7 +5,7 @@ namespace GameEngine
 {
     class GroundUnit : Unit
     {
-        public GroundUnit(Coordinates position):base(position, 0)
+        public GroundUnit(Coordinates position):base(position)
         {
             currentSpeed = new Speed(0, 0);
             this.priority = Settings.Default.groundPriority;

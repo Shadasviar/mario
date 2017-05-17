@@ -10,9 +10,10 @@ namespace GameEngine
         bool isInJump;
 
 
-        public Player(Coordinates position):base(position,1)
+        public Player(Coordinates position):base(position)
         {
             isInJump = true;
+            this.priority = Settings.Default.playerPriority;
         }
 
 

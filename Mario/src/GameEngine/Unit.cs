@@ -22,7 +22,7 @@ namespace GameEngine
         }
 
 
-        public Unit(Coordinates position, int priority)
+        public Unit(Coordinates position, int priority = 0)
         {
             this.currentSpeed = currentSpeed + new Speed(0, Settings.Default.gravitation);
             this.position = position;
@@ -30,7 +30,7 @@ namespace GameEngine
         }
 
 
-        public Unit(Coordinates position, int priority, Speed speed)
+        public Unit(Coordinates position, Speed speed, int priority = 0)
         {
             this.position = position;
             this.priority = priority;
