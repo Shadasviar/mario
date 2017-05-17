@@ -12,11 +12,9 @@ namespace Mario
 {
     struct Picture
     {
-       public Image img;
-       public Size size;
+        public Image img;
+        public Size size;
         public Point location; 
-      
-
     }
     public partial class Form1 : Form
     {

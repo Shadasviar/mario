@@ -109,7 +109,7 @@ namespace Mario
         {
             World result = new World();
             MapParser m = new MapParser();
-            result = m.parse("../../Level1.txt");
+            result = m.parse("../../Levels/Level1.txt");
             return result;
         }
 
