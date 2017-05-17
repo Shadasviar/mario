@@ -90,10 +90,6 @@ namespace Mario
                     offset = 0;
                 }
             }
-            if (!game.playerIsAlive())
-            {
-                
-            }
         }
 
 
@@ -152,9 +148,6 @@ namespace Mario
             return res;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
     }
 }
