@@ -17,7 +17,7 @@ namespace GameEngine
         int countCoin;
         System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer("../../Resources/deathWB.wav");
         System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer("../../Resources/killedByMob.wav");
-
+  
         public bool playerIsAlive()
         {
             return playerAlive;
@@ -207,6 +207,7 @@ namespace GameEngine
                 if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
                 {
                     _levelComplete = true;
+                    countCoin = 0;
                 }
             }
 
@@ -271,7 +272,7 @@ namespace GameEngine
                 x = units[i].GetPosition().topRight.X + units[i].GetCurrentSpeed().getHorizontalSpeed();
                 y = units[i].GetPosition().topRight.Y + units[i].GetCurrentSpeed().getVerticalSpeed();
                 c.topRight = new Point(x, y);
-                
+             //   Label1.Text = countCoin;
                 units[i].SetCoordinates(c);
             }
         }
