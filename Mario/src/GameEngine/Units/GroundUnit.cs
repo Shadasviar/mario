@@ -1,5 +1,6 @@
 ﻿using Global;
 using Mario.Properties;
+using System.Drawing;
 
 namespace GameEngine
 {
@@ -9,6 +10,7 @@ namespace GameEngine
         {
             currentSpeed = new Speed(0, 0);
             this.priority = Settings.Default.groundPriority;
+            texture = new Bitmap(Resources.cegla);
         }
 
 

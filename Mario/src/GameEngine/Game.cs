@@ -12,23 +12,15 @@ namespace Mario
 
     class Game : GameAPI
     {
-
-        enum Textures { szifer , cegla , mushroom, empty };
-
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
-        protected List<Image> images = new List<Image>();
 
 
         public Game(ref List<int>a)
         {
             keysStatus = a;
             levels.Add(init_test_world());
-            images.Add(new Bitmap(Mario.Properties.Resources.szifer));
-            images.Add(new Bitmap (Mario.Properties.Resources.cegla));
-            images.Add(new Bitmap(Mario.Properties.Resources.mushroom));
-            images.Add(new Bitmap(Mario.Properties.Resources.empty));
         }
         
 
@@ -120,23 +112,7 @@ namespace Mario
             IList<Unit> units = levels[currentLevel].getAllUnits();
             for(int i = 0; i < units.Count; i++)
             {
-                if(units[i].GetType() == typeof(GroundUnit))
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.cegla]));
-                }
-                else if (units[i].GetType() == typeof(Mushroom))
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.mushroom]));
-                }
-                else if (units[i].GetType() == typeof(Player))
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
-                }
-                else
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.empty]));
-                }
-                
+                result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), units[i].getTexture()));
             }
             return result;
         }
