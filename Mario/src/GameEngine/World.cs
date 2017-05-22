@@ -207,6 +207,15 @@ namespace GameEngine
                 }
             }
 
+            if (a.GetType() == typeof(Coin))
+            {
+                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                    countCoin++;
+                    remove(a);
+                }
+            }
+
         }
 
 
