@@ -1,6 +1,7 @@
 ﻿using Global;
 using Mario.Properties;
 
+using System.Drawing;
 
 namespace GameEngine
 {
@@ -14,6 +15,7 @@ namespace GameEngine
         {
             isInJump = true;
             this.priority = Settings.Default.playerPriority;
+            this.texture = new Bitmap(Resources.szifer);
         }
 
 

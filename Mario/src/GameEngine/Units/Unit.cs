@@ -1,5 +1,6 @@
 ﻿using Global;
 using Mario.Properties;
+using System.Drawing;
 
 namespace GameEngine
 {
@@ -8,6 +9,7 @@ namespace GameEngine
         protected Coordinates position;
         protected int priority;
         protected Speed currentSpeed = new Speed(0, Settings.Default.gravitation);
+        protected Image texture = null;
 
 
         virtual public void setHorizontalSpeed(int h)
@@ -60,6 +62,11 @@ namespace GameEngine
         public int getPriority()
         {
             return priority;
+        }
+
+        public Image getTexture()
+        {
+            return texture;
         }
     }
 }
