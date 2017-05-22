@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
+using Mario.Properties;
 using Global;
 
 namespace GameEngine
@@ -11,7 +8,7 @@ namespace GameEngine
     {
         public DieUnitBlock(Coordinates position) : base(position)
         {
-
+            texture = new Bitmap(Resources.empty);
         }
     }
 }

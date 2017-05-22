@@ -12,13 +12,9 @@ namespace Mario
 
     class Game : GameAPI
     {
-
-        enum Textures { szifer , cegla , mushroom, empty, door };
-
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
-        protected List<Image> images = new List<Image>();
 
 
         public Game(ref List<int>a)
@@ -27,11 +23,6 @@ namespace Mario
             MapParser m = new MapParser();
             levels.Add(m.parse("../../Levels/Level1.txt"));
             levels.Add(m.parse("../../Levels/Level2.txt"));
-            images.Add(new Bitmap(Mario.Properties.Resources.szifer));
-            images.Add(new Bitmap (Mario.Properties.Resources.cegla));
-            images.Add(new Bitmap(Mario.Properties.Resources.mushroom));
-            images.Add(new Bitmap(Mario.Properties.Resources.empty));
-            images.Add(new Bitmap(Mario.Properties.Resources.door));
         }
 
 
@@ -119,27 +110,7 @@ namespace Mario
             IList<Unit> units = levels[currentLevel].getAllUnits();
             for(int i = 0; i < units.Count; i++)
             {
-                if(units[i].GetType() == typeof(GroundUnit))
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.cegla]));
-                }
-                else if (units[i].GetType() == typeof(Mushroom))
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.mushroom]));
-                }
-                else if (units[i].GetType() == typeof(Player))
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
-                }
-                else if(units[i].GetType() == typeof(Door))
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.door]));
-                }
-                else
-                {
-                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.empty]));
-                }
-                
+                result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), units[i].getTexture()));
             }
             return result;
         }

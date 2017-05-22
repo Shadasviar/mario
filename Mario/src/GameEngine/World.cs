@@ -120,7 +120,9 @@ namespace GameEngine
         }
 
         /***********************************************************************************************/
-        /*                Functions wich do staff with units in different sides of bumping             */
+        /*                Functions wich do staff with units in different sides of bumping    
+         * In these functions we assump that unit with less priority bumps to the unit
+         * with higher priority, i.e. b bumps to a                                                     */
 
         void bumpToLeft(Unit a, Unit b)
         {
@@ -161,7 +163,7 @@ namespace GameEngine
             /*If player bumped to block from bottom its jumping stops*/
             if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
-                ((Unit)player).setVerticalSpeed(0);
+                (player).setVerticalSpeed(0);
             }
         }
 
