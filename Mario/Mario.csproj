@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="src\Coordinates.cs" />
     <Compile Include="src\GameEngine\Units\DieUnitBlock.cs" />
+    <Compile Include="src\GameEngine\Units\Door.cs" />
     <Compile Include="src\UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,9 +101,12 @@
     <None Include="images\cegla.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\thumb-1920-597606.png" />
+    <Content Include="Levels\Level2.txt" />
     <None Include="images\empty.png" />
     <None Include="images\transparent.png" />
     <None Include="images\mushroom.png" />
+    <None Include="images\150px-Steel_Door.png" />
     <Content Include="Levels\Level1.txt" />
   </ItemGroup>
   <ItemGroup>

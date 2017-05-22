@@ -20,9 +20,11 @@ namespace Mario
         public Game(ref List<int>a)
         {
             keysStatus = a;
-            levels.Add(init_test_world());
+            MapParser m = new MapParser();
+            levels.Add(m.parse("../../Levels/Level1.txt"));
+            levels.Add(m.parse("../../Levels/Level2.txt"));
         }
-        
+
 
         public List<Coordinates> getAllUnitsCoordinates()
         {
@@ -65,6 +67,11 @@ namespace Mario
             }
 
             levels[currentLevel].nextFrame();
+
+            if(levels[currentLevel].levelComplete() == true)
+            {
+                currentLevel++;
+            }
         }
 
 
@@ -94,15 +101,6 @@ namespace Mario
                 return true;
             }
             else return false;
-        }
-
-
-        private World init_test_world()
-        {
-            World result = new World();
-            MapParser m = new MapParser();
-            result = m.parse("../../Levels/Level1.txt");
-            return result;
         }
 
 

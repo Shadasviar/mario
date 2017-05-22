@@ -13,6 +13,7 @@ namespace GameEngine
         public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         private bool playerAlive = true;
+        private bool _levelComplete = false;
 
 
         public bool playerIsAlive()
@@ -146,6 +147,14 @@ namespace GameEngine
                 remove(b);
                 playerAlive = false;
             }
+
+            if (a.GetType() == typeof(Door))
+            {
+                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                    _levelComplete = true;
+                }
+            }
         }
 
 
@@ -181,9 +190,22 @@ namespace GameEngine
                 remove(b);
             }
 
+            if(a.GetType() == typeof(Door))
+            {
+                if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                    _levelComplete = true;
+                }
+            }
+
         }
 
+
         /***********************************************************************************************/
+        public bool levelComplete()
+        {
+            return _levelComplete;
+        }
 
         /* Set coordinates of unit according given speed */
         void changePosition(Unit b, Speed s)
