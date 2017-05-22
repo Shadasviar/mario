@@ -23,30 +23,38 @@ namespace Mario
         GameAPI game;
         private List<int> keys = new List<int>(new int [4]);
         int offset = 0;
+        bool Run = true;
 
         public Form1()
         {
             game = new Game(ref keys);
             InitializeComponent();
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                while (true)
-                {
-                   game.nextFrame();
-                    try
-                    {
-                        Invoke(new updateStateDelegate(this.updateState));
-                    }catch(Exception) { };
-                   Thread.Sleep(1000/Settings.Default.fps);
-                }
-            }).Start();
+
             /* For disable flicking*/
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
                 | BindingFlags.Instance | BindingFlags.NonPublic,
                null, this, new object[] { true });
         }
 
+        void Start_Game()
+{
+            Run = true;
+            while (Run)
+            {
+                game.nextFrame();
+                try
+                {
+                    Invoke(new updateStateDelegate(this.updateState));
+                }
+                catch (Exception) { };
+                Thread.Sleep(1000 / Settings.Default.fps);
+            }
+        }
+
+        void Stop_Game()
+        {
+            
+        }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -125,6 +133,40 @@ namespace Mario
             return res;
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Thread(Start_Game).Start();
+            button1.Dispose();
+            button2.Dispose();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Run = false;
+        }
+
+        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
+        {
+            toolStripDropDownButton1.Text = "Menu";
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Run = true;
+        }
+
+        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+            if(Run == false)
+            {
+                new Thread(Start_Game).Start();
+            }
+            
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Mario
     class Game : GameAPI
     {
 
-        enum Textures { szifer , cegla , mushroom, empty };
+        enum Textures { szifer , cegla , mushroom, empty, door };
 
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
@@ -24,13 +24,16 @@ namespace Mario
         public Game(ref List<int>a)
         {
             keysStatus = a;
-            levels.Add(init_test_world());
+            MapParser m = new MapParser();
+            levels.Add(m.parse("../../Levels/Level1.txt"));
+            levels.Add(m.parse("../../Levels/Level2.txt"));
             images.Add(new Bitmap(Mario.Properties.Resources.szifer));
             images.Add(new Bitmap (Mario.Properties.Resources.cegla));
             images.Add(new Bitmap(Mario.Properties.Resources.mushroom));
             images.Add(new Bitmap(Mario.Properties.Resources.empty));
+            images.Add(new Bitmap(Mario.Properties.Resources.door));
         }
-        
+
 
         public List<Coordinates> getAllUnitsCoordinates()
         {
@@ -73,6 +76,11 @@ namespace Mario
             }
 
             levels[currentLevel].nextFrame();
+
+            if(levels[currentLevel].levelComplete() == true)
+            {
+                currentLevel++;
+            }
         }
 
 
@@ -105,15 +113,6 @@ namespace Mario
         }
 
 
-        private World init_test_world()
-        {
-            World result = new World();
-            MapParser m = new MapParser();
-            result = m.parse("../../Levels/Level1.txt");
-            return result;
-        }
-
-
         public List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages()
         {
             List<Tuple<Coordinates, Image>> result = new List<Tuple<Coordinates, Image>>();
@@ -131,6 +130,10 @@ namespace Mario
                 else if (units[i].GetType() == typeof(Player))
                 {
                     result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.szifer]));
+                }
+                else if(units[i].GetType() == typeof(Door))
+                {
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.door]));
                 }
                 else
                 {
