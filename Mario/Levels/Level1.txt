@@ -1,7 +1,7 @@
 g                                                                                     m      d
-g         m                                     gggggggggggg                     ggggggggggggd
-g         g                                                                                  d
-g       ggg           g                       gggggggggggggg                                 d
-g p   eggggg    m    g gm        ggg    mm  m  gggggggggggggggggggggggggg   gggggggggggggggg d
+g      c   m                                     gggggggggggg                     ggggggggggggd
+g      c   g                                                                                  d
+g      c ggg ee         g                       gggggggggggggg                                 d
+g p   ggggg ee   m    g gm        ggg    mm  m  gggggggggggggggggggggggggg   gggggggggggggggg d
 gggggggggggggggggg    ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg  d
 ggggggggggggggggggddddgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggddd

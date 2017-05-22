@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Global;
+using System.Drawing;
 
 namespace GameEngine
 {
@@ -11,7 +12,7 @@ namespace GameEngine
     {
         public Coin(Coordinates position) : base(position)
         {
-
+            texture = new Bitmap(Mario.Properties.Resources.coin);
         }
     }
 }
