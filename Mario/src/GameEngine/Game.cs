@@ -13,7 +13,7 @@ namespace Mario
     class Game : GameAPI
     {
 
-        enum Textures { szifer , cegla , mushroom, empty, door };
+        enum Textures { szifer , cegla , mushroom, empty, door, coin };
 
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
@@ -32,6 +32,8 @@ namespace Mario
             images.Add(new Bitmap(Mario.Properties.Resources.mushroom));
             images.Add(new Bitmap(Mario.Properties.Resources.empty));
             images.Add(new Bitmap(Mario.Properties.Resources.door));
+            images.Add(new Bitmap(Mario.Properties.Resources.coin));
+
         }
 
 
@@ -134,6 +136,10 @@ namespace Mario
                 else if(units[i].GetType() == typeof(Door))
                 {
                     result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.door]));
+                }
+                else if (units[i].GetType() == typeof(Coin))
+                {
+                    result.Add(new Tuple<Coordinates, Image>(units[i].GetPosition(), images[(int)Textures.coin]));
                 }
                 else
                 {
