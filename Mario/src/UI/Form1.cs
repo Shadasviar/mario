@@ -25,7 +25,7 @@ namespace Mario
         int offset = 0;
         bool Run = true;
         System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
-
+        
         public Form1()
         {
             game = new Game(ref keys);
@@ -139,6 +139,8 @@ namespace Mario
             this.Close();
         }
 
+
+ 
         private void button1_Click(object sender, EventArgs e)
         {
           startGame.Play();
