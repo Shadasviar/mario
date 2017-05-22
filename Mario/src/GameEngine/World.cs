@@ -14,6 +14,7 @@ namespace GameEngine
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         private bool playerAlive = true;
         private bool _levelComplete = false;
+        int countCoin;
 
 
         public bool playerIsAlive()
@@ -153,6 +154,14 @@ namespace GameEngine
                 if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
                 {
                     _levelComplete = true;
+                }
+            }
+            if (a.GetType() == typeof(Coin))
+            {
+                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                        countCoin++;
+                    remove(a);
                 }
             }
         }

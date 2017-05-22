@@ -13,7 +13,8 @@ namespace Global
             {'p', typeof(Player) },
             {'m', typeof(Mushroom) },
             {'d', typeof(DieUnitBlock) },
-            {'e', typeof(Door) }
+            {'e', typeof(Door) },
+            {'c', typeof(Coin) },
         };
 
         static Dictionary<char, World.UnitGroupNames> groups = new Dictionary<char, World.UnitGroupNames>
@@ -22,7 +23,8 @@ namespace Global
             {'p', World.UnitGroupNames.players },
             {'m', World.UnitGroupNames.mobs },
             {'d', World.UnitGroupNames.stat },
-            {'e', World.UnitGroupNames.stat }
+            {'e', World.UnitGroupNames.stat },
+            {'c', World.UnitGroupNames.stat }
         };
 
         public World parse(string name)

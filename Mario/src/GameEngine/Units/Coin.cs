@@ -8,11 +8,11 @@ using System.Drawing;
 
 namespace GameEngine
 {
-    class Door : GroundUnit
+    class Coin : GroundUnit
     {
-        public Door(Coordinates position) : base (position)
-            {
-            texture = new Bitmap(Mario.Properties.Resources.door);
-            }
+        public Coin(Coordinates position) : base(position)
+        {
+            texture = new Bitmap(Mario.Properties.Resources.coin);
+        }
     }
 }
