@@ -23,7 +23,7 @@ namespace Mario
         GameAPI game;
         private List<int> keys = new List<int>(new int [4]);
         int offset = 0;
-        bool Run = true;
+        bool run = true;
 
         public Form1()
         {
@@ -38,8 +38,8 @@ namespace Mario
 
         void Start_Game()
 {
-            Run = true;
-            while (Run)
+            run = true;
+            while (run)
             {
                 game.nextFrame();
                 try
@@ -53,7 +53,7 @@ namespace Mario
 
         void Stop_Game()
         {
-            
+            run = false;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -111,8 +111,6 @@ namespace Mario
                 p.location = mapPosition(c.Item1, offset);
                 e.Graphics.DrawImage(p.img, p.location.X, p.location.Y, p.size.Width, p.size.Height);
             }
-
-
         }
         
         /* map position from top left to bottom left*/
@@ -133,10 +131,6 @@ namespace Mario
             return res;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -145,28 +139,32 @@ namespace Mario
             button2.Dispose();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void pause_click(object sender, EventArgs e)
         {
-            Run = false;
+            Stop_Game();
         }
 
-        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
-        {
-            toolStripDropDownButton1.Text = "Menu";
-        }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        private void resume_click(object sender, EventArgs e)
         {
-            Run = true;
-        }
-
-        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
-        {
-            if(Run == false)
+            if(run == false)
             {
                 new Thread(Start_Game).Start();
-            }
-            
+            }           
+        }
+
+
+        private void exit(object sender, EventArgs e)
+        {
+            Stop_Game();
+            this.Dispose();
+            this.Close();
+        }
+
+
+        private void Form1Close(object sender, FormClosingEventArgs e)
+        {
+            exit(sender, e);
         }
     }
 }
