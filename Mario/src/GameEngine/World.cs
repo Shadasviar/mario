@@ -15,7 +15,8 @@ namespace GameEngine
         private bool playerAlive = true;
         private bool _levelComplete = false;
         int countCoin;
-
+        System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer("../../Resources/deathWB.wav");
+        System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer("../../Resources/killedByMob.wav");
 
         public bool playerIsAlive()
         {
@@ -146,6 +147,7 @@ namespace GameEngine
                UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
                 remove(b);
+                killedByMob.Play();
                 playerAlive = false;
             }
 
@@ -195,6 +197,7 @@ namespace GameEngine
                 if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
                 {
                     playerAlive = false;
+                    deathWB.Play();
                 }
                 remove(b);
             }
