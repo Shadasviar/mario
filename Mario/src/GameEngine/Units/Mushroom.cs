@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Drawing;
 using Global;
 using Mario.Properties;
 namespace GameEngine
@@ -9,7 +7,7 @@ namespace GameEngine
     {
         public Mushroom(Coordinates position):base(position,new Speed(Settings.Default.standardMoveSpeed))
         {
-           
+            texture = new Bitmap(Resources.mushroom);
         }
     }
 }
