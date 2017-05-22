@@ -166,5 +166,17 @@ namespace Mario.Properties {
                 this["coinSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../Levels")]
+        public string mapsPath {
+            get {
+                return ((string)(this["mapsPath"]));
+            }
+            set {
+                this["mapsPath"] = value;
+            }
+        }
     }
 }

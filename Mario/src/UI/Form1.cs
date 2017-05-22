@@ -37,7 +37,7 @@ namespace Mario
         }
 
         void Start_Game()
-{
+        {
             run = true;
             while (run)
             {
