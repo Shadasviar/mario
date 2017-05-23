@@ -150,28 +150,18 @@ namespace Mario
             button2.Dispose();
         }
 
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Run = false;
-        }
 
-        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
+        private void resumeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStripDropDownButton1.Text = "Menu";
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            Run = true;
-        }
-
-        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
-        {
-            if(Run == false)
+            if (Run == false)
             {
                 new Thread(Start_Game).Start();
             }
-            
+        }
+
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Run = false;
         }
     }
 }
