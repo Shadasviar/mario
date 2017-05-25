@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="gravitation" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-3</Value>
+      <Value Profile="(Default)">-4</Value>
     </Setting>
     <Setting Name="fps" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">80</Value>
@@ -12,7 +12,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="speedOfJump" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">8</Value>
+      <Value Profile="(Default)">9</Value>
     </Setting>
     <Setting Name="mobPriority" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
@@ -21,16 +21,19 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="standardMoveSpeed" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="standardPlayerSpeed" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="standardSizeOfBlock" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="playerPriority" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="standardSizeOfUnit" Type="System.String" Scope="User">
+      <Value Profile="(Default)">28</Value>
     </Setting>
   </Settings>
 </SettingsFile>

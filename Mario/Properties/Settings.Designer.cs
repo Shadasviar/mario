@@ -25,7 +25,7 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-4")]
         public int gravitation {
             get {
                 return ((int)(this["gravitation"]));
@@ -61,7 +61,7 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
         public int speedOfJump {
             get {
                 return ((int)(this["speedOfJump"]));
@@ -97,7 +97,7 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int standardMoveSpeed {
             get {
                 return ((int)(this["standardMoveSpeed"]));
@@ -109,7 +109,7 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public int standardPlayerSpeed {
             get {
                 return ((int)(this["standardPlayerSpeed"]));
@@ -140,6 +140,18 @@ namespace Mario.Properties {
             }
             set {
                 this["playerPriority"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("28")]
+        public string standardSizeOfUnit {
+            get {
+                return ((string)(this["standardSizeOfUnit"]));
+            }
+            set {
+                this["standardSizeOfUnit"] = value;
             }
         }
     }
