@@ -23,8 +23,9 @@ namespace Mario
         GameAPI game;
         private List<int> keys = new List<int>(new int [4]);
         int offset = 0;
-        bool Run = true;
         System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
+        bool run = true;
+        
         
         public Form1()
         {
@@ -38,9 +39,9 @@ namespace Mario
         }
 
         void Start_Game()
-{
-            Run = true;
-            while (Run)
+        {
+            run = true;
+            while (run)
             {
                 game.nextFrame();
                 try
@@ -54,7 +55,7 @@ namespace Mario
 
         void Stop_Game()
         {
-            
+            run = false;
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -112,8 +113,6 @@ namespace Mario
                 p.location = mapPosition(c.Item1, offset);
                 e.Graphics.DrawImage(p.img, p.location.X, p.location.Y, p.size.Width, p.size.Height);
             }
-
-
         }
         
         /* map position from top left to bottom left*/
@@ -134,10 +133,6 @@ namespace Mario
             return res;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
 
  
@@ -153,7 +148,7 @@ namespace Mario
 
         private void resumeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Run == false)
+            if (!run)
             {
                 new Thread(Start_Game).Start();
             }
@@ -161,7 +156,20 @@ namespace Mario
 
         private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Run = false;
+            Stop_Game();
+        }
+
+        private void exit(object sender, EventArgs e)
+        {
+            Stop_Game();
+            this.Dispose();
+            this.Close();
+        }
+
+
+        private void Form1Close(object sender, FormClosingEventArgs e)
+        {
+            exit(sender, e);
         }
     }
 }

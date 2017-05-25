@@ -122,12 +122,12 @@ namespace Mario.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("40")]
-        public int standardSizeOfBlock {
+        public int standardSizeOfUnit {
             get {
-                return ((int)(this["standardSizeOfBlock"]));
+                return ((int)(this["standardSizeOfUnit"]));
             }
             set {
-                this["standardSizeOfBlock"] = value;
+                this["standardSizeOfUnit"] = value;
             }
         }
         
@@ -145,13 +145,38 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("28")]
-        public string standardSizeOfUnit {
+
+        [global::System.Configuration.DefaultSettingValueAttribute("38")]
+        public int standardSizeOfPlayer {
             get {
-                return ((string)(this["standardSizeOfUnit"]));
+                return ((int)(this["standardSizeOfPlayer"]));
             }
             set {
-                this["standardSizeOfUnit"] = value;
+                this["standardSizeOfPlayer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("28")]
+        public int coinSize {
+            get {
+                return ((int)(this["coinSize"]));
+            }
+            set {
+                this["coinSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../Levels")]
+        public string mapsPath {
+            get {
+                return ((string)(this["mapsPath"]));
+            }
+            set {
+                this["mapsPath"] = value;
             }
         }
     }

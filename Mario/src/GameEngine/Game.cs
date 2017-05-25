@@ -22,8 +22,8 @@ namespace Mario
         {
             keysStatus = a;
             MapParser m = new MapParser();
-            levels.Add(m.parse("../../Levels/Level1.txt"));
-            levels.Add(m.parse("../../Levels/Level2.txt"));
+            levels.Add(m.parse(Settings.Default.mapsPath + "/Level1.txt"));
+            levels.Add(m.parse(Settings.Default.mapsPath + "/Level2.txt"));
         }
 
 

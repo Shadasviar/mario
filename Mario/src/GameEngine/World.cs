@@ -86,6 +86,8 @@ namespace GameEngine
             int ah = a.GetPosition().topRight.Y - a.GetPosition().bottomLeft.Y;
             int bh = b.GetPosition().topRight.Y - b.GetPosition().bottomLeft.Y;
 
+            sideIndependentAction(a, b);
+
             /* <- */
             if (ang < angle(a.GetPosition().bottomLeft, a.GetPosition().topRight) || 
                 ang >= angle(new Point(a.GetPosition().bottomLeft.X, a.GetPosition().topRight.Y), 
@@ -126,6 +128,37 @@ namespace GameEngine
          * In these functions we assump that unit with less priority bumps to the unit
          * with higher priority, i.e. b bumps to a                                                     */
 
+
+        void sideIndependentAction(Unit a, Unit b)
+        {
+            if (a.GetType() == typeof(DieUnitBlock))
+            {
+                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                    playerAlive = false;
+                }
+                remove(b);
+            }
+
+            if (a.GetType() == typeof(Door))
+            {
+                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                    _levelComplete = true;
+                }
+            }
+
+            if (a.GetType() == typeof(Coin))
+            {
+                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
+                {
+                    countCoin++;
+                    remove(a);
+                }
+            }
+        }
+
+
         void bumpToLeft(Unit a, Unit b)
         {
             horizontalSpecificAction(a, b);
@@ -150,22 +183,6 @@ namespace GameEngine
                 killedByMob.Play();
                 playerAlive = false;
             }
-
-            if (a.GetType() == typeof(Door))
-            {
-                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
-                {
-                    _levelComplete = true;
-                }
-            }
-            if (a.GetType() == typeof(Coin))
-            {
-                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
-                {
-                        countCoin++;
-                    remove(a);
-                }
-            }
         }
 
 
@@ -174,7 +191,7 @@ namespace GameEngine
             /*If player bumped to block from bottom its jumping stops*/
             if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
-                (player).setVerticalSpeed(0);
+                player.setVerticalSpeed(0);
             }
         }
 
@@ -191,35 +208,6 @@ namespace GameEngine
             {
                 ((Jumpable)player).inJump(false);
             }
-
-            if(a.GetType() == typeof(DieUnitBlock))
-            {
-                if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
-                {
-                    playerAlive = false;
-                    deathWB.Play();
-                }
-                remove(b);
-            }
-
-            if(a.GetType() == typeof(Door))
-            {
-                if(UnitGroups[(int)UnitGroupNames.players].Contains(b))
-                {
-                    _levelComplete = true;
-                    countCoin = 0;
-                }
-            }
-
-            if (a.GetType() == typeof(Coin))
-            {
-                if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
-                {
-                    countCoin++;
-                    remove(a);
-                }
-            }
-
         }
 
 

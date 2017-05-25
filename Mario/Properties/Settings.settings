@@ -26,14 +26,20 @@
     <Setting Name="standardPlayerSpeed" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="standardSizeOfBlock" Type="System.Int32" Scope="User">
+    <Setting Name="standardSizeOfUnit" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="playerPriority" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="standardSizeOfUnit" Type="System.String" Scope="User">
+    <Setting Name="standardSizeOfPlayer" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">38</Value>
+    </Setting>
+    <Setting Name="coinSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">28</Value>
+    </Setting>
+    <Setting Name="mapsPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">../../Levels</Value>
     </Setting>
   </Settings>
 </SettingsFile>
