@@ -23,8 +23,10 @@ namespace Mario
         GameAPI game;
         private List<int> keys = new List<int>(new int [4]);
         int offset = 0;
+        System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
         bool run = true;
-
+        
+        
         public Form1()
         {
             game = new Game(ref keys);
@@ -132,27 +134,30 @@ namespace Mario
         }
 
 
+
+ 
         private void button1_Click(object sender, EventArgs e)
         {
+          startGame.Play();
             new Thread(Start_Game).Start();
+            
             button1.Dispose();
             button2.Dispose();
         }
 
-        private void pause_click(object sender, EventArgs e)
+
+        private void resumeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!run)
+            {
+                new Thread(Start_Game).Start();
+            }
+        }
+
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Stop_Game();
         }
-
-
-        private void resume_click(object sender, EventArgs e)
-        {
-            if(run == false)
-            {
-                new Thread(Start_Game).Start();
-            }           
-        }
-
 
         private void exit(object sender, EventArgs e)
         {
