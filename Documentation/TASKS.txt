@@ -1,12 +1,4 @@
-Maksym:
-	+ Fix perfomance of the PictureBox in Form1. You probably should replace 
-PictureBox with something more light.
-
-Nastia:
-	+ Find animated pictures of player and some mob, and add it to project.
-	+ Make player's sprite animated when run.
-	
-Mykhailo:
-	+ Implement coins system and ground blocks with coins in the it.
+See issues on github:
+https://github.com/Shadasviar/mario/issues
 
 How to use github see in the file howto_git.txt
