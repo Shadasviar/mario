@@ -1,6 +1,6 @@
 ﻿using Global;
 using Mario.Properties;
-
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace GameEngine
@@ -14,8 +14,22 @@ namespace GameEngine
         public Player(Coordinates position):base(position)
         {
             isInJump = true;
+            this.animator = new Animator(new List<Image>{
+                new Bitmap(Resources.mario1),
+                new Bitmap(Resources.mario2),
+                new Bitmap(Resources.mario3),
+            }, 25);
             this.priority = Settings.Default.playerPriority;
-            this.texture = new Bitmap(Resources.szifer);
+        }
+
+        public override Image getTexture()
+        {
+            if(currentSpeed.getHorizontalSpeed() == 0)
+            {
+                animator.reset();
+                return animator.getCurrentFrame();
+            }
+            return animator.getNextFrame();
         }
 
 

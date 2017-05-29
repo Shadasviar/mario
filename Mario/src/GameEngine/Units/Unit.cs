@@ -10,6 +10,7 @@ namespace GameEngine
         protected int priority;
         protected Speed currentSpeed = new Speed(0, Settings.Default.gravitation);
         protected Image texture = null;
+        protected Animator animator = null;
 
 
         virtual public void setHorizontalSpeed(int h)
@@ -64,7 +65,7 @@ namespace GameEngine
             return priority;
         }
 
-        public Image getTexture()
+        virtual public Image getTexture()
         {
             return texture;
         }

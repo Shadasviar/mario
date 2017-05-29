@@ -1,26 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
+using Mario.Properties;
 
 namespace GameEngine
 {
     class Animator
     {
-        List<Image> fragmens;
+        protected List<Image> frames;
+        protected int fps;
+        protected int fps_cnt;
+        protected int current;
+
         public void reset ()
         {
-            return;
+            current = 0;
         }
+
+
         public Image getNextFrame()
         {
-            return new Image();
+            if (fps_cnt++ >= Settings.Default.fps / fps) { ++current; fps_cnt = 0; }
+            if (current == frames.Count()) reset();
+            return frames[current];
         }
+
+
+        public Image getCurrentFrame()
+        {
+            return frames[current];
+        }
+
+
         public Animator (List<Image> frames, int game_fps = 0)
         {
-
+            this.frames = frames;
+            this.fps = game_fps == 0 ? Settings.Default.fps : game_fps;
         } 
 
     }
