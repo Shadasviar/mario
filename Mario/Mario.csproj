@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Coordinates.cs" />
+    <Compile Include="src\GameEngine\Animator.cs" />
     <Compile Include="src\GameEngine\Units\Coin.cs" />
     <Compile Include="src\GameEngine\Units\DieUnitBlock.cs" />
     <Compile Include="src\GameEngine\Units\Door.cs" />
@@ -106,6 +107,9 @@
     <None Include="images\mario-background_7.png" />
     <None Include="images\Gold_Coin.png" />
     <None Include="images\Hoppin%27_Jack.png" />
+    <None Include="images\mario\mario1.png" />
+    <None Include="images\mario\mario2.png" />
+    <None Include="images\mario\mario3.png" />
     <Content Include="Levels\Level2.txt" />
     <None Include="images\empty.png" />
     <None Include="images\transparent.png" />
