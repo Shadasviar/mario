@@ -8,7 +8,7 @@ namespace GameEngine
 {
     class World
     {
-        public List<Unit> players;
+        public Unit[] players;
         private List<Unit> units = new List<Unit>();
         public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
@@ -35,7 +35,11 @@ namespace GameEngine
 
         public void initPlayer()
         {
-            players = new List<Unit>(UnitGroups[(int)UnitGroupNames.players]);
+            players = new Unit[UnitGroups[(int)UnitGroupNames.players].Count];
+            for(int i = 0; i < UnitGroups[(int)UnitGroupNames.players].Count; ++i)
+            {
+                players[i] = UnitGroups[(int)UnitGroupNames.players][i];
+            }
         }
 
 

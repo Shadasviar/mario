@@ -1,4 +1,4 @@
-﻿namespace Mario
+﻿namespace Global
 {
     partial class Form1
     {

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Global;
 using GameEngine;
 using Mario.Properties;
 using System.Media;
 
-namespace Mario
+namespace Global
 {
     enum keysNames {
         Right, Left, Down, Space,
@@ -22,11 +21,10 @@ namespace Mario
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
-        protected int numberOfPlayers;
 
         /* Associate key type with concrete key for each player.
          * Player's numbes is ordinary number of it in the list. */
-        static List<Dictionary<keysType, keysNames>> keyAssociatedWithPlayer = 
+        public static List<Dictionary<keysType, keysNames>> keyAssociatedWithPlayer = 
             new List<Dictionary<keysType, keysNames>>
         {
             new Dictionary<keysType, keysNames>{
@@ -44,9 +42,8 @@ namespace Mario
         };
 
 
-        public Game(ref List<int>a, int nPlayers = 1)
+        public Game(ref List<int>a)
         {
-            numberOfPlayers = nPlayers;
             keysStatus = a;
             MapParser m = new MapParser();
             levels.Add(m.parse(Settings.Default.mapsPath + "/Level1.txt"));
@@ -69,7 +66,7 @@ namespace Mario
         {
             int h1 = 0;
             int h2 = 0;
-            int min = Math.Min(Enum.GetNames(typeof(keysType)).Length, levels[currentLevel].players.Count);
+            int min = Math.Min(Enum.GetNames(typeof(keysType)).Length, levels[currentLevel].players.Length);
 
             for (int i = 0; i < min; ++i)
             {
