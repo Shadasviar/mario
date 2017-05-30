@@ -12,6 +12,6 @@ namespace Global
         bool setLevel(int index);
         bool playerIsAlive();
         List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages();
-        Coordinates getPlayerPosition();
+        Coordinates getPlayerPosition(int playerNumber = 0);
     }
 }

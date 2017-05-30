@@ -4,11 +4,9 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using System.Reflection;
-using Global;
 using Mario.Properties;
 
-
-namespace Mario
+namespace Global
 {
     struct Picture
     {
@@ -21,15 +19,35 @@ namespace Mario
         delegate void updateStateDelegate();
         List<Picture> sprites = new List<Picture>();
         GameAPI game;
-        private List<int> keys = new List<int>(new int [4]);
+        private List<int> keys = new List<int>(new int [8]);
         int offset = 0;
         System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
         bool run = true;
-        
-        
-        public Form1()
+        protected int playerIndex;
+
+        static List<Dictionary<keysType, Keys>> keyAssociatedWithPlayer =
+            new List<Dictionary<keysType, Keys>>
         {
-            game = new Game(ref keys);
+            new Dictionary<keysType, Keys>{
+                {keysType.Down, Keys.Down},
+                {keysType.Jump, Keys.Space},
+                {keysType.Right, Keys.Right},
+                {keysType.Left, Keys.Left},
+            },
+            new Dictionary<keysType, Keys>{
+                {keysType.Down, Keys.S},
+                {keysType.Jump, Keys.W},
+                {keysType.Right, Keys.D},
+                {keysType.Left, Keys.A},
+            },
+        };
+
+
+        public Form1(Object game, ref List<int> keys, int player = 0)
+        {
+            this.playerIndex = player;
+            this.game = (GameAPI)game;
+            this.keys = keys;
             InitializeComponent();
 
             /* For disable flicking*/
@@ -60,19 +78,33 @@ namespace Mario
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down) keys[(int) keysNames.Down] = 1;
-            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 1;
-            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 1;
-            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 1;
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Down])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Down]] = 1;
+
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Right])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Right]] = 1;
+
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Left])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Left]] = 1;
+
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Jump])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Jump]] = 1;
         }
 
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 0;
-            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 0;
-            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 0;
-            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 0;
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Down])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Down]] = 0;
+
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Right])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Right]] = 0;
+
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Left])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Left]] = 0;
+
+            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Jump])
+                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Jump]] = 0;
         }
 
 
@@ -86,13 +118,13 @@ namespace Mario
         {
             this.Invalidate();
           
-            if(game.getPlayerPosition().topRight.X > this.Width/2+offset)
+            if(game.getPlayerPosition(playerIndex).topRight.X > this.Width/2+offset)
             {
-                offset += game.getPlayerPosition().topRight.X - this.Width / 2 -offset;
+                offset += game.getPlayerPosition(playerIndex).topRight.X - this.Width / 2 -offset;
             }
-            if (game.getPlayerPosition().topRight.X < this.Width / 2 + offset)
+            if (game.getPlayerPosition(playerIndex).topRight.X < this.Width / 2 + offset)
             {
-                offset += game.getPlayerPosition().topRight.X - this.Width / 2 - offset;
+                offset += game.getPlayerPosition(playerIndex).topRight.X - this.Width / 2 - offset;
 
                 if (offset < 0)
                 {
