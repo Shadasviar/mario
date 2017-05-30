@@ -21,7 +21,7 @@ namespace Mario
         delegate void updateStateDelegate();
         List<Picture> sprites = new List<Picture>();
         GameAPI game;
-        private List<int> keys = new List<int>(new int [4]);
+        private List<int> keys = new List<int>(new int [8]);
         int offset = 0;
         System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
         bool run = true;
@@ -64,6 +64,10 @@ namespace Mario
             if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 1;
             if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 1;
             if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 1;
+            if (e.KeyCode == Keys.D) keys[(int)keysNames.D] = 1;
+            if (e.KeyCode == Keys.A) keys[(int)keysNames.A] = 1;
+            if (e.KeyCode == Keys.W) keys[(int)keysNames.W] = 1;
+            if (e.KeyCode == Keys.S) keys[(int)keysNames.S] = 1;
         }
 
 
@@ -73,6 +77,10 @@ namespace Mario
             if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 0;
             if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 0;
             if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 0;
+            if (e.KeyCode == Keys.D) keys[(int)keysNames.D] = 0;
+            if (e.KeyCode == Keys.W) keys[(int)keysNames.W] = 0;
+            if (e.KeyCode == Keys.A) keys[(int)keysNames.A] = 0;
+            if (e.KeyCode == Keys.S) keys[(int)keysNames.S] = 0;
         }
 
 
