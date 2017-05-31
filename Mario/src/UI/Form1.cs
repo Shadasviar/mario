@@ -25,23 +25,6 @@ namespace Global
         static bool run = true;
         protected int playerIndex;
 
-        static List<Dictionary<keysType, Keys>> keyAssociatedWithPlayer =
-            new List<Dictionary<keysType, Keys>>
-        {
-            new Dictionary<keysType, Keys>{
-                {keysType.Down, Keys.Down},
-                {keysType.Jump, Keys.Space},
-                {keysType.Right, Keys.Right},
-                {keysType.Left, Keys.Left},
-            },
-            new Dictionary<keysType, Keys>{
-                {keysType.Down, Keys.S},
-                {keysType.Jump, Keys.W},
-                {keysType.Right, Keys.D},
-                {keysType.Left, Keys.A},
-            },
-        };
-
 
         public Form1(Object game, ref List<int> keys, int player = 0)
         {
@@ -78,33 +61,27 @@ namespace Global
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Down])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Down]] = 1;
-
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Right])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Right]] = 1;
-
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Left])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Left]] = 1;
-
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Jump])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Jump]] = 1;
+            if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 1;
+            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 1;
+            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 1;
+            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 1;
+            if (e.KeyCode == Keys.W) keys[(int)keysNames.W] = 1;
+            if (e.KeyCode == Keys.A) keys[(int)keysNames.A] = 1;
+            if (e.KeyCode == Keys.S) keys[(int)keysNames.S] = 1;
+            if (e.KeyCode == Keys.D) keys[(int)keysNames.D] = 1;
         }
 
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Down])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Down]] = 0;
-
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Right])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Right]] = 0;
-
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Left])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Left]] = 0;
-
-            if (e.KeyCode == keyAssociatedWithPlayer[playerIndex][keysType.Jump])
-                keys[(int)Game.keyAssociatedWithPlayer[playerIndex][keysType.Jump]] = 0;
+            if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 0;
+            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 0;
+            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 0;
+            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 0;
+            if (e.KeyCode == Keys.W) keys[(int)keysNames.W] = 0;
+            if (e.KeyCode == Keys.A) keys[(int)keysNames.A] = 0;
+            if (e.KeyCode == Keys.S) keys[(int)keysNames.S] = 0;
+            if (e.KeyCode == Keys.D) keys[(int)keysNames.D] = 0;
         }
 
 
