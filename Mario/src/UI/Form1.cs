@@ -44,7 +44,9 @@ namespace Global
             run = true;
             while (run)
             {
-                game.nextFrame();
+                lock(game){
+                    game.nextFrame();
+                }
                 try
                 {
                     Invoke(new updateStateDelegate(this.updateState));
