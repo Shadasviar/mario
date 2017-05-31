@@ -17,9 +17,9 @@ namespace Global
             GameAPI game = new Game(ref keys);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new Form1(game, ref keys, 0).Show();
-            new Form1(game, ref keys, 1).Show();
-            Application.Run();
+            new Thread((ThreadStart)delegate { Application.Run(new Form1(game, ref keys, 0)); }).Start();
+            Application.Run(new Form1(game, ref keys, 1));
         }
+
     }
 }

@@ -22,7 +22,7 @@ namespace Global
         private List<int> keys = new List<int>(new int [8]);
         int offset = 0;
         System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
-        bool run = true;
+        static bool run = true;
         protected int playerIndex;
 
         static List<Dictionary<keysType, Keys>> keyAssociatedWithPlayer =
@@ -114,7 +114,7 @@ namespace Global
         }
 
 
-        private void updateState()
+        public void updateState()
         {
             this.Invalidate();
           
@@ -143,7 +143,12 @@ namespace Global
                 p.size = mapSize(c.Item1);
                 p.img = c.Item2;
                 p.location = mapPosition(c.Item1, offset);
-                e.Graphics.DrawImage(p.img, p.location.X, p.location.Y, p.size.Width, p.size.Height);
+
+                /* Lock image from access from other player's thread. It cause exception.*/
+                lock (p.img)
+                {
+                    e.Graphics.DrawImage(p.img, p.location.X, p.location.Y, p.size.Width, p.size.Height);
+                }
             }
         }
         
