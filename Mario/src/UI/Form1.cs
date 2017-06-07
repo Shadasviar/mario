@@ -168,7 +168,6 @@ namespace Global
 
         private void exit(object sender, EventArgs e)
         {
-            Stop_Game();
             this.Dispose();
             this.Close();
         }
