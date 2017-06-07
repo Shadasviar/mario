@@ -13,12 +13,9 @@ namespace Global
         [STAThread]
         static void Main()
         {
-            List<int> keys = new List<int>(new int[8]);
-            GameAPI game = new Game(ref keys);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            new Thread((ThreadStart)delegate { Application.Run(new Form1(game, ref keys, 0)); }).Start();
-            Application.Run(new Form1(game, ref keys, 1));
+            Application.Run(new MainMenu());
         }
 
     }

@@ -37,6 +37,9 @@ namespace Global
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
                 | BindingFlags.Instance | BindingFlags.NonPublic,
                null, this, new object[] { true });
+
+            startGame.Play();
+            new Thread(Start_Game).Start();
         }
 
         void Start_Game()
@@ -150,18 +153,6 @@ namespace Global
         }
 
 
-
- 
-        private void button1_Click(object sender, EventArgs e)
-        {
-          startGame.Play();
-            new Thread(Start_Game).Start();
-            
-            button1.Dispose();
-            button2.Dispose();
-        }
-
-
         private void resumeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!run)
@@ -177,7 +168,6 @@ namespace Global
 
         private void exit(object sender, EventArgs e)
         {
-            Stop_Game();
             this.Dispose();
             this.Close();
         }
