@@ -2,6 +2,6 @@ g                                                                               
 g      c   m                                     gggggggggggg                     gggggggggggd
 g      c   g                                                                                 d
 g      c ggg ee         g          c            gggggggggggggg                          ccc  d
-g p p ggggg ee   m     gm        ggg    mm  m  gggggggggggggggggggggggggg   gggggggggggggggggd
+g p   ggggg ee   m     gm        ggg    mm  m  gggggggggggggggggggggggggg   gggggggggggggggggd
 gggggggggggggggggg   g ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggd
 ggggggggggggggggggdddddggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggd

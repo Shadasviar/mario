@@ -145,7 +145,6 @@ namespace Mario.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-
         [global::System.Configuration.DefaultSettingValueAttribute("38")]
         public int standardSizeOfPlayer {
             get {
@@ -177,6 +176,18 @@ namespace Mario.Properties {
             }
             set {
                 this["mapsPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int players_number {
+            get {
+                return ((int)(this["players_number"]));
+            }
+            set {
+                this["players_number"] = value;
             }
         }
     }

@@ -37,6 +37,9 @@ namespace Global
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
                 | BindingFlags.Instance | BindingFlags.NonPublic,
                null, this, new object[] { true });
+
+            startGame.Play();
+            new Thread(Start_Game).Start();
         }
 
         void Start_Game()
@@ -147,18 +150,6 @@ namespace Global
             res.Width = c.topRight.X - c.bottomLeft.X;
             res.Height= c.topRight.Y - c.bottomLeft.Y;
             return res;
-        }
-
-
-
- 
-        private void button1_Click(object sender, EventArgs e)
-        {
-          startGame.Play();
-            new Thread(Start_Game).Start();
-            
-            button1.Dispose();
-            button2.Dispose();
         }
 
 

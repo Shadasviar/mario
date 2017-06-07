@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Global;
 using static System.Math;
+using Mario.Properties;
 using System.Drawing;
 
 namespace GameEngine
@@ -35,6 +36,11 @@ namespace GameEngine
 
         public void initPlayer()
         {
+            for(int i = UnitGroups[(int)UnitGroupNames.players].Count; i < Settings.Default.players_number; ++i)
+            {
+                this.addUnit(new Player(UnitGroups[(int)UnitGroupNames.players][0].GetPosition()), UnitGroupNames.players);
+            }
+
             players = new Unit[UnitGroups[(int)UnitGroupNames.players].Count];
             for(int i = 0; i < UnitGroups[(int)UnitGroupNames.players].Count; ++i)
             {
