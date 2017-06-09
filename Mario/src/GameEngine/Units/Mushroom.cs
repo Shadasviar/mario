@@ -7,7 +7,18 @@ namespace GameEngine
     {
         public Mushroom(Coordinates position):base(position,new Speed(Settings.Default.standardMoveSpeed))
         {
-            texture = new Bitmap(Resources.mushroom);
+            this.animator = new AsyncAnimator(new System.Collections.Generic.List<Image>
+            {
+                new Bitmap(Resources.mushroom1),
+                new Bitmap(Resources.mushroom2),
+            }, 10);
+        }
+
+
+        public override Image getTexture()
+        {
+
+            return animator.getNextFrame();
         }
     }
 }

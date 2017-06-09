@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="src\Coordinates.cs" />
     <Compile Include="src\GameEngine\Animator.cs" />
+    <Compile Include="src\GameEngine\AsyncAnimator.cs" />
     <Compile Include="src\GameEngine\Units\Coin.cs" />
     <Compile Include="src\GameEngine\Units\DieUnitBlock.cs" />
     <Compile Include="src\GameEngine\Units\Door.cs" />
@@ -129,6 +130,8 @@
     <None Include="images\mario\mario2.png" />
     <None Include="images\mario\mario3.png" />
     <None Include="images\sky.png" />
+    <None Include="images\goomba\mushroom1.gif" />
+    <None Include="images\goomba\mushroom2.gif" />
     <Content Include="Levels\Level2.txt" />
     <None Include="images\empty.png" />
     <None Include="images\transparent.png" />

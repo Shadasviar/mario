@@ -14,7 +14,7 @@ namespace GameEngine
         public Player(Coordinates position):base(position)
         {
             isInJump = true;
-            this.animator = new Animator(new List<Image>{
+            this.animator = new AsyncAnimator(new List<Image>{
                 new Bitmap(Resources.mario1),
                 new Bitmap(Resources.mario2),
                 new Bitmap(Resources.mario3),
