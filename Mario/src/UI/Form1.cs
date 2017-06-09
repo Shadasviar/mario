@@ -22,7 +22,6 @@ namespace Global
         private List<int> keys = new List<int>(new int [8]);
         int offset = 0;
         System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
-        static bool run = true;
         protected int playerIndex;
         MainMenu parent;
 
@@ -41,25 +40,8 @@ namespace Global
                null, this, new object[] { true });
 
             startGame.Play();
-            //new Thread(Start_Game).Start();
         }
 
-        /*void Start_Game()
-        {
-            run = true;
-            while (run)
-            {
-                lock(game){
-                    game.nextFrame();
-                }
-                try
-                {
-                    Invoke(new updateStateDelegate(this.updateState));
-                }
-                catch (Exception) { };
-                Thread.Sleep(1000 / Settings.Default.fps);
-            }
-        }*/
 
         void Stop_Game()
         {

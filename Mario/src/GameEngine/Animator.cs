@@ -18,10 +18,10 @@ namespace GameEngine
         }
 
 
-        public Image getNextFrame()
+        virtual public Image getNextFrame()
         {
             if (fps_cnt++ >= Settings.Default.fps / fps) { ++current; fps_cnt = 0; }
-            if (current == frames.Count()) reset();
+            if (current == frames.Count) reset();
             return frames[current];
         }
 
