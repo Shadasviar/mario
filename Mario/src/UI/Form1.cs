@@ -24,13 +24,15 @@ namespace Global
         System.Media.SoundPlayer startGame = new System.Media.SoundPlayer("../../Resources/start.wav");
         static bool run = true;
         protected int playerIndex;
+        MainMenu parent;
 
 
-        public Form1(Object game, ref List<int> keys, int player = 0)
+        public Form1(Object game, ref List<int> keys, MainMenu parent, int player = 0)
         {
             this.playerIndex = player;
             this.game = (GameAPI)game;
             this.keys = keys;
+            this.parent = parent;
             InitializeComponent();
 
             /* For disable flicking*/
@@ -39,10 +41,10 @@ namespace Global
                null, this, new object[] { true });
 
             startGame.Play();
-            new Thread(Start_Game).Start();
+            //new Thread(Start_Game).Start();
         }
 
-        void Start_Game()
+        /*void Start_Game()
         {
             run = true;
             while (run)
@@ -57,11 +59,11 @@ namespace Global
                 catch (Exception) { };
                 Thread.Sleep(1000 / Settings.Default.fps);
             }
-        }
+        }*/
 
         void Stop_Game()
         {
-            run = false;
+            parent.pauseGame();
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -155,10 +157,7 @@ namespace Global
 
         private void resumeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!run)
-            {
-                new Thread(Start_Game).Start();
-            }
+            parent.resumeGame();
         }
 
         private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
