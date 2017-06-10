@@ -13,15 +13,15 @@ namespace GameEngine
         private List<Unit> units = new List<Unit>();
         public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
-        private bool playerAlive = true;
-        private bool _levelComplete = false;
+        private int playersAlive = Settings.Default.players_number;
+        private int _levelComplete = 0;
         int countCoin;
         System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer("../../Resources/deathWB.wav");
         System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer("../../Resources/killedByMob.wav");
   
         public bool playerIsAlive()
         {
-            return playerAlive;
+            return playersAlive > 0;
         } 
 
 
@@ -145,7 +145,7 @@ namespace GameEngine
             {
                 if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
                 {
-                    playerAlive = false;
+                    --playersAlive;
                 }
                 remove(b);
             }
@@ -154,7 +154,8 @@ namespace GameEngine
             {
                 if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
                 {
-                    _levelComplete = true;
+                    ++_levelComplete;
+                    remove(b);
                 }
             }
 
@@ -191,7 +192,7 @@ namespace GameEngine
             {
                 remove(b);
                 killedByMob.Play();
-                playerAlive = false;
+                --playersAlive;
             }
         }
 
@@ -224,7 +225,7 @@ namespace GameEngine
         /***********************************************************************************************/
         public bool levelComplete()
         {
-            return _levelComplete;
+            return (_levelComplete > 0) && (_levelComplete == playersAlive);
         }
 
         /* Set coordinates of unit according given speed */
