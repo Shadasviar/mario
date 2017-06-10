@@ -118,7 +118,7 @@ namespace Global
 
         public bool playerIsAlive()
         {
-            return levels[currentLevel].players.Length == 0;
+            return levels[currentLevel].playerIsAlive();
         }
 
 

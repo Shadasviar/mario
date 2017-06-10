@@ -225,7 +225,7 @@ namespace GameEngine
         /***********************************************************************************************/
         public bool levelComplete()
         {
-            return _levelComplete == playersAlive;
+            return (_levelComplete > 0) && (_levelComplete == playersAlive);
         }
 
         /* Set coordinates of unit according given speed */

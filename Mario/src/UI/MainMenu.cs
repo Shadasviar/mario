@@ -10,7 +10,7 @@ namespace Global
     public partial class MainMenu : Form
     {
         Form1[] windows;
-        List<int> keys = new List<int>(new int[8]);
+        List<int> keys;
         GameAPI game;
         bool run = false;
 
@@ -18,6 +18,7 @@ namespace Global
         public MainMenu()
         {
             InitializeComponent();
+            gameoverLabel.Visible = false;
         }
 
 
@@ -30,6 +31,7 @@ namespace Global
 
         private void startGame()
         {
+            keys = new List<int>(new int[8]);
             game = new Game(ref keys);
 
             windows = new Form1[Settings.Default.players_number];
@@ -46,6 +48,18 @@ namespace Global
         public void pauseGame()
         {
             run = false;
+        }
+
+
+        public void stopGame()
+        {
+            pauseGame();
+            gameoverLabel.Visible = true;
+            for (int i = 0; i < Settings.Default.players_number; ++i)
+            {
+                windows[i].Close();
+            }
+            this.Show();
         }
 
 
@@ -72,6 +86,17 @@ namespace Global
                     }
                 }
                 catch (Exception) { };
+
+                if (!game.playerIsAlive())
+                {
+                    if (InvokeRequired)
+                    {
+                        this.Invoke(new MethodInvoker(delegate {
+                            stopGame();
+                        }));
+                        return;
+                    }
+                }
                 Thread.Sleep(1000 / Settings.Default.fps);
             }
         }
