@@ -11,7 +11,7 @@ namespace GameEngine
     {
         public Unit[] players;
         private List<Unit> units = new List<Unit>();
-        public enum UnitGroupNames {stat = 0, players = 1, mobs = 2};
+        public enum UnitGroupNames {stat, players, mobs, staff};
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         private int playersAlive = Settings.Default.players_number;
         private int _levelComplete = 0;
@@ -27,9 +27,10 @@ namespace GameEngine
 
         public World()
         {
-            UnitGroups.Add(new List<Unit>());
-            UnitGroups.Add(new List<Unit>()); 
-            UnitGroups.Add(new List<Unit>());
+            for(int i = 0; i < Enum.GetNames(typeof(UnitGroupNames)).Length; ++i)
+            {
+                UnitGroups.Add(new List<Unit>());
+            }
             players = null;
         }
 
@@ -51,9 +52,10 @@ namespace GameEngine
 
         public void  matchCollisions()
         {
-            for (int currentGroup = 0; currentGroup < UnitGroups.Count; currentGroup++)
+            /* Check collisions between three basic groups: stat, players and mobs*/
+            for (int currentGroup = 0; currentGroup < (int)UnitGroupNames.staff; currentGroup++)
             {
-                for (int iGroup = currentGroup + 1; iGroup < UnitGroups.Count; iGroup++)
+                for (int iGroup = currentGroup + 1; iGroup < (int)UnitGroupNames.staff; iGroup++)
                 {
                     for (int i = 0; i < UnitGroups[currentGroup].Count; i++)
                     {
@@ -65,6 +67,21 @@ namespace GameEngine
                                 resolveCollision(UnitGroups[currentGroup][i], UnitGroups[iGroup][j]);
                             }
                         }
+                    }
+                }
+            }
+
+            /* Check collisions between players and staff. Staff shoul only interact with players.*/
+            for (int i = 0; i < UnitGroups[(int)UnitGroupNames.staff].Count; i++)
+            {
+                for (int j = 0; j < UnitGroups[(int)UnitGroupNames.players].Count; j++)
+                {
+                    if (UnitGroups[(int)UnitGroupNames.staff].Count <= i) break;
+                    if (UnitGroups[(int)UnitGroupNames.staff][i].GetPosition() == 
+                        UnitGroups[(int)UnitGroupNames.players][j].GetPosition())
+                    {
+                        resolveCollision(UnitGroups[(int)UnitGroupNames.staff][i],
+                            UnitGroups[(int)UnitGroupNames.players][j]);
                     }
                 }
             }
