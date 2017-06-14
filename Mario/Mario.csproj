@@ -49,6 +49,7 @@
     <Compile Include="src\Coordinates.cs" />
     <Compile Include="src\GameEngine\Animator.cs" />
     <Compile Include="src\GameEngine\AsyncAnimator.cs" />
+    <Compile Include="src\GameEngine\Units\Bird.cs" />
     <Compile Include="src\GameEngine\Units\Coin.cs" />
     <Compile Include="src\GameEngine\Units\DieUnitBlock.cs" />
     <Compile Include="src\GameEngine\Units\Door.cs" />
@@ -132,6 +133,14 @@
     <None Include="images\sky.png" />
     <None Include="images\goomba\mushroom1.gif" />
     <None Include="images\goomba\mushroom2.gif" />
+    <None Include="images\bird\bird1.png" />
+    <None Include="images\bird\bird2.png" />
+    <None Include="images\bird\bird3.png" />
+    <None Include="images\bird\bird4.png" />
+    <None Include="images\bird\rbird1.png" />
+    <None Include="images\bird\rbird2.png" />
+    <None Include="images\bird\rbird3.png" />
+    <None Include="images\bird\rbird4.png" />
     <Content Include="Levels\Level2.txt" />
     <None Include="images\empty.png" />
     <None Include="images\transparent.png" />

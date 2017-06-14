@@ -54,6 +54,7 @@ namespace Global
         public void stopGame()
         {
             pauseGame();
+            if (game.playerWon()) gameoverLabel.Text = "YOU WIN!";
             gameoverLabel.Visible = true;
             for (int i = 0; i < Settings.Default.players_number; ++i)
             {
@@ -87,14 +88,19 @@ namespace Global
                 }
                 catch (Exception) { };
 
-                if (!game.playerIsAlive())
+                if (!game.playerIsAlive() || game.playerWon())
                 {
                     if (InvokeRequired)
                     {
-                        this.Invoke(new MethodInvoker(delegate {
-                            stopGame();
-                        }));
-                        return;
+                        try
+                        {
+                            this.Invoke(new MethodInvoker(delegate
+                            {
+                                stopGame();
+                            }));
+                            return;
+                        }
+                        catch (Exception) { };
                     }
                 }
                 Thread.Sleep(1000 / Settings.Default.fps);

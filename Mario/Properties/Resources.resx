@@ -154,4 +154,28 @@
   <data name="mushroom2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\goomba\mushroom2.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bird1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\bird1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bird2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\bird2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bird3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\bird3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bird4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\bird4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rbird1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\rbird1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rbird2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\rbird2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rbird3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\rbird3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rbird4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\bird\rbird4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

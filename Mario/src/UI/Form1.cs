@@ -17,7 +17,6 @@ namespace Global
     public partial class Form1 : Form
     {
         delegate void updateStateDelegate();
-        List<Picture> sprites = new List<Picture>();
         GameAPI game;
         private List<int> keys = new List<int>(new int [8]);
         int offset = 0;
