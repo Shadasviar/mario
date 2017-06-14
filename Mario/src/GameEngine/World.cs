@@ -204,6 +204,15 @@ namespace GameEngine
             {
                 b.setVerticalSpeed(0);
             }
+
+            /* Bird kill player if it bumped from bottom*/
+            if(UnitGroups[(int)UnitGroupNames.players].Contains(b) &&
+                UnitGroups[(int)UnitGroupNames.mobs].Contains(a))
+            {
+                remove(b);
+                killedByMob.Play();
+                --playersAlive;
+            }
         }
 
 

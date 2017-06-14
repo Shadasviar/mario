@@ -36,6 +36,7 @@ namespace Global
             {'d', new UnitData(typeof(DieUnitBlock),group.stat)},
             {'e', new UnitData(typeof(Door),        group.stat)},
             {'c', new UnitData(typeof(Coin),        group.stat,     Settings.Default.coinSize)},
+            {'b', new UnitData(typeof(Bird),        group.mobs,     Settings.Default.standardSizeOfPlayer)},
         };
 
 
