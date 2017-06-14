@@ -35,7 +35,7 @@ namespace GameEngine
         public Animator (List<Image> frames, int game_fps = 0)
         {
             this.frames = frames;
-            this.fps = game_fps == 0 ? Settings.Default.fps : game_fps;
+            this.fps = game_fps <= 0 ? Settings.Default.fps : game_fps;
         } 
 
     }

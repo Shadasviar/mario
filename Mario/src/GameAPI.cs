@@ -9,8 +9,8 @@ namespace Global
     {
         void nextFrame();
         List<Coordinates> getAllUnitsCoordinates();
-        bool setLevel(int index);
         bool playerIsAlive();
+        bool playerWon();
         List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages();
         Coordinates getPlayerPosition(int playerNumber = 0);
     }

@@ -21,6 +21,7 @@ namespace Global
         protected List<World> levels = new List<World>();
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
+        protected bool won = false;
 
         /* Associate key type with concrete key for each player.
          * Player's numbes is ordinary number of it in the list. */
@@ -67,6 +68,7 @@ namespace Global
             int h1 = 0;
             int h2 = 0;
             int min = Math.Min(Enum.GetNames(typeof(keysType)).Length, levels[currentLevel].players.Length);
+            Settings.Default.players_number = min;
 
             for (int i = 0; i < min; ++i)
             {
@@ -99,7 +101,8 @@ namespace Global
 
             if(levels[currentLevel].levelComplete() == true)
             {
-                currentLevel++;
+                if (currentLevel + 1 < levels.Count) currentLevel++;
+                else won = true;
             }
         }
 
@@ -122,17 +125,6 @@ namespace Global
         }
 
 
-        public bool setLevel(int index)
-        {
-            if(index < levels.Count && index >= 0)
-            {
-                currentLevel = index;
-                return true;
-            }
-            else return false;
-        }
-
-
         public List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages()
         {
             List<Tuple<Coordinates, Image>> result = new List<Tuple<Coordinates, Image>>();
@@ -150,6 +142,10 @@ namespace Global
             return levels[currentLevel].players[playerNumber].GetPosition();
         }
 
-        
+
+        public bool playerWon()
+        {
+            return won;
+        }
     }
 }
