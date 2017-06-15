@@ -4,6 +4,7 @@ using System.Drawing;
 using GameEngine;
 using Mario.Properties;
 using System.Media;
+using System.IO;
 
 namespace Global
 {
@@ -48,6 +49,13 @@ namespace Global
         {
             keysStatus = a;
             MapParser m = new MapParser();
+
+            /* Test if levels exists in the root of exe */
+            if (Directory.Exists("Levels"))
+            {
+                Settings.Default.mapsPath = "Levels";
+            }
+
             levels.Add(m.parse(Settings.Default.mapsPath + "/Level1.txt"));
             levels.Add(m.parse(Settings.Default.mapsPath + "/Level2.txt"));
             coins = new int[Settings.Default.players_number];
