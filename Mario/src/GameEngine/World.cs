@@ -15,7 +15,7 @@ namespace GameEngine
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         private int playersAlive = Settings.Default.players_number;
         private int _levelComplete = 0;
-        int countCoin;
+        int [] countCoins;
         System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer(Resources.deathWB);
         System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer(Resources.killedByMob);
   
@@ -32,6 +32,7 @@ namespace GameEngine
                 UnitGroups.Add(new List<Unit>());
             }
             players = null;
+            
         }
 
 
@@ -47,6 +48,7 @@ namespace GameEngine
             {
                 players[i] = UnitGroups[(int)UnitGroupNames.players][i];
             }
+            countCoins = new int[players.Length];
         }
 
 
@@ -180,7 +182,7 @@ namespace GameEngine
             {
                 if (UnitGroups[(int)UnitGroupNames.players].Contains(b))
                 {
-                    countCoin++;
+                    countCoins[Array.IndexOf(players, b)]++;
                     remove(a);
                 }
             }
@@ -340,6 +342,11 @@ namespace GameEngine
                 return units[index];
             }
             else return null;
+        }
+
+        public int[]getCoins()
+        {
+            return countCoins;
         }
 
     }

@@ -13,5 +13,6 @@ namespace Global
         bool playerWon();
         List<Tuple<Coordinates, Image>> getAllUnitsCoordinatesImages();
         Coordinates getPlayerPosition(int playerNumber = 0);
+        int numberCoin(int playerNumber = 0);
     }
 }
