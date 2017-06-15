@@ -22,6 +22,7 @@ namespace Global
         protected List<int> keysStatus = new List<int>();
         protected int currentLevel;
         protected bool won = false;
+        protected int[] coins; 
 
         /* Associate key type with concrete key for each player.
          * Player's numbes is ordinary number of it in the list. */
@@ -49,6 +50,7 @@ namespace Global
             MapParser m = new MapParser();
             levels.Add(m.parse(Settings.Default.mapsPath + "/Level1.txt"));
             levels.Add(m.parse(Settings.Default.mapsPath + "/Level2.txt"));
+            coins = new int[Settings.Default.players_number];
         }
 
 
@@ -104,6 +106,8 @@ namespace Global
                 if (currentLevel + 1 < levels.Count) currentLevel++;
                 else won = true;
             }
+
+            coins = levels[currentLevel].getCoins();
         }
 
 
@@ -112,7 +116,7 @@ namespace Global
             u.setHorizontalSpeed(h1 + h2);
         }
         
-
+        
         private void changeVSpeed(Unit u, int h1, int h2)
         {
             u.setVerticalSpeed(h1 + h2);
@@ -146,6 +150,11 @@ namespace Global
         public bool playerWon()
         {
             return won;
+        }
+
+        public int numberCoin(int playerNumber = 0)
+        {
+            return coins[playerNumber]; 
         }
     }
 }

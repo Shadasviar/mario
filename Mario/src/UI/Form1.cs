@@ -81,6 +81,7 @@ namespace Global
 
         public void updateState()
         {
+
             this.Invalidate();
           
             if(game.getPlayerPosition(playerIndex).topRight.X > this.Width/2+offset)
@@ -96,6 +97,7 @@ namespace Global
                     offset = 0;
                 }
             }
+            
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -115,6 +117,11 @@ namespace Global
                     e.Graphics.DrawImage(p.img, p.location.X, p.location.Y, p.size.Width, p.size.Height);
                 }
             }
+            lock (game)
+            {
+                label1.Text = "Coins: " + game.numberCoin(playerIndex).ToString();
+            }
+            label1.Refresh();
         }
         
         /* map position from top left to bottom left*/
