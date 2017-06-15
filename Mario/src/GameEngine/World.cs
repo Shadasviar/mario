@@ -16,8 +16,8 @@ namespace GameEngine
         private int playersAlive = Settings.Default.players_number;
         private int _levelComplete = 0;
         int countCoin;
-        System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer("../../Resources/deathWB.wav");
-        System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer("../../Resources/killedByMob.wav");
+        System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer(Resources.deathWB);
+        System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer(Resources.killedByMob);
   
         public bool playerIsAlive()
         {
