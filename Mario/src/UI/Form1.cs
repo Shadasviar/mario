@@ -152,8 +152,7 @@ namespace Global
 
         private void exit(object sender, EventArgs e)
         {
-            this.Dispose();
-            this.Close();
+            parent.stopGame();
         }
 
 
