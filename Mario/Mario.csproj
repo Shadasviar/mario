@@ -123,6 +123,10 @@
     <None Include="images\cegla.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\smb_mariodie.wav" />
+    <None Include="Resources\smb_kick.wav" />
+    <None Include="Resources\smb_jump-small.wav" />
+    <None Include="Resources\smb_coin.wav" />
     <None Include="Resources\start.wav" />
     <None Include="Resources\killedByMob.wav" />
     <None Include="Resources\deathWB.wav" />

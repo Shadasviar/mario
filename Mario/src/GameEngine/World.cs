@@ -16,9 +16,11 @@ namespace GameEngine
         private int playersAlive = Settings.Default.players_number;
         private int _levelComplete = 0;
         int [] countCoins;
-        System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer(Resources.deathWB);
-        System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer(Resources.killedByMob);
-  
+        System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer(Resources.smb_mariodie);
+        System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer(Resources.smb_mariodie);
+        System.Media.SoundPlayer kick = new System.Media.SoundPlayer(Resources.smb_kick);
+        System.Media.SoundPlayer soundCoin = new System.Media.SoundPlayer(Resources.smb_coin);
+
         public bool playerIsAlive()
         {
             return playersAlive > 0;
@@ -184,6 +186,7 @@ namespace GameEngine
                 {
                     countCoins[Array.IndexOf(players, b)]++;
                     remove(a);
+                    soundCoin.Play();
                 }
             }
         }
@@ -239,7 +242,11 @@ namespace GameEngine
         {
             /* Kill mob if player jump to it*/
             if (UnitGroups[(int)UnitGroupNames.players].Contains(b) &&
-                UnitGroups[(int)UnitGroupNames.mobs].Contains(a)) remove(a);
+                UnitGroups[(int)UnitGroupNames.mobs].Contains(a))
+            {
+                remove(a);
+                kick.Play();
+            }
             
 
             /*If player fell down to some unit, its jumping state finished*/

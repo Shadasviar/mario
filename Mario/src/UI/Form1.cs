@@ -20,7 +20,6 @@ namespace Global
         GameAPI game;
         private List<int> keys = new List<int>(new int [8]);
         int offset = 0;
-        System.Media.SoundPlayer startGame = new System.Media.SoundPlayer(Resources.start);
         protected int playerIndex;
         MainMenu parent;
 
@@ -37,8 +36,6 @@ namespace Global
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty
                 | BindingFlags.Instance | BindingFlags.NonPublic,
                null, this, new object[] { true });
-
-            startGame.Play();
         }
 
 
