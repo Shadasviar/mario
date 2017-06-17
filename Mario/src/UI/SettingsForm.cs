@@ -22,5 +22,11 @@ namespace Global
         {
             parent.Show();
         }
+
+        private void FPS_changing_TextChanged(object sender, EventArgs e)
+        {
+            // if((Settings.Default.fps != null) && (Settings.Default.fps != < 0)) something gets wrong или не нужно было проверять так как в Parse уже занесены 3 исключения ?
+            Settings.Default.fps = Int32.Parse(this.FPS_changing.SelectedText.ToString());
+        }
     }
 }
