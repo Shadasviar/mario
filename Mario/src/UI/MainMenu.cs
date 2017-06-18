@@ -58,6 +58,7 @@ namespace Global
             gameoverLabel.Visible = true;
             for (int i = 0; i < Settings.Default.players_number; ++i)
             {
+                windows[i].Dispose();
                 windows[i].Close();
             }
             this.Show();

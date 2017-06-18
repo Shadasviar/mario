@@ -53,6 +53,7 @@
     <Compile Include="src\GameEngine\Units\Coin.cs" />
     <Compile Include="src\GameEngine\Units\DieUnitBlock.cs" />
     <Compile Include="src\GameEngine\Units\Door.cs" />
+    <Compile Include="src\GameEngine\Units\GroundPlatform.cs" />
     <Compile Include="src\UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +124,10 @@
     <None Include="images\cegla.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\smb_mariodie.wav" />
+    <None Include="Resources\smb_kick.wav" />
+    <None Include="Resources\smb_jump-small.wav" />
+    <None Include="Resources\smb_coin.wav" />
     <None Include="Resources\start.wav" />
     <None Include="Resources\killedByMob.wav" />
     <None Include="Resources\deathWB.wav" />

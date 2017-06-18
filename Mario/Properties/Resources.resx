@@ -178,13 +178,16 @@
   <data name="rbird4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\bird\rbird4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="deathWB" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\deathWB.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="smb_coin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smb_coin.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="killedByMob" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\killedByMob.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="smb_jump_small" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smb_jump-small.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\start.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="smb_kick" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smb_kick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="smb_mariodie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\smb_mariodie.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
