@@ -16,7 +16,6 @@ namespace GameEngine
         private int playersAlive = Settings.Default.players_number;
         private int _levelComplete = 0;
         int [] countCoins;
-        System.Media.SoundPlayer deathWB = new System.Media.SoundPlayer(Resources.smb_mariodie);
         System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer(Resources.smb_mariodie);
         System.Media.SoundPlayer kick = new System.Media.SoundPlayer(Resources.smb_kick);
         System.Media.SoundPlayer soundCoin = new System.Media.SoundPlayer(Resources.smb_coin);
@@ -186,7 +185,7 @@ namespace GameEngine
                 {
                     countCoins[Array.IndexOf(players, b)]++;
                     remove(a);
-                    soundCoin.Play();
+                    if (!Settings.Default.Sound_Off) soundCoin.Play();
                 }
             }
         }
@@ -212,8 +211,8 @@ namespace GameEngine
             if (UnitGroups[(int)UnitGroupNames.mobs].Contains(a) &&
                UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
+                if (!Settings.Default.Sound_Off) killedByMob.Play();
                 remove(b);
-                killedByMob.Play();
                 --playersAlive;
             }
         }
@@ -232,7 +231,7 @@ namespace GameEngine
                 UnitGroups[(int)UnitGroupNames.mobs].Contains(a))
             {
                 remove(b);
-                killedByMob.Play();
+                if (!Settings.Default.Sound_Off) killedByMob.Play();
                 --playersAlive;
             }
         }
@@ -245,7 +244,7 @@ namespace GameEngine
                 UnitGroups[(int)UnitGroupNames.mobs].Contains(a))
             {
                 remove(a);
-                kick.Play();
+                if (!Settings.Default.Sound_Off) kick.Play();
             }
             
 
