@@ -27,18 +27,13 @@ namespace Global
             parent.Show();
         }
 
-        private void FPS_changing_TextChanged(object sender, EventArgs e)
-        {
-            if (Int32.Parse(this.FPS_changing.Text.ToString()) <= 0)
-            {
-                return;
-            }
-            Settings.Default.fps = Int32.Parse(this.FPS_changing.Text.ToString());
-        }
 
         private void Submit_Settings_Game_Click(object sender, EventArgs e)
         {
-
+            if (Int32.Parse(this.FPS_changing.Text.ToString()) >= 0)
+            {
+                Settings.Default.fps = Int32.Parse(this.FPS_changing.Text.ToString());
+            }
             this.Close();
         }
 
