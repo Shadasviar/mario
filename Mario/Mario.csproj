@@ -53,6 +53,7 @@
     <Compile Include="src\GameEngine\Units\Coin.cs" />
     <Compile Include="src\GameEngine\Units\DieUnitBlock.cs" />
     <Compile Include="src\GameEngine\Units\Door.cs" />
+    <Compile Include="src\GameEngine\Units\GroundPlatform.cs" />
     <Compile Include="src\UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -190,5 +190,29 @@ namespace Mario.Properties {
                 this["players_number"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int platformDistance {
+            get {
+                return ((int)(this["platformDistance"]));
+            }
+            set {
+                this["platformDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int platformSpeed {
+            get {
+                return ((int)(this["platformSpeed"]));
+            }
+            set {
+                this["platformSpeed"] = value;
+            }
+        }
     }
 }
