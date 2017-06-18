@@ -14,7 +14,7 @@ namespace Global
             this.ActiveControl = Submit_Settings_Game;
             this.n_players_comboBox.Text = Settings.Default.players_number.ToString();
             this.FPS_changing.Text = Settings.Default.fps.ToString();
-            this.Sound_Settings.Checked = true;
+            this.Sound_Settings.Checked = !(Settings.Default.Sound_Off);
         }
 
         private void n_players_comboBox_SelectedIndexChanged(object sender, EventArgs e)

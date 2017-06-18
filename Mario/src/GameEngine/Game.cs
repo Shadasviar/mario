@@ -104,7 +104,7 @@ namespace Global
                 if (keysStatus[(int)keyAssociatedWithPlayer[i][keysType.Jump]] == 1)
                 {
                     ((Jumpable)levels[currentLevel].players[i]).jump();
-                    new SoundPlayer(Resources.smb_jump_small).Play();
+                    if (!Settings.Default.Sound_Off) new SoundPlayer(Resources.smb_jump_small).Play();
                 }
             }
 
