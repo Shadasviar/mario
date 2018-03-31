@@ -18,13 +18,13 @@ namespace Global
     {
         delegate void updateStateDelegate();
         GameAPI game;
-        private List<int> keys = new List<int>(new int [8]);
+        private Dictionary<Keys, int> keys = new Dictionary<Keys, int>();
         int offset = 0;
         protected int playerIndex;
         MainMenu parent;
 
 
-        public MainWindow(Object game, ref List<int> keys, MainMenu parent, int player = 0)
+        public MainWindow(Object game, ref Dictionary<Keys, int> keys, MainMenu parent, int player = 0)
         {
             this.playerIndex = player;
             this.game = (GameAPI)game;
@@ -46,27 +46,19 @@ namespace Global
 
         private void MaunWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 1;
-            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 1;
-            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 1;
-            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 1;
-            if (e.KeyCode == Keys.W) keys[(int)keysNames.W] = 1;
-            if (e.KeyCode == Keys.A) keys[(int)keysNames.A] = 1;
-            if (e.KeyCode == Keys.S) keys[(int)keysNames.S] = 1;
-            if (e.KeyCode == Keys.D) keys[(int)keysNames.D] = 1;
+            if (keys.ContainsKey(e.KeyCode))
+            {
+                keys[e.KeyCode] = 1;
+            }
         }
 
 
         private void MainWindow_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 0;
-            if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 0;
-            if (e.KeyCode == Keys.Right) keys[(int)keysNames.Right] = 0;
-            if (e.KeyCode == Keys.Left) keys[(int)keysNames.Left] = 0;
-            if (e.KeyCode == Keys.W) keys[(int)keysNames.W] = 0;
-            if (e.KeyCode == Keys.A) keys[(int)keysNames.A] = 0;
-            if (e.KeyCode == Keys.S) keys[(int)keysNames.S] = 0;
-            if (e.KeyCode == Keys.D) keys[(int)keysNames.D] = 0;
+            if (keys.ContainsKey(e.KeyCode))
+            {
+                keys[e.KeyCode] = 0;
+            }
         }
 
 

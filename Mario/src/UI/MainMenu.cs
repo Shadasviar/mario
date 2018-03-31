@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Mario.Properties;
 using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 
 namespace Global
 
@@ -10,7 +11,16 @@ namespace Global
     public partial class MainMenu : Form
     {
         MainWindow[] windows;
-        List<int> keys;
+        private Dictionary<Keys, int> keys = new Dictionary<Keys, int> {
+            { Keys.Down,    0 },
+            { Keys.Space,   0 },
+            { Keys.Left,    0 },
+            { Keys.Right,   0 },
+            { Keys.W,       0 },
+            { Keys.A,       0 },
+            { Keys.S,       0 },
+            { Keys.D,       0 },
+        };
         GameAPI game;
         bool run = false;
 
@@ -31,7 +41,7 @@ namespace Global
 
         private void startGame()
         {
-            keys = new List<int>(new int[8]);
+            keys = keys.ToDictionary(x => x.Key, x => 0);
             game = new Game(ref keys);
 
             windows = new MainWindow[Settings.Default.players_number];
@@ -114,6 +124,11 @@ namespace Global
             SettingsForm settings = new SettingsForm(this);
             this.Hide();
             settings.Show();
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

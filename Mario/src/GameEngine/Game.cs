@@ -5,47 +5,41 @@ using GameEngine;
 using Mario.Properties;
 using System.Media;
 using System.IO;
+using System.Windows.Forms;
 
 namespace Global
 {
-    enum keysNames {
-        Right, Left, Down, Space,
-        D, A, S, W
-    };
-
-
     enum keysType { Right, Left, Down, Jump};
    
-
     class Game : GameAPI
     {
         protected List<World> levels = new List<World>();
-        protected List<int> keysStatus = new List<int>();
+        protected Dictionary<Keys, int> keysStatus = new Dictionary<Keys, int>();
         protected int currentLevel;
         protected bool won = false;
         protected int[] coins; 
 
         /* Associate key type with concrete key for each player.
          * Player's numbes is ordinary number of it in the list. */
-        public static List<Dictionary<keysType, keysNames>> keyAssociatedWithPlayer = 
-            new List<Dictionary<keysType, keysNames>>
+        public static List<Dictionary<keysType, Keys>> keyAssociatedWithPlayer = 
+            new List<Dictionary<keysType, Keys>>
         {
-            new Dictionary<keysType, keysNames>{
-                {keysType.Down, keysNames.Down},
-                {keysType.Jump, keysNames.Space},
-                {keysType.Right, keysNames.Right},
-                {keysType.Left, keysNames.Left},
+            new Dictionary<keysType, Keys>{
+                {keysType.Down, Keys.Down},
+                {keysType.Jump, Keys.Space},
+                {keysType.Right, Keys.Right},
+                {keysType.Left, Keys.Left},
             },
-            new Dictionary<keysType, keysNames>{
-                {keysType.Down, keysNames.S},
-                {keysType.Jump, keysNames.W},
-                {keysType.Right, keysNames.D},
-                {keysType.Left, keysNames.A},
+            new Dictionary<keysType, Keys>{
+                {keysType.Down, Keys.S},
+                {keysType.Jump, Keys.W},
+                {keysType.Right, Keys.D},
+                {keysType.Left, Keys.A},
             },
         };
 
 
-        public Game(ref List<int>a)
+        public Game(ref Dictionary<Keys, int> a)
         {
             keysStatus = a;
             MapParser m = new MapParser();
@@ -82,7 +76,7 @@ namespace Global
 
             for (int i = 0; i < min; ++i)
             {
-                if (keysStatus[(int)keyAssociatedWithPlayer[i][keysType.Right]] == 1)
+                if (keysStatus[keyAssociatedWithPlayer[i][keysType.Right]] == 1)
                 {
                     h1 = Settings.Default.standardPlayerSpeed;
                 }
@@ -91,7 +85,7 @@ namespace Global
                     h1 = 0;
                 }
 
-                if (keysStatus[(int)keyAssociatedWithPlayer[i][keysType.Left]] == 1)
+                if (keysStatus[keyAssociatedWithPlayer[i][keysType.Left]] == 1)
                 {
                     h2 = -Settings.Default.standardPlayerSpeed;
                 }
@@ -101,7 +95,7 @@ namespace Global
                 }
                 changeHSpeed(levels[currentLevel].players[i], h1, h2);
 
-                if (keysStatus[(int)keyAssociatedWithPlayer[i][keysType.Jump]] == 1)
+                if (keysStatus[keyAssociatedWithPlayer[i][keysType.Jump]] == 1)
                 {
                     ((Jumpable)levels[currentLevel].players[i]).jump();
                     if (!Settings.Default.Sound_Off) new SoundPlayer(Resources.smb_jump_small).Play();
