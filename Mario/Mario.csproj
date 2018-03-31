@@ -54,11 +54,11 @@
     <Compile Include="src\GameEngine\Units\DieUnitBlock.cs" />
     <Compile Include="src\GameEngine\Units\Door.cs" />
     <Compile Include="src\GameEngine\Units\GroundPlatform.cs" />
-    <Compile Include="src\UI\Form1.cs">
+    <Compile Include="src\UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\UI\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="src\UI\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="src\GameEngine\Game.cs" />
     <Compile Include="src\GameAPI.cs" />
@@ -86,8 +86,8 @@
     <Compile Include="src\UI\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="src\UI\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="src\UI\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

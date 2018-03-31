@@ -14,7 +14,7 @@ namespace Global
         public Size size;
         public Point location; 
     }
-    public partial class Form1 : Form
+    public partial class MainWindow : Form
     {
         delegate void updateStateDelegate();
         GameAPI game;
@@ -24,7 +24,7 @@ namespace Global
         MainMenu parent;
 
 
-        public Form1(Object game, ref List<int> keys, MainMenu parent, int player = 0)
+        public MainWindow(Object game, ref List<int> keys, MainMenu parent, int player = 0)
         {
             this.playerIndex = player;
             this.game = (GameAPI)game;
@@ -44,7 +44,7 @@ namespace Global
             parent.pauseGame();
         }
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void MaunWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 1;
             if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 1;
@@ -57,7 +57,7 @@ namespace Global
         }
 
 
-        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        private void MainWindow_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down) keys[(int)keysNames.Down] = 0;
             if (e.KeyCode == Keys.Space) keys[(int)keysNames.Space] = 0;
@@ -70,7 +70,7 @@ namespace Global
         }
 
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void MainWindow_Load(object sender, EventArgs e)
         {
             updateState();
         }
@@ -156,7 +156,7 @@ namespace Global
         }
 
 
-        private void Form1Close(object sender, FormClosingEventArgs e)
+        private void MainWindow_Close(object sender, FormClosingEventArgs e)
         {
             exit(sender, e);
         }

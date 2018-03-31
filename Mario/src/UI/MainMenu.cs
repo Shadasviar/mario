@@ -9,7 +9,7 @@ namespace Global
 {
     public partial class MainMenu : Form
     {
-        Form1[] windows;
+        MainWindow[] windows;
         List<int> keys;
         GameAPI game;
         bool run = false;
@@ -34,10 +34,10 @@ namespace Global
             keys = new List<int>(new int[8]);
             game = new Game(ref keys);
 
-            windows = new Form1[Settings.Default.players_number];
+            windows = new MainWindow[Settings.Default.players_number];
             for(int i = 0; i < Settings.Default.players_number; ++i)
             {
-                windows[i] = new Form1(game, ref keys, this, i);
+                windows[i] = new MainWindow(game, ref keys, this, i);
                 windows[i].Show();
             }
 
