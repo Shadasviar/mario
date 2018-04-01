@@ -11,14 +11,18 @@ namespace GameEngine
     {
         public Unit[] players;
         private List<Unit> units = new List<Unit>();
-        public enum UnitGroupNames {stat, players, mobs, staff};
+        public enum UnitGroupNames { stat, players, mobs, staff };
         private List<List<Unit>> UnitGroups = new List<List<Unit>>();
         private int playersAlive = Settings.Default.players_number;
         private int _levelComplete = 0;
-        int [] countCoins;
-        System.Media.SoundPlayer killedByMob = new System.Media.SoundPlayer(Resources.smb_mariodie);
-        System.Media.SoundPlayer kick = new System.Media.SoundPlayer(Resources.smb_kick);
-        System.Media.SoundPlayer soundCoin = new System.Media.SoundPlayer(Resources.smb_coin);
+        int[] countCoins;
+
+        enum Sounds {KilledByMob, Kick, PickCoin };
+        private Dictionary<Sounds, System.Media.SoundPlayer> sounds = new Dictionary<Sounds, System.Media.SoundPlayer> {
+            {Sounds.KilledByMob,  new System.Media.SoundPlayer(Resources.smb_mariodie)},
+            {Sounds.Kick,  new System.Media.SoundPlayer(Resources.smb_kick)},
+            {Sounds.PickCoin,  new System.Media.SoundPlayer(Resources.smb_coin)},
+        };
 
         public bool playerIsAlive()
         {
@@ -185,7 +189,7 @@ namespace GameEngine
                 {
                     countCoins[Array.IndexOf(players, b)]++;
                     remove(a);
-                    if (!Settings.Default.Sound_Off) soundCoin.Play();
+                    if (!Settings.Default.Sound_Off) sounds[Sounds.PickCoin].Play();
                 }
             }
         }
@@ -211,7 +215,7 @@ namespace GameEngine
             if (UnitGroups[(int)UnitGroupNames.mobs].Contains(a) &&
                UnitGroups[(int)UnitGroupNames.players].Contains(b))
             {
-                if (!Settings.Default.Sound_Off) killedByMob.Play();
+                if (!Settings.Default.Sound_Off) sounds[Sounds.KilledByMob].Play();
                 remove(b);
                 --playersAlive;
             }
@@ -231,7 +235,7 @@ namespace GameEngine
                 UnitGroups[(int)UnitGroupNames.mobs].Contains(a))
             {
                 remove(b);
-                if (!Settings.Default.Sound_Off) killedByMob.Play();
+                if (!Settings.Default.Sound_Off) sounds[Sounds.KilledByMob].Play();
                 --playersAlive;
             }
         }
@@ -244,7 +248,7 @@ namespace GameEngine
                 UnitGroups[(int)UnitGroupNames.mobs].Contains(a))
             {
                 remove(a);
-                if (!Settings.Default.Sound_Off) kick.Play();
+                if (!Settings.Default.Sound_Off) sounds[Sounds.Kick].Play();
             }
             
 
@@ -305,7 +309,6 @@ namespace GameEngine
                 x = units[i].GetPosition().topRight.X + units[i].GetCurrentSpeed().getHorizontalSpeed();
                 y = units[i].GetPosition().topRight.Y + units[i].GetCurrentSpeed().getVerticalSpeed();
                 c.topRight = new Point(x, y);
-             //   Label1.Text = countCoin;
                 units[i].SetCoordinates(c);
             }
         }
